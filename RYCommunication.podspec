@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'stream' do |ss|
     ss.source_files  = "RYCommunication/stream/*.{h,m}"
-    ss.dependency 'RYCommunication/core'
+    ss.dependency 'RYCommunication/base'
   end
   
   s.subspec 'mfi' do |ss|
@@ -32,6 +32,6 @@ Pod::Spec.new do |s|
   
   s.subspec 'ble' do |ss|
     ss.source_files  = "BaseKitSwift/ble/*.{h,m}"
-    ss.dependency 'RYCommunication/core'
+    ss.dependency 'RYCommunication/base'
   end
 end
