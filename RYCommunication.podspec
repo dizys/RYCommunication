@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'ble' do |ss|
-    ss.source_files  = "BaseKitSwift/ble/*.{h,m}"
+    ss.source_files  = "RYCommunication/ble/*.{h,m}"
     ss.dependency 'RYCommunication/base'
   end
 end
