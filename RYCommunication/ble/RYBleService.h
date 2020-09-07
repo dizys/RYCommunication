@@ -1,5 +1,5 @@
 //
-//  HBleService.h
+//  RYBleService.h
 //  HYEditor
 //
 //  Created by ldc on 2019/12/18.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol HBleServiceProtocol <CBPeripheralDelegate, RYAccessory>
+@protocol RYBleServiceProtocol <CBPeripheralDelegate, RYAccessory>
 
 @property (nonatomic, strong) CBUUID *uuid;
 
@@ -26,15 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface HBleService : NSObject <HBleServiceProtocol>
+@interface RYBleService : NSObject <RYBleServiceProtocol>
 
 @end
 
-@interface CP4000lBleService : HBleService
+@interface CP4000lBleService : RYBleService
 
 @end
 
-@interface FF00BleService : HBleService
+@interface FF00BleService : RYBleService
 
 @end
 

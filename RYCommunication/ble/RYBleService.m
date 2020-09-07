@@ -1,13 +1,13 @@
 //
-//  HBleService.m
+//  RYBleService.m
 //  HYEditor
 //
 //  Created by ldc on 2019/12/18.
 //  Copyright © 2019 swiftHY. All rights reserved.
 //
 
-#import "HBleService.h"
-#import "HBleConst.h"
+#import "RYBleService.h"
+#import "RYBleConst.h"
 #import "RYNotHandlingResolver.h"
 
 #define WiFiConfigServiceUUID @"1B7E8251-2877-41C3-B46E-CF057C562023"
@@ -17,7 +17,7 @@
 #define WiFiPasswordUUID        @"40B7DE33-93E4-4C8B-A876-D833B415A6CE"
 #define CommandUUID             @"42B8DF34-94E5-4D8C-A978-D9745546B7BF"
 
-@implementation HBleService
+@implementation RYBleService
 @synthesize uuid;
 @synthesize peripheral;
 @synthesize configureSuccess;
@@ -81,7 +81,7 @@
     
     if (error) {
         if (self.configureFail) {
-            NSError *temp = [NSError errorWithDomain:HBleConnectErrorDomain code:HBleConnectErrorCodeSystemError userInfo:@{@"error": error}];
+            NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeSystemError userInfo:@{@"error": error}];
             self.configureFail(temp);
         }
         return;
@@ -111,7 +111,7 @@
             }
         }else {
             if (self.configureFail) {
-                NSError *temp = [NSError errorWithDomain:HBleConnectErrorDomain code:HBleConnectErrorCodeCharacteristicNotFound userInfo:nil];
+                NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeCharacteristicNotFound userInfo:nil];
                 self.configureFail(temp);
             }
         }
@@ -317,7 +317,7 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
     
     if (error) {
         if (self.configureFail) {
-            NSError *temp = [NSError errorWithDomain:HBleConnectErrorDomain code:HBleConnectErrorCodeSystemError userInfo:@{@"error": error}];
+            NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeSystemError userInfo:@{@"error": error}];
             self.configureFail(temp);
         }
         return;

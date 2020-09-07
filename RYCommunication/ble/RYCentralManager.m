@@ -1,42 +1,42 @@
 //
-//  HCentralManager.m
+//  RYCentralManager.m
 //  BleKit
 //
 //  Created by ldc on 2019/3/25.
 //  Copyright © 2019 Xiamen Hanin. All rights reserved.
 //
 
-#import "HCentralManager.h"
-#import "HCentralMessageRepeater.h"
+#import "RYCentralManager.h"
+#import "RYCentralMessageRepeater.h"
 
-@implementation HBleScanOption
+@implementation RYBleScanOption
 
 @end
 
-@interface HCentralManager () <CBCentralManagerDelegate>
+@interface RYCentralManager () <CBCentralManagerDelegate>
 
 @property (nonatomic, assign) BOOL scanning;
 
 @property (nonatomic, strong) CBCentralManager *manager;
 
-@property (nonatomic, readwrite, strong) NSMutableArray<HBleAccessory *> *p_printers;
+@property (nonatomic, readwrite, strong) NSMutableArray<RYBleAccessory *> *p_printers;
 
 @property (nonatomic, readwrite, assign) BOOL isBlePowerOn;
 
-@property (nonatomic, strong) HCentralMessageRepeater *repeater;
+@property (nonatomic, strong) RYCentralMessageRepeater *repeater;
 
-@property (nonatomic, strong) HBleScanOption *option;
+@property (nonatomic, strong) RYBleScanOption *option;
 
 @end
 
-@implementation HCentralManager
+@implementation RYCentralManager
 
 + (instancetype)share {
     
-    static HCentralManager *share;
+    static RYCentralManager *share;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        share = [[HCentralManager alloc] init];
+        share = [[RYCentralManager alloc] init];
     });
     return share;
 }
@@ -50,12 +50,12 @@
         self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.p_printers = [NSMutableArray new];
         self.scanning = false;
-        self.repeater = [[HCentralMessageRepeater alloc] init];
+        self.repeater = [[RYCentralMessageRepeater alloc] init];
     }
     return self;
 }
 
-- (NSArray<HBleAccessory *> *)printers {
+- (NSArray<RYBleAccessory *> *)printers {
     
     return self.p_printers;
 }
@@ -65,7 +65,7 @@
     return self.manager.state == CBCentralManagerStatePoweredOn;
 }
 
-- (void)startScan:(HBleScanOption *)option {
+- (void)startScan:(RYBleScanOption *)option {
     
     if (self.scanning) {
         return;
@@ -96,12 +96,12 @@
     [self.manager stopScan];
 }
 
-- (void)registCentralManagerDelegate:(HBleAccessory *)delegate {
+- (void)registCentralManagerDelegate:(RYBleAccessory *)delegate {
     
     [self.repeater registTarget:delegate];
 }
 
-- (void)unregistCentralManagerDelegate:(HBleAccessory *)delegate {
+- (void)unregistCentralManagerDelegate:(RYBleAccessory *)delegate {
     
     [self.repeater unregistTarget:delegate];
 }
@@ -154,11 +154,11 @@
             return;
         }
     }
-    NSInteger index = [self.printers indexOfObjectPassingTest:^BOOL(HBleAccessory * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSInteger index = [self.printers indexOfObjectPassingTest:^BOOL(RYBleAccessory * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return [obj.peripheral isEqual:peripheral];
     }];
     if (index == NSNotFound) {
-        HBleAccessory *temp = [[HBleAccessory alloc] initWithPeripheral:peripheral rssi:RSSI advertisement:advertisementData];
+        RYBleAccessory *temp = [[RYBleAccessory alloc] initWithPeripheral:peripheral rssi:RSSI advertisement:advertisementData];
         [self.p_printers addObject:temp];
         if (self.discoverBlock) {
             self.discoverBlock(temp);

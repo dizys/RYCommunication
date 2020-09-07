@@ -1,5 +1,5 @@
 //
-//  HBleAccessory.h
+//  RYBleAccessory.h
 //  BleKit
 //
 //  Created by ldc on 2019/3/25.
@@ -8,12 +8,12 @@
 
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "base.h"
-#import "HBleConst.h"
-#import "HBleService.h"
+#import "RYBleConst.h"
+#import "RYBleService.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HBleAccessory : NSObject <CBCentralManagerDelegate, RYAccessory>
+@interface RYBleAccessory : NSObject <CBCentralManagerDelegate, RYAccessory>
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSDictionary<NSString *,id> *advertisementData;
 
-@property (nonatomic, strong) NSArray<id<HBleServiceProtocol>> *services;
+@property (nonatomic, strong) NSArray<id<RYBleServiceProtocol>> *services;
 
 @property (nonatomic, assign, readonly) BOOL connected;
 

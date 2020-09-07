@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		639B09F62505E231006249B3 /* RYCommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B09F42505E231006249B3 /* RYCommunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A0A2505E557006249B3 /* HBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* HBleService.m */; };
-		639B0A0B2505E557006249B3 /* HCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* HCentralMessageRepeater.m */; };
-		639B0A0C2505E557006249B3 /* HBleConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A022505E557006249B3 /* HBleConst.h */; };
-		639B0A0D2505E557006249B3 /* HCentralMessageRepeater.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A032505E557006249B3 /* HCentralMessageRepeater.h */; };
-		639B0A0E2505E557006249B3 /* HBleService.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A042505E557006249B3 /* HBleService.h */; };
-		639B0A0F2505E557006249B3 /* HCentralManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A052505E557006249B3 /* HCentralManager.h */; };
-		639B0A102505E557006249B3 /* HCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A062505E557006249B3 /* HCentralManager.m */; };
-		639B0A122505E557006249B3 /* HBleConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A082505E557006249B3 /* HBleConst.m */; };
+		639B0A0A2505E557006249B3 /* RYBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* RYBleService.m */; };
+		639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */; };
+		639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A022505E557006249B3 /* RYBleConst.h */; };
+		639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A032505E557006249B3 /* RYCentralMessageRepeater.h */; };
+		639B0A0E2505E557006249B3 /* RYBleService.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A042505E557006249B3 /* RYBleService.h */; };
+		639B0A0F2505E557006249B3 /* RYCentralManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A052505E557006249B3 /* RYCentralManager.h */; };
+		639B0A102505E557006249B3 /* RYCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A062505E557006249B3 /* RYCentralManager.m */; };
+		639B0A122505E557006249B3 /* RYBleConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A082505E557006249B3 /* RYBleConst.m */; };
 		639B0A1A2505E7F1006249B3 /* RYNotHandlingResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A182505E7F1006249B3 /* RYNotHandlingResolver.h */; };
 		639B0A1B2505E7F1006249B3 /* RYNotHandlingResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A192505E7F1006249B3 /* RYNotHandlingResolver.m */; };
-		639B0A1E250605A1006249B3 /* HBleAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A1C250605A1006249B3 /* HBleAccessory.m */; };
-		639B0A1F250605A1006249B3 /* HBleAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A1D250605A1006249B3 /* HBleAccessory.h */; };
+		639B0A1E250605A1006249B3 /* RYBleAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A1C250605A1006249B3 /* RYBleAccessory.m */; };
+		639B0A1F250605A1006249B3 /* RYBleAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A1D250605A1006249B3 /* RYBleAccessory.h */; };
 		639B0A2325060638006249B3 /* RYSocketAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2125060638006249B3 /* RYSocketAccessory.h */; };
 		639B0A2425060638006249B3 /* RYSocketAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A2225060638006249B3 /* RYSocketAccessory.m */; };
 		639B0A2C250606CD006249B3 /* RYStreamPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2A250606CD006249B3 /* RYStreamPair.h */; };
@@ -33,18 +33,18 @@
 		639B09F12505E231006249B3 /* RYCommunication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RYCommunication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		639B09F42505E231006249B3 /* RYCommunication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYCommunication.h; sourceTree = "<group>"; };
 		639B09F52505E231006249B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		639B0A002505E557006249B3 /* HBleService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBleService.m; sourceTree = "<group>"; };
-		639B0A012505E557006249B3 /* HCentralMessageRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCentralMessageRepeater.m; sourceTree = "<group>"; };
-		639B0A022505E557006249B3 /* HBleConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBleConst.h; sourceTree = "<group>"; };
-		639B0A032505E557006249B3 /* HCentralMessageRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCentralMessageRepeater.h; sourceTree = "<group>"; };
-		639B0A042505E557006249B3 /* HBleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBleService.h; sourceTree = "<group>"; };
-		639B0A052505E557006249B3 /* HCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCentralManager.h; sourceTree = "<group>"; };
-		639B0A062505E557006249B3 /* HCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCentralManager.m; sourceTree = "<group>"; };
-		639B0A082505E557006249B3 /* HBleConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBleConst.m; sourceTree = "<group>"; };
+		639B0A002505E557006249B3 /* RYBleService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYBleService.m; sourceTree = "<group>"; };
+		639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYCentralMessageRepeater.m; sourceTree = "<group>"; };
+		639B0A022505E557006249B3 /* RYBleConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYBleConst.h; sourceTree = "<group>"; };
+		639B0A032505E557006249B3 /* RYCentralMessageRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCentralMessageRepeater.h; sourceTree = "<group>"; };
+		639B0A042505E557006249B3 /* RYBleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYBleService.h; sourceTree = "<group>"; };
+		639B0A052505E557006249B3 /* RYCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCentralManager.h; sourceTree = "<group>"; };
+		639B0A062505E557006249B3 /* RYCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYCentralManager.m; sourceTree = "<group>"; };
+		639B0A082505E557006249B3 /* RYBleConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYBleConst.m; sourceTree = "<group>"; };
 		639B0A182505E7F1006249B3 /* RYNotHandlingResolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYNotHandlingResolver.h; sourceTree = "<group>"; };
 		639B0A192505E7F1006249B3 /* RYNotHandlingResolver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYNotHandlingResolver.m; sourceTree = "<group>"; };
-		639B0A1C250605A1006249B3 /* HBleAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBleAccessory.m; sourceTree = "<group>"; };
-		639B0A1D250605A1006249B3 /* HBleAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBleAccessory.h; sourceTree = "<group>"; };
+		639B0A1C250605A1006249B3 /* RYBleAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYBleAccessory.m; sourceTree = "<group>"; };
+		639B0A1D250605A1006249B3 /* RYBleAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYBleAccessory.h; sourceTree = "<group>"; };
 		639B0A2125060638006249B3 /* RYSocketAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYSocketAccessory.h; sourceTree = "<group>"; };
 		639B0A2225060638006249B3 /* RYSocketAccessory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYSocketAccessory.m; sourceTree = "<group>"; };
 		639B0A2A250606CD006249B3 /* RYStreamPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYStreamPair.h; sourceTree = "<group>"; };
@@ -108,16 +108,16 @@
 		639B09FF2505E4EB006249B3 /* ble */ = {
 			isa = PBXGroup;
 			children = (
-				639B0A1D250605A1006249B3 /* HBleAccessory.h */,
-				639B0A1C250605A1006249B3 /* HBleAccessory.m */,
-				639B0A022505E557006249B3 /* HBleConst.h */,
-				639B0A082505E557006249B3 /* HBleConst.m */,
-				639B0A042505E557006249B3 /* HBleService.h */,
-				639B0A002505E557006249B3 /* HBleService.m */,
-				639B0A052505E557006249B3 /* HCentralManager.h */,
-				639B0A062505E557006249B3 /* HCentralManager.m */,
-				639B0A032505E557006249B3 /* HCentralMessageRepeater.h */,
-				639B0A012505E557006249B3 /* HCentralMessageRepeater.m */,
+				639B0A1D250605A1006249B3 /* RYBleAccessory.h */,
+				639B0A1C250605A1006249B3 /* RYBleAccessory.m */,
+				639B0A022505E557006249B3 /* RYBleConst.h */,
+				639B0A082505E557006249B3 /* RYBleConst.m */,
+				639B0A042505E557006249B3 /* RYBleService.h */,
+				639B0A002505E557006249B3 /* RYBleService.m */,
+				639B0A052505E557006249B3 /* RYCentralManager.h */,
+				639B0A062505E557006249B3 /* RYCentralManager.m */,
+				639B0A032505E557006249B3 /* RYCentralMessageRepeater.h */,
+				639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */,
 			);
 			path = ble;
 			sourceTree = "<group>";
@@ -158,12 +158,12 @@
 			files = (
 				639B0A2325060638006249B3 /* RYSocketAccessory.h in Headers */,
 				639B0A1A2505E7F1006249B3 /* RYNotHandlingResolver.h in Headers */,
-				639B0A0C2505E557006249B3 /* HBleConst.h in Headers */,
+				639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */,
 				639B0A2C250606CD006249B3 /* RYStreamPair.h in Headers */,
-				639B0A0F2505E557006249B3 /* HCentralManager.h in Headers */,
-				639B0A0E2505E557006249B3 /* HBleService.h in Headers */,
-				639B0A1F250605A1006249B3 /* HBleAccessory.h in Headers */,
-				639B0A0D2505E557006249B3 /* HCentralMessageRepeater.h in Headers */,
+				639B0A0F2505E557006249B3 /* RYCentralManager.h in Headers */,
+				639B0A0E2505E557006249B3 /* RYBleService.h in Headers */,
+				639B0A1F250605A1006249B3 /* RYBleAccessory.h in Headers */,
+				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
 				639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */,
 				639B09F62505E231006249B3 /* RYCommunication.h in Headers */,
 				639B0A3425060EDE006249B3 /* base.h in Headers */,
@@ -238,15 +238,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				639B0A0B2505E557006249B3 /* HCentralMessageRepeater.m in Sources */,
+				639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */,
 				639B0A2425060638006249B3 /* RYSocketAccessory.m in Sources */,
 				639B0A1B2505E7F1006249B3 /* RYNotHandlingResolver.m in Sources */,
-				639B0A102505E557006249B3 /* HCentralManager.m in Sources */,
+				639B0A102505E557006249B3 /* RYCentralManager.m in Sources */,
 				639B0A2D250606CD006249B3 /* RYStreamPair.m in Sources */,
-				639B0A0A2505E557006249B3 /* HBleService.m in Sources */,
+				639B0A0A2505E557006249B3 /* RYBleService.m in Sources */,
 				639B0A3225060941006249B3 /* RYExternalAccessory.m in Sources */,
-				639B0A122505E557006249B3 /* HBleConst.m in Sources */,
-				639B0A1E250605A1006249B3 /* HBleAccessory.m in Sources */,
+				639B0A122505E557006249B3 /* RYBleConst.m in Sources */,
+				639B0A1E250605A1006249B3 /* RYBleAccessory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

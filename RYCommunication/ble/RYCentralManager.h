@@ -1,5 +1,5 @@
 //
-//  HCentralManager.h
+//  RYCentralManager.h
 //  BleKit
 //
 //  Created by ldc on 2019/3/25.
@@ -7,11 +7,11 @@
 //
 
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "HBleAccessory.h"
+#import "RYBleAccessory.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HBleScanOption : NSObject
+@interface RYBleScanOption : NSObject
 
 @property (nonatomic, strong) NSArray<CBUUID *> * _Nullable serviceUUIDs;
 
@@ -19,25 +19,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface HCentralManager : NSObject
+@interface RYCentralManager : NSObject
 
 + (instancetype)share;
 
-@property (nonatomic, readonly, strong) NSArray<HBleAccessory *> *printers;
+@property (nonatomic, readonly, strong) NSArray<RYBleAccessory *> *printers;
 
 @property (nonatomic, copy) void(^ _Nullable powerOffBlock)(void);
 
-@property (nonatomic, copy) void(^ _Nullable discoverBlock)(HBleAccessory *device);
+@property (nonatomic, copy) void(^ _Nullable discoverBlock)(RYBleAccessory *device);
 
 @property (nonatomic,readonly, assign) BOOL isBlePowerOn;
 
-- (void)startScan:(HBleScanOption * _Nullable)option;
+- (void)startScan:(RYBleScanOption * _Nullable)option;
 
 - (void)stopScan;
 
-- (void)registCentralManagerDelegate:(HBleAccessory *)delegate;
+- (void)registCentralManagerDelegate:(RYBleAccessory *)delegate;
 
-- (void)unregistCentralManagerDelegate:(HBleAccessory *)delegate;
+- (void)unregistCentralManagerDelegate:(RYBleAccessory *)delegate;
 
 - (void)connectPeripheral:(CBPeripheral *)peripheral options:(nullable NSDictionary<NSString *, id> *)options;
 

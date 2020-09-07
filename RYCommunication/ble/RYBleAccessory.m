@@ -1,18 +1,18 @@
 //
-//  HBleAccessory.m
+//  RYBleAccessory.m
 //  BleKit
 //
 //  Created by ldc on 2019/3/25.
 //  Copyright © 2019 Xiamen Hanin. All rights reserved.
 //
 
-#import "HBleAccessory.h"
-#import "HCentralManager.h"
+#import "RYBleAccessory.h"
+#import "RYCentralManager.h"
 #import "RYNotHandlingResolver.h"
 
-@interface HBleAccessory ()<CBPeripheralDelegate>
+@interface RYBleAccessory ()<CBPeripheralDelegate>
 
-@property (nonatomic, weak, readonly) HCentralManager *manager;
+@property (nonatomic, weak, readonly) RYCentralManager *manager;
 
 @property (nonatomic, copy) void(^successBlock)(void);
 
@@ -22,11 +22,11 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 
-@property (nonatomic, strong) id<HBleServiceProtocol> currentService;
+@property (nonatomic, strong) id<RYBleServiceProtocol> currentService;
 
 @end
 
-@implementation HBleAccessory
+@implementation RYBleAccessory
 @synthesize resolver;
 @synthesize closedBlock;
 
@@ -43,7 +43,7 @@
     return self;
 }
 
-- (void)setServices:(NSArray<id<HBleServiceProtocol>> *)services {
+- (void)setServices:(NSArray<id<RYBleServiceProtocol>> *)services {
     
     _services = services;
     [self configureServiceBlock];
@@ -52,7 +52,7 @@
 - (void)configureServiceBlock {
     
     __weak typeof(self) weakSelf = self;
-    for (id<HBleServiceProtocol> service in self.services) {
+    for (id<RYBleServiceProtocol> service in self.services) {
         service.peripheral = self.peripheral;
         service.configureFail = ^(NSError * _Nonnull error) {
             [weakSelf didConnectFail:error];
@@ -117,7 +117,7 @@
 
 - (void)connectTimeout {
     
-    NSError *error = [NSError errorWithDomain:HBleConnectErrorDomain code:HBleConnectErrorCodeTimeout userInfo:nil];
+    NSError *error = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeTimeout userInfo:nil];
     [self didConnectFail:error];
 }
 
@@ -161,7 +161,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
-    NSError *temp = [NSError errorWithDomain:HBleConnectErrorDomain code:HBleConnectErrorCodeSystemError userInfo:error.userInfo];
+    NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeSystemError userInfo:error.userInfo];
     [self didConnectFail:temp];
 }
 
@@ -169,13 +169,13 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     
     if (peripheral.services.count == 0) {
-        NSError *temp = [NSError errorWithDomain:HBleConnectErrorDomain code:HBleConnectErrorCodeServiceNotFound userInfo:nil];
+        NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeServiceNotFound userInfo:nil];
         [self didConnectFail:temp];
         return;
     }
-    id<HBleServiceProtocol> pickedBleService;
+    id<RYBleServiceProtocol> pickedBleService;
     CBService *pickedCBService;
-    for (id<HBleServiceProtocol> service in self.services) {
+    for (id<RYBleServiceProtocol> service in self.services) {
         for (CBService *cbService in peripheral.services) {
             if ([cbService.UUID isEqual:service.uuid]) {
                 pickedCBService = cbService;
@@ -188,7 +188,7 @@
         self.currentService = pickedBleService;
         [peripheral discoverCharacteristics:nil forService:pickedCBService];
     }else {
-        NSError *temp = [NSError errorWithDomain:HBleConnectErrorDomain code:HBleConnectErrorCodeServiceNotFound userInfo:nil];
+        NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeServiceNotFound userInfo:nil];
         [self didConnectFail:temp];
     }
 }
@@ -221,9 +221,9 @@
     }
 }
 
-- (HCentralManager *)manager {
+- (RYCentralManager *)manager {
     
-    return [HCentralManager share];
+    return [RYCentralManager share];
 }
 
 @end

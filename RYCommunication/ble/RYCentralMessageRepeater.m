@@ -1,21 +1,21 @@
 //
-//  HCentralMessageRepeater.m
+//  RYCentralMessageRepeater.m
 //  BleKit
 //
 //  Created by ldc on 2019/3/25.
 //  Copyright © 2019 Xiamen Hanin. All rights reserved.
 //
 
-#import "HCentralMessageRepeater.h"
+#import "RYCentralMessageRepeater.h"
 #import <objc/runtime.h>
 
-@interface HCentralMessageRepeater ()
+@interface RYCentralMessageRepeater ()
 
-@property (nonatomic, strong) NSMapTable<CBPeripheral *, HBleAccessory *> *targets;
+@property (nonatomic, strong) NSMapTable<CBPeripheral *, RYBleAccessory *> *targets;
 
 @end
 
-@implementation HCentralMessageRepeater
+@implementation RYCentralMessageRepeater
 
 - (instancetype)init
 {
@@ -26,12 +26,12 @@
     return self;
 }
 
-- (void)registTarget:(HBleAccessory *)target {
+- (void)registTarget:(RYBleAccessory *)target {
     
     [self.targets setObject:target forKey:target.peripheral];
 }
 
-- (void)unregistTarget:(HBleAccessory *)target {
+- (void)unregistTarget:(RYBleAccessory *)target {
     
     [self.targets setObject:nil forKey:target.peripheral];
 }

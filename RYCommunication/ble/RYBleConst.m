@@ -6,6 +6,6 @@
 //  Copyright © 2019 swiftHY. All rights reserved.
 //
 
-#include "HBleConst.h"
+#include "RYBleConst.h"
 
-NSErrorDomain HBleConnectErrorDomain = @"ry.ble.connect";
+NSErrorDomain RYBleConnectErrorDomain = @"ry.ble.connect";
