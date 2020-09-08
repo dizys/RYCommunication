@@ -17,9 +17,13 @@ typedef NS_ENUM(NSInteger, RYStreamPairConnectErrorCode) {
     RYStreamPairConnectErrorCodeTimeout,
     //使用空 流对象进行连接
     RYStreamPairConnectErrorCodeEmptyStreamObject,
+    //授权超时
+    RYStreamPairConnectErrorCodeAuthTimeout,
+    //授权失败
+    RYStreamPairConnectErrorCodeAuthFail,
 };
 
-@interface RYStreamPair : NSObject <RYAccessory>
+@interface RYStreamPair : NSObject <RYAccessory, RYDataWriteImmutablyProtocol>
 
 @property (nonatomic, strong, nullable) NSInputStream *input;
 

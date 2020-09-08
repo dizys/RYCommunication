@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 6380C0DC250774FE008DC784 /* RYAuthorization.h */; };
+		6380C0DF250774FE008DC784 /* RYAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6380C0DD250774FE008DC784 /* RYAuthorization.m */; };
 		639B09F62505E231006249B3 /* RYCommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B09F42505E231006249B3 /* RYCommunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		639B0A0A2505E557006249B3 /* RYBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* RYBleService.m */; };
 		639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6380C0DC250774FE008DC784 /* RYAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYAuthorization.h; sourceTree = "<group>"; };
+		6380C0DD250774FE008DC784 /* RYAuthorization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYAuthorization.m; sourceTree = "<group>"; };
 		639B09F12505E231006249B3 /* RYCommunication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RYCommunication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		639B09F42505E231006249B3 /* RYCommunication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYCommunication.h; sourceTree = "<group>"; };
 		639B09F52505E231006249B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,9 +102,11 @@
 		639B09FC2505E2CA006249B3 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				639B0A3325060EDE006249B3 /* base.h */,
 				639B0A182505E7F1006249B3 /* RYNotHandlingResolver.h */,
 				639B0A192505E7F1006249B3 /* RYNotHandlingResolver.m */,
-				639B0A3325060EDE006249B3 /* base.h */,
+				6380C0DC250774FE008DC784 /* RYAuthorization.h */,
+				6380C0DD250774FE008DC784 /* RYAuthorization.m */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -163,6 +169,7 @@
 				639B0A0F2505E557006249B3 /* RYCentralManager.h in Headers */,
 				639B0A0E2505E557006249B3 /* RYBleService.h in Headers */,
 				639B0A1F250605A1006249B3 /* RYBleAccessory.h in Headers */,
+				6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */,
 				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
 				639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */,
 				639B09F62505E231006249B3 /* RYCommunication.h in Headers */,
@@ -242,6 +249,7 @@
 				639B0A2425060638006249B3 /* RYSocketAccessory.m in Sources */,
 				639B0A1B2505E7F1006249B3 /* RYNotHandlingResolver.m in Sources */,
 				639B0A102505E557006249B3 /* RYCentralManager.m in Sources */,
+				6380C0DF250774FE008DC784 /* RYAuthorization.m in Sources */,
 				639B0A2D250606CD006249B3 /* RYStreamPair.m in Sources */,
 				639B0A0A2505E557006249B3 /* RYBleService.m in Sources */,
 				639B0A3225060941006249B3 /* RYExternalAccessory.m in Sources */,

@@ -42,6 +42,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 @implementation RYStreamPair
 @synthesize resolver;
 @synthesize closedBlock;
+@synthesize auth;
 
 + (void)threadEntry:(id) __unused object {
     
@@ -117,13 +118,30 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {
     
+    if (!self.connected) {
+        return;
+    }
+    NSData *temp = data;
+    if (self.auth.dataEncryptBlock) {
+        temp = self.auth.dataEncryptBlock(self.auth, data);
+    }
     self.paused = NO;
     if (self.data.length == 0) {
         self.writeDataLength = 0;
     }
-    [self.data appendData:data];
-    self.writeDataLength += data.length;
+    [self.data appendData:temp];
+    self.writeDataLength += temp.length;
     self.progressBlock = block;
+    [self performSelector:@selector(writeData) onThread:[[self class] thread] withObject:nil waitUntilDone:false];
+}
+
+- (void)writeDataImmutably:(NSData *)data {
+    
+    self.data = [[NSMutableData alloc] init];
+    self.paused = false;
+    [self.data appendData:data];
+    self.writeDataLength = data.length;
+    self.progressBlock = nil;
     [self performSelector:@selector(writeData) onThread:[[self class] thread] withObject:nil waitUntilDone:false];
 }
 
@@ -165,11 +183,21 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)connectTimeout {
     
-    NSLog(@"连接超时");
+    [self connectFail:RYStreamPairConnectErrorCodeTimeout message:@"connect a RYStreamPair object timeout"];
+}
+
+- (void)authTimeout {
+    
+    [self connectFail:RYStreamPairConnectErrorCodeAuthTimeout message:@"authorize timeout"];
+}
+
+- (void)connectFail:(RYStreamPairConnectErrorCode)code message:(NSString *)msg {
+    
+    self.auth.authKey = nil;
     [self closeStream];
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.failBlock) {
-            NSError *error = [NSError errorWithDomain:RYStreamPairConnectErrorDomain code:RYStreamPairConnectErrorCodeTimeout userInfo:@{@"message": @"connect a RYStreamPair object timeout"}];
+            NSError *error = [NSError errorWithDomain:RYStreamPairConnectErrorDomain code:code userInfo:@{@"message": msg}];
             self.failBlock(error);
         }
         self.successBlock = nil;
@@ -231,10 +259,31 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
         }
         [readData appendBytes:(void *)buf length:bytesRead];
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self streamDidReadInputData:readData];
-    });
+    if (!self.connected) {
+        if (self.auth.validateBlock) {
+            NSLog(@"授权验证相关数据: %@", readData);
+            RYAuthorizationResult result = self.auth.validateBlock(self.auth, readData);
+            switch (result) {
+                case RYAuthorizationResultAuthorized:
+                    [self.auth.timer invalidate];
+                    self.auth.timer = nil;
+                    [self connectSuccessAction];
+                    break;
+                case RYAuthorizationResultDenied:
+                    [self.auth.timer invalidate];
+                    self.auth.timer = nil;
+                    self.auth.authKey = nil;
+                    [self connectFail:RYStreamPairConnectErrorCodeAuthFail message:@"authorize fail"];
+                    break;
+                default:
+                    break;
+            }
+        }
+    }else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self streamDidReadInputData:readData];
+        });
+    }
 }
 
 #pragma mark --NSStreamDelegate
@@ -285,16 +334,28 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     }
     if (self.connectFlag == RYStreamPairConnectFlagAllStreaRYonnected) {
         
-        self.connected = true;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.successBlock) {
-                self.successBlock();
+        if (!self.auth) {
+            [self connectSuccessAction];
+        }else {
+            self.auth.timer = [NSTimer scheduledTimerWithTimeInterval:self.auth.timeout target:self selector:@selector(authTimeout) userInfo:nil repeats:false];
+            if (self.auth.startChallengeBlock) {
+                self.auth.startChallengeBlock(self, self.auth);
             }
-            self.successBlock = nil;
-            self.failBlock = nil;
-        });
+        }
         [self.timer invalidate];
     }
+}
+
+- (void)connectSuccessAction {
+    
+    self.connected = true;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.successBlock) {
+            self.successBlock();
+        }
+        self.successBlock = nil;
+        self.failBlock = nil;
+    });
 }
 
 - (void)whenStreamErrorOccured:(NSStream *)aStream {

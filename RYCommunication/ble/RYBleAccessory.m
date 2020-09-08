@@ -29,6 +29,7 @@
 @implementation RYBleAccessory
 @synthesize resolver;
 @synthesize closedBlock;
+@synthesize auth;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)peripheral rssi:(NSNumber *)rssi advertisement:(NSDictionary<NSString *,id> *)advertisementData {
     

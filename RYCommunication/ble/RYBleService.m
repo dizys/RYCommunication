@@ -24,6 +24,7 @@
 @synthesize configureFail;
 @synthesize resolver;
 @synthesize closedBlock;
+@synthesize auth;
 
 - (void)connect:(void (^)(void))successBlock fail:(void (^)(NSError * _Nonnull))failBlock {}
 

@@ -10,6 +10,7 @@
 #define base_h
 
 #import <Foundation/Foundation.h>
+#import "RYAuthorization.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @protocol RYAccessory <NSObject>
+
+@property (nonatomic, strong) RYAuthorization *auth;
 
 @property (nonatomic, strong) id<RYDataResolver> _Nullable resolver;
 
