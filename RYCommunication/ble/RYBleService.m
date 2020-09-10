@@ -157,7 +157,7 @@
     }
 }
 
-- (void)writeData:(NSData *)data progressBlock:(void (^)(NSProgress * _Nonnull))progress {
+- (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {
     
     self.canAcceptInput = true;
     @synchronized (self) {
@@ -273,10 +273,10 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
     self.process = 0;
 }
 
-- (void)writeData:(NSData *)data progressBlock:(void (^)(NSProgress * _Nonnull))progress {
+- (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {
     
     @synchronized (self) {
-        self.progressBlock = progress;
+        self.progressBlock = block;
         BOOL sending = false;
         if (self.writeData.length > 0) {
             sending = true;

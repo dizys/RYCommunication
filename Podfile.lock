@@ -1,0 +1,42 @@
+PODS:
+  - BaseKitSwift (5.1.2):
+    - BaseKitSwift/Extension (= 5.1.2)
+    - BaseKitSwift/Utility (= 5.1.2)
+    - BaseKitSwift/View (= 5.1.2)
+    - SnapKit
+  - BaseKitSwift/Extension (5.1.2):
+    - SnapKit
+  - BaseKitSwift/Utility (5.1.2):
+    - SnapKit
+  - BaseKitSwift/View (5.1.2):
+    - SnapKit
+  - SnapKit (5.0.1)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - BaseKitSwift (from `../BaseKitSwift/.git`, tag `5.1.2`)
+  - SVProgressHUD
+
+SPEC REPOS:
+  trunk:
+    - SnapKit
+    - SVProgressHUD
+
+EXTERNAL SOURCES:
+  BaseKitSwift:
+    :git: "../BaseKitSwift/.git"
+    :tag: 5.1.2
+
+CHECKOUT OPTIONS:
+  BaseKitSwift:
+    :git: "../BaseKitSwift/.git"
+    :tag: 5.1.2
+
+SPEC CHECKSUMS:
+  BaseKitSwift: e746668f0300485f6d715c49b399d1ac7258f251
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: b331cbf99d5b14cbdc2c8eb68e0b45fccbafd96c
+
+COCOAPODS: 1.9.3
