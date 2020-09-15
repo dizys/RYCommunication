@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RYAccessory <NSObject>
 
-@property (nonatomic, strong) RYAuthorization *auth;
+@property (nonatomic, strong) RYAuthorization * _Nullable auth;
 
 @property (nonatomic, strong) id<RYDataResolver> _Nullable resolver;
 
