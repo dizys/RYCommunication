@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   
   s.subspec 'base' do |ss|
-    ss.source_files  = "RYCommunication/base/*.{h,m}"
+    ss.source_files  = "RYCommunication/base/*.{h,m,c}"
   end
   
   s.subspec 'stream' do |ss|
