@@ -8,7 +8,7 @@
 
 #import "RYBleService.h"
 #import "RYBleConst.h"
-#import "RYNotHandlingResolver.h"
+#import "RYResolver.h"
 
 #define WiFiConfigServiceUUID @"1B7E8251-2877-41C3-B46E-CF057C562023"
 // Characteristic UUIDs

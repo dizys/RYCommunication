@@ -7,7 +7,7 @@
 //
 
 #import "RYExternalAccessory.h"
-#import "RYNotHandlingResolver.h"
+#import "RYResolver.h"
 
 @implementation RYExternalAccessory
 

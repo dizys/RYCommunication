@@ -7,7 +7,7 @@
 //
 
 #import "RYStreamPair.h"
-#import "RYNotHandlingResolver.h"
+#import "RYResolver.h"
 
 NSErrorDomain RYStreamPairConnectErrorDomain = @"ry.stream.pair.connect";
 

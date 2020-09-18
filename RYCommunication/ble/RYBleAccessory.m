@@ -8,7 +8,7 @@
 
 #import "RYBleAccessory.h"
 #import "RYCentralManager.h"
-#import "RYNotHandlingResolver.h"
+#import "RYResolver.h"
 
 @interface RYBleAccessory ()<CBPeripheralDelegate>
 

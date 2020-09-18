@@ -24,7 +24,7 @@ FOUNDATION_EXPORT const unsigned char RYCommunicationVersionString[];
 
 #import <RYCommunication/base.h>
 
-#import <RYCommunication/RYNotHandlingResolver.h>
+#import <RYCommunication/RYResolver.h>
 
 #import <RYCommunication/RYAuthorization.h>
 
