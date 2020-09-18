@@ -43,6 +43,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 @synthesize resolver;
 @synthesize closedBlock;
 @synthesize auth;
+@synthesize name;
 
 + (void)threadEntry:(id) __unused object {
     
@@ -75,6 +76,11 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
         self.data = [[NSMutableData alloc] init];
     }
     return self;
+}
+
+- (NSString *)name {
+    
+    return @"";
 }
 
 - (void)connect:(void (^)(void))successBlock fail:(void (^)(NSError * _Nonnull))failBlock {

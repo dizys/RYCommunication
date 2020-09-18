@@ -9,11 +9,3 @@ target 'Example' do
   pod 'BaseKitSwift', :git => '../BaseKitSwift/.git', :tag => '5.1.2'
   pod 'SVProgressHUD'
 end
-
-target 'RYCommunication' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for RYCommunication
-  
-end

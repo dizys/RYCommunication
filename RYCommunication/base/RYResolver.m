@@ -6,7 +6,7 @@
 //  Copyright © 2020 Xiamen Hanin. All rights reserved.
 //
 
-#import "RYNotHandlingResolver.h"
+#import "RYResolver.h"
 
 @implementation RYNotHandlingResolver
 @synthesize resolvedBlock;
@@ -64,7 +64,7 @@
             if (model) {
                 NSRange range = NSMakeRange(0, model.cost);
                 [self.cacheData replaceBytesInRange:range withBytes:NULL length:0];
-                if (self.resolvedBlock) {
+                if (self.resolvedBlock && !model.isDiscardable) {
                     self.resolvedBlock(model);
                 }
                 [self resolveData];

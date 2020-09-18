@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D9E21B4A7C2547E495E11E4 /* Pods_RYCommunication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E88BBCEDB4212775D58840F1 /* Pods_RYCommunication.framework */; };
 		42CA19E02AAE0653093118E0 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */; };
-		6334B21D25121D8400DDB722 /* crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6334B21B25121D8400DDB722 /* crc.h */; };
+		6334B21D25121D8400DDB722 /* crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6334B21B25121D8400DDB722 /* crc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6334B21E25121D8400DDB722 /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = 6334B21C25121D8400DDB722 /* crc.c */; };
 		6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 6380C0DC250774FE008DC784 /* RYAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6380C0DF250774FE008DC784 /* RYAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6380C0DD250774FE008DC784 /* RYAuthorization.m */; };
@@ -19,25 +18,41 @@
 		63855D8125086AA800CC168E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63855D8025086AA800CC168E /* Assets.xcassets */; };
 		63855D8425086AA800CC168E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63855D8225086AA800CC168E /* LaunchScreen.storyboard */; };
 		639B09F62505E231006249B3 /* RYCommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B09F42505E231006249B3 /* RYCommunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A0A2505E557006249B3 /* RYBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* RYBleService.m */; };
-		639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */; };
-		639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A022505E557006249B3 /* RYBleConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A032505E557006249B3 /* RYCentralMessageRepeater.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A0E2505E557006249B3 /* RYBleService.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A042505E557006249B3 /* RYBleService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A0F2505E557006249B3 /* RYCentralManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A052505E557006249B3 /* RYCentralManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A102505E557006249B3 /* RYCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A062505E557006249B3 /* RYCentralManager.m */; };
-		639B0A122505E557006249B3 /* RYBleConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A082505E557006249B3 /* RYBleConst.m */; };
-		639B0A1A2505E7F1006249B3 /* RYNotHandlingResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A182505E7F1006249B3 /* RYNotHandlingResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A1B2505E7F1006249B3 /* RYNotHandlingResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A192505E7F1006249B3 /* RYNotHandlingResolver.m */; };
-		639B0A1E250605A1006249B3 /* RYBleAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A1C250605A1006249B3 /* RYBleAccessory.m */; };
-		639B0A1F250605A1006249B3 /* RYBleAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A1D250605A1006249B3 /* RYBleAccessory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A2325060638006249B3 /* RYSocketAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2125060638006249B3 /* RYSocketAccessory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A2425060638006249B3 /* RYSocketAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A2225060638006249B3 /* RYSocketAccessory.m */; };
-		639B0A2C250606CD006249B3 /* RYStreamPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2A250606CD006249B3 /* RYStreamPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A2D250606CD006249B3 /* RYStreamPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A2B250606CD006249B3 /* RYStreamPair.m */; };
-		639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2F25060941006249B3 /* RYExternalAccessory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A3225060941006249B3 /* RYExternalAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A3025060941006249B3 /* RYExternalAccessory.m */; };
+		639B0A0A2505E557006249B3 /* RYBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* RYBleService.m */; platformFilter = ios; };
+		639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */; platformFilter = ios; };
+		639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A022505E557006249B3 /* RYBleConst.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A032505E557006249B3 /* RYCentralMessageRepeater.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A0E2505E557006249B3 /* RYBleService.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A042505E557006249B3 /* RYBleService.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A0F2505E557006249B3 /* RYCentralManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A052505E557006249B3 /* RYCentralManager.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A102505E557006249B3 /* RYCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A062505E557006249B3 /* RYCentralManager.m */; platformFilter = ios; };
+		639B0A122505E557006249B3 /* RYBleConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A082505E557006249B3 /* RYBleConst.m */; platformFilter = ios; };
+		639B0A1A2505E7F1006249B3 /* RYResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A182505E7F1006249B3 /* RYResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A1B2505E7F1006249B3 /* RYResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A192505E7F1006249B3 /* RYResolver.m */; };
+		639B0A1E250605A1006249B3 /* RYBleAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A1C250605A1006249B3 /* RYBleAccessory.m */; platformFilter = ios; };
+		639B0A1F250605A1006249B3 /* RYBleAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A1D250605A1006249B3 /* RYBleAccessory.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A2325060638006249B3 /* RYSocketAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2125060638006249B3 /* RYSocketAccessory.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A2425060638006249B3 /* RYSocketAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A2225060638006249B3 /* RYSocketAccessory.m */; platformFilter = ios; };
+		639B0A2C250606CD006249B3 /* RYStreamPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2A250606CD006249B3 /* RYStreamPair.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A2D250606CD006249B3 /* RYStreamPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A2B250606CD006249B3 /* RYStreamPair.m */; platformFilter = ios; };
+		639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A2F25060941006249B3 /* RYExternalAccessory.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A3225060941006249B3 /* RYExternalAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A3025060941006249B3 /* RYExternalAccessory.m */; platformFilter = ios; };
 		639B0A3425060EDE006249B3 /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A3325060EDE006249B3 /* base.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE369B2514626B00F7747F /* RYResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A182505E7F1006249B3 /* RYResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A12514626B00F7747F /* RYAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 6380C0DC250774FE008DC784 /* RYAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A22514626B00F7747F /* HThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE36892514568800F7747F /* HThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A32514626B00F7747F /* crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6334B21B25121D8400DDB722 /* crc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A42514626B00F7747F /* HBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE36862514568800F7747F /* HBluetooth.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A52514626B00F7747F /* HUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE368B2514568800F7747F /* HUSB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A82514626B00F7747F /* RYDataRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C6F0F02509D8110003712F /* RYDataRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A92514626B00F7747F /* RYCommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B09F42505E231006249B3 /* RYCommunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36AA2514626B00F7747F /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A3325060EDE006249B3 /* base.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36AE2514626B00F7747F /* RYResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A192505E7F1006249B3 /* RYResolver.m */; };
+		63BE36AF2514626B00F7747F /* HUSB.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE368A2514568800F7747F /* HUSB.m */; };
+		63BE36B02514626B00F7747F /* RYDataRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F0F12509D8110003712F /* RYDataRouter.m */; };
+		63BE36B22514626B00F7747F /* RYAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6380C0DD250774FE008DC784 /* RYAuthorization.m */; };
+		63BE36B32514626B00F7747F /* HBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE36812514568800F7747F /* HBluetooth.m */; };
+		63BE36B42514626B00F7747F /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = 6334B21C25121D8400DDB722 /* crc.c */; };
+		63BE36B72514626B00F7747F /* HThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE368C2514568800F7747F /* HThread.m */; };
 		63C6F0F22509D8110003712F /* RYDataRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C6F0F02509D8110003712F /* RYDataRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63C6F0F32509D8110003712F /* RYDataRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F0F12509D8110003712F /* RYDataRouter.m */; };
 		63C6F0F52509D9860003712F /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F0F42509D9860003712F /* Help.swift */; };
@@ -74,7 +89,6 @@
 
 /* Begin PBXFileReference section */
 		33605D6CDAE59DDDA8763ECD /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		43F53B22EBBEB2A365161362 /* Pods-RYCommunication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication.debug.xcconfig"; path = "Target Support Files/Pods-RYCommunication/Pods-RYCommunication.debug.xcconfig"; sourceTree = "<group>"; };
 		6334B21B25121D8400DDB722 /* crc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crc.h; sourceTree = "<group>"; };
 		6334B21C25121D8400DDB722 /* crc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = crc.c; sourceTree = "<group>"; };
 		6380C0DC250774FE008DC784 /* RYAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYAuthorization.h; sourceTree = "<group>"; };
@@ -97,8 +111,8 @@
 		639B0A052505E557006249B3 /* RYCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCentralManager.h; sourceTree = "<group>"; };
 		639B0A062505E557006249B3 /* RYCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYCentralManager.m; sourceTree = "<group>"; };
 		639B0A082505E557006249B3 /* RYBleConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYBleConst.m; sourceTree = "<group>"; };
-		639B0A182505E7F1006249B3 /* RYNotHandlingResolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYNotHandlingResolver.h; sourceTree = "<group>"; };
-		639B0A192505E7F1006249B3 /* RYNotHandlingResolver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYNotHandlingResolver.m; sourceTree = "<group>"; };
+		639B0A182505E7F1006249B3 /* RYResolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYResolver.h; sourceTree = "<group>"; };
+		639B0A192505E7F1006249B3 /* RYResolver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYResolver.m; sourceTree = "<group>"; };
 		639B0A1C250605A1006249B3 /* RYBleAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYBleAccessory.m; sourceTree = "<group>"; };
 		639B0A1D250605A1006249B3 /* RYBleAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYBleAccessory.h; sourceTree = "<group>"; };
 		639B0A2125060638006249B3 /* RYSocketAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYSocketAccessory.h; sourceTree = "<group>"; };
@@ -108,16 +122,22 @@
 		639B0A2F25060941006249B3 /* RYExternalAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYExternalAccessory.h; sourceTree = "<group>"; };
 		639B0A3025060941006249B3 /* RYExternalAccessory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYExternalAccessory.m; sourceTree = "<group>"; };
 		639B0A3325060EDE006249B3 /* base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		63BE36812514568800F7747F /* HBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBluetooth.m; sourceTree = "<group>"; };
+		63BE36862514568800F7747F /* HBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBluetooth.h; sourceTree = "<group>"; };
+		63BE36892514568800F7747F /* HThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HThread.h; sourceTree = "<group>"; };
+		63BE368A2514568800F7747F /* HUSB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUSB.m; sourceTree = "<group>"; };
+		63BE368B2514568800F7747F /* HUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUSB.h; sourceTree = "<group>"; };
+		63BE368C2514568800F7747F /* HThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HThread.m; sourceTree = "<group>"; };
+		63BE36C02514626B00F7747F /* RYCommunication-macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "RYCommunication-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63BE36C12514626B00F7747F /* RYCommunication copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RYCommunication copy-Info.plist"; path = "/Users/ldc/Desktop/git/RYCommunication/RYCommunication copy-Info.plist"; sourceTree = "<absolute>"; };
 		63C6F0F02509D8110003712F /* RYDataRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYDataRouter.h; sourceTree = "<group>"; };
 		63C6F0F12509D8110003712F /* RYDataRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYDataRouter.m; sourceTree = "<group>"; };
 		63C6F0F42509D9860003712F /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		63C6F0F72509DA2C0003712F /* CmdGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdGenerator.swift; sourceTree = "<group>"; };
 		63C6F0FF2509DBF80003712F /* CP4000LBleCmdGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CP4000LBleCmdGenerator.swift; sourceTree = "<group>"; };
 		63C6F1022509FA8F0003712F /* BleConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleConnectViewController.swift; sourceTree = "<group>"; };
-		85C4DE5F6452A6214BB6BBA2 /* Pods-RYCommunication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication.release.xcconfig"; path = "Target Support Files/Pods-RYCommunication/Pods-RYCommunication.release.xcconfig"; sourceTree = "<group>"; };
 		8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECD57F48A0E5196006705DE /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E88BBCEDB4212775D58840F1 /* Pods_RYCommunication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RYCommunication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +154,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D9E21B4A7C2547E495E11E4 /* Pods_RYCommunication.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63BE36BB2514626B00F7747F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +172,6 @@
 			children = (
 				CECD57F48A0E5196006705DE /* Pods-Example.debug.xcconfig */,
 				33605D6CDAE59DDDA8763ECD /* Pods-Example.release.xcconfig */,
-				43F53B22EBBEB2A365161362 /* Pods-RYCommunication.debug.xcconfig */,
-				85C4DE5F6452A6214BB6BBA2 /* Pods-RYCommunication.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -176,6 +200,7 @@
 				639B09F22505E231006249B3 /* Products */,
 				63C6F0F92509DA8D0003712F /* Frameworks */,
 				45E4AA16E072A81588EB3987 /* Pods */,
+				63BE36C12514626B00F7747F /* RYCommunication copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +209,7 @@
 			children = (
 				639B09F12505E231006249B3 /* RYCommunication.framework */,
 				63855D7525086AA400CC168E /* Example.app */,
+				63BE36C02514626B00F7747F /* RYCommunication-macOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,6 +217,8 @@
 		639B09F32505E231006249B3 /* RYCommunication */ = {
 			isa = PBXGroup;
 			children = (
+				63BE36802514568800F7747F /* bluetooth */,
+				63BE36882514568800F7747F /* usb */,
 				639B0A2E250608FA006249B3 /* mfi */,
 				639B0A2925060681006249B3 /* stream */,
 				639B0A2025060610006249B3 /* socket */,
@@ -206,8 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				639B0A3325060EDE006249B3 /* base.h */,
-				639B0A182505E7F1006249B3 /* RYNotHandlingResolver.h */,
-				639B0A192505E7F1006249B3 /* RYNotHandlingResolver.m */,
+				639B0A182505E7F1006249B3 /* RYResolver.h */,
+				639B0A192505E7F1006249B3 /* RYResolver.m */,
 				6380C0DC250774FE008DC784 /* RYAuthorization.h */,
 				6380C0DD250774FE008DC784 /* RYAuthorization.m */,
 				63C6F0F02509D8110003712F /* RYDataRouter.h */,
@@ -262,6 +290,26 @@
 			path = mfi;
 			sourceTree = "<group>";
 		};
+		63BE36802514568800F7747F /* bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				63BE36862514568800F7747F /* HBluetooth.h */,
+				63BE36812514568800F7747F /* HBluetooth.m */,
+			);
+			path = bluetooth;
+			sourceTree = "<group>";
+		};
+		63BE36882514568800F7747F /* usb */ = {
+			isa = PBXGroup;
+			children = (
+				63BE36892514568800F7747F /* HThread.h */,
+				63BE368C2514568800F7747F /* HThread.m */,
+				63BE368B2514568800F7747F /* HUSB.h */,
+				63BE368A2514568800F7747F /* HUSB.m */,
+			);
+			path = usb;
+			sourceTree = "<group>";
+		};
 		63C6F0F62509DA080003712F /* cmd */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,7 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */,
-				E88BBCEDB4212775D58840F1 /* Pods_RYCommunication.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -296,19 +343,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				639B0A2325060638006249B3 /* RYSocketAccessory.h in Headers */,
-				639B0A1A2505E7F1006249B3 /* RYNotHandlingResolver.h in Headers */,
+				639B0A1A2505E7F1006249B3 /* RYResolver.h in Headers */,
 				639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */,
 				639B0A2C250606CD006249B3 /* RYStreamPair.h in Headers */,
 				639B0A0F2505E557006249B3 /* RYCentralManager.h in Headers */,
-				6334B21D25121D8400DDB722 /* crc.h in Headers */,
 				639B0A0E2505E557006249B3 /* RYBleService.h in Headers */,
 				639B0A1F250605A1006249B3 /* RYBleAccessory.h in Headers */,
 				6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */,
+				6334B21D25121D8400DDB722 /* crc.h in Headers */,
 				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
 				639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */,
 				63C6F0F22509D8110003712F /* RYDataRouter.h in Headers */,
 				639B09F62505E231006249B3 /* RYCommunication.h in Headers */,
 				639B0A3425060EDE006249B3 /* base.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63BE36992514626B00F7747F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63BE369B2514626B00F7747F /* RYResolver.h in Headers */,
+				63BE36A12514626B00F7747F /* RYAuthorization.h in Headers */,
+				63BE36A22514626B00F7747F /* HThread.h in Headers */,
+				63BE36A32514626B00F7747F /* crc.h in Headers */,
+				63BE36A42514626B00F7747F /* HBluetooth.h in Headers */,
+				63BE36A52514626B00F7747F /* HUSB.h in Headers */,
+				63BE36A82514626B00F7747F /* RYDataRouter.h in Headers */,
+				63BE36A92514626B00F7747F /* RYCommunication.h in Headers */,
+				63BE36AA2514626B00F7747F /* base.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +403,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 639B09F92505E231006249B3 /* Build configuration list for PBXNativeTarget "RYCommunication" */;
 			buildPhases = (
-				FDF88AD08140C518D9C0C109 /* [CP] Check Pods Manifest.lock */,
 				639B09EC2505E231006249B3 /* Headers */,
 				639B09ED2505E231006249B3 /* Sources */,
 				639B09EE2505E231006249B3 /* Frameworks */,
@@ -353,6 +415,24 @@
 			name = RYCommunication;
 			productName = RYCommunication;
 			productReference = 639B09F12505E231006249B3 /* RYCommunication.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		63BE36982514626B00F7747F /* RYCommunication-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63BE36BD2514626B00F7747F /* Build configuration list for PBXNativeTarget "RYCommunication-macOS" */;
+			buildPhases = (
+				63BE36992514626B00F7747F /* Headers */,
+				63BE36AB2514626B00F7747F /* Sources */,
+				63BE36BB2514626B00F7747F /* Frameworks */,
+				63BE36BC2514626B00F7747F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RYCommunication-macOS";
+			productName = RYCommunication;
+			productReference = 63BE36C02514626B00F7747F /* RYCommunication-macOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -388,6 +468,7 @@
 			targets = (
 				639B09F02505E231006249B3 /* RYCommunication */,
 				63855D7425086AA400CC168E /* Example */,
+				63BE36982514626B00F7747F /* RYCommunication-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -404,6 +485,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		639B09EF2505E231006249B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63BE36BC2514626B00F7747F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -452,28 +540,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FDF88AD08140C518D9C0C109 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RYCommunication-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -496,7 +562,7 @@
 			files = (
 				639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */,
 				639B0A2425060638006249B3 /* RYSocketAccessory.m in Sources */,
-				639B0A1B2505E7F1006249B3 /* RYNotHandlingResolver.m in Sources */,
+				639B0A1B2505E7F1006249B3 /* RYResolver.m in Sources */,
 				63C6F0F32509D8110003712F /* RYDataRouter.m in Sources */,
 				639B0A102505E557006249B3 /* RYCentralManager.m in Sources */,
 				6380C0DF250774FE008DC784 /* RYAuthorization.m in Sources */,
@@ -506,6 +572,20 @@
 				639B0A3225060941006249B3 /* RYExternalAccessory.m in Sources */,
 				639B0A122505E557006249B3 /* RYBleConst.m in Sources */,
 				639B0A1E250605A1006249B3 /* RYBleAccessory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63BE36AB2514626B00F7747F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63BE36AE2514626B00F7747F /* RYResolver.m in Sources */,
+				63BE36AF2514626B00F7747F /* HUSB.m in Sources */,
+				63BE36B02514626B00F7747F /* RYDataRouter.m in Sources */,
+				63BE36B22514626B00F7747F /* RYAuthorization.m in Sources */,
+				63BE36B32514626B00F7747F /* HBluetooth.m in Sources */,
+				63BE36B42514626B00F7747F /* crc.c in Sources */,
+				63BE36B72514626B00F7747F /* HThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,7 +779,6 @@
 		};
 		639B09FA2505E231006249B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43F53B22EBBEB2A365161362 /* Pods-RYCommunication.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -709,15 +788,19 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RYCommunication/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = hanin.RYCommunication;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -725,7 +808,6 @@
 		};
 		639B09FB2505E231006249B3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85C4DE5F6452A6214BB6BBA2 /* Pods-RYCommunication.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -735,15 +817,77 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RYCommunication/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = hanin.RYCommunication;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		63BE36BE2514626B00F7747F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 976NLVLZMW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "RYCommunication copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = hanin.RYCommunication;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63BE36BF2514626B00F7747F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 976NLVLZMW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "RYCommunication copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = hanin.RYCommunication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -775,6 +919,15 @@
 			buildConfigurations = (
 				639B09FA2505E231006249B3 /* Debug */,
 				639B09FB2505E231006249B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63BE36BD2514626B00F7747F /* Build configuration list for PBXNativeTarget "RYCommunication-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63BE36BE2514626B00F7747F /* Debug */,
+				63BE36BF2514626B00F7747F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

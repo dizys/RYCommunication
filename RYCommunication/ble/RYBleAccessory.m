@@ -30,6 +30,7 @@
 @synthesize resolver;
 @synthesize closedBlock;
 @synthesize auth;
+@synthesize name;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)peripheral rssi:(NSNumber *)rssi advertisement:(NSDictionary<NSString *,id> *)advertisementData {
     
@@ -42,6 +43,11 @@
         self.services = @[[[CP4000lBleService alloc] init]];
     }
     return self;
+}
+
+- (NSString *)name {
+    
+    return self.peripheral.name == nil ? @"" : self.peripheral.name;
 }
 
 - (void)setServices:(NSArray<id<RYBleServiceProtocol>> *)services {

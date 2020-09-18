@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RYCommonResolverModel : NSObject
 
+@property (nonatomic, assign) BOOL isDiscardable;
+
 @property (nonatomic, strong) NSData *data;
 
 @property (nonatomic, assign) NSInteger cost;

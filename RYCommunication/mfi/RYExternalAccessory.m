@@ -21,6 +21,11 @@
     return self.session.outputStream;
 }
 
+- (NSString *)name {
+    
+    return self.session.accessory.name == nil ? @"" : self.session.accessory.name;
+}
+
 - (instancetype)initWithAccessory:(EAAccessory *)accessory forProtocol:(NSString *)protocolString {
     
     self = [self init];
