@@ -8,6 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		42CA19E02AAE0653093118E0 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */; };
+		63174A022514809D008672E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A012514809D008672E5 /* AppDelegate.m */; };
+		63174A052514809D008672E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A042514809D008672E5 /* ViewController.m */; };
+		63174A07251480A0008672E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63174A06251480A0008672E5 /* Assets.xcassets */; };
+		63174A0A251480A0008672E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63174A08251480A0008672E5 /* Main.storyboard */; };
+		63174A0D251480A0008672E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A0C251480A0008672E5 /* main.m */; };
+		63174A28251480E8008672E5 /* mt_beta.bin in Resources */ = {isa = PBXBuildFile; fileRef = 63174A12251480E7008672E5 /* mt_beta.bin */; };
+		63174A29251480E8008672E5 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63174A13251480E7008672E5 /* sample.jpg */; };
+		63174A2A251480E8008672E5 /* bitmap.bin in Resources */ = {isa = PBXBuildFile; fileRef = 63174A14251480E8008672E5 /* bitmap.bin */; };
+		63174A2B251480E8008672E5 /* HPoooliCmdSampleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A1A251480E8008672E5 /* HPoooliCmdSampleGenerator.m */; };
+		63174A2C251480E8008672E5 /* HSampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A1C251480E8008672E5 /* HSampleModel.m */; };
+		63174A2D251480E8008672E5 /* MTCmdSampleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A1D251480E8008672E5 /* MTCmdSampleGenerator.m */; };
+		63174A2E251480E8008672E5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A20251480E8008672E5 /* HomeViewController.m */; };
+		63174A2F251480E8008672E5 /* HConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A23251480E8008672E5 /* HConnectViewController.m */; };
+		63174A31251480E8008672E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63174A27251480E8008672E5 /* Assets.xcassets */; };
+		63174A3225148145008672E5 /* RYCommunication-macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BE36C02514626B00F7747F /* RYCommunication-macOS.framework */; };
+		63174A3325148145008672E5 /* RYCommunication-macOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63BE36C02514626B00F7747F /* RYCommunication-macOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63174A3825148185008672E5 /* RYCommunication-macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 63174A3725148185008672E5 /* RYCommunication-macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63174A3C2514830B008672E5 /* PoooliCmdGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A3B2514830B008672E5 /* PoooliCmdGenerator.m */; };
+		63174A3F2514832B008672E5 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 63174A3E2514832B008672E5 /* compress.c */; };
+		63174A4725148422008672E5 /* MTImagePrintDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A4125148422008672E5 /* MTImagePrintDispatcher.m */; };
+		63174A4825148422008672E5 /* MTFirmwareUpdateDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A4225148422008672E5 /* MTFirmwareUpdateDispatcher.m */; };
+		63174A4925148422008672E5 /* MTCmdGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A4425148422008672E5 /* MTCmdGenerator.m */; };
+		63174A4C251484E2008672E5 /* HDataResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A4B251484E2008672E5 /* HDataResolver.m */; };
 		6334B21D25121D8400DDB722 /* crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6334B21B25121D8400DDB722 /* crc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6334B21E25121D8400DDB722 /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = 6334B21C25121D8400DDB722 /* crc.c */; };
 		6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 6380C0DC250774FE008DC784 /* RYAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,7 +40,6 @@
 		63855D7F25086AA500CC168E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63855D7D25086AA500CC168E /* Main.storyboard */; };
 		63855D8125086AA800CC168E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63855D8025086AA800CC168E /* Assets.xcassets */; };
 		63855D8425086AA800CC168E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63855D8225086AA800CC168E /* LaunchScreen.storyboard */; };
-		639B09F62505E231006249B3 /* RYCommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B09F42505E231006249B3 /* RYCommunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		639B0A0A2505E557006249B3 /* RYBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* RYBleService.m */; platformFilter = ios; };
 		639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */; platformFilter = ios; };
 		639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A022505E557006249B3 /* RYBleConst.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +86,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		63174A3425148145008672E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 639B09E82505E231006249B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63BE36982514626B00F7747F;
+			remoteInfo = "RYCommunication-macOS";
+		};
 		63C6F0FC2509DA8D0003712F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 639B09E82505E231006249B3 /* Project object */;
@@ -74,6 +103,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		63174A3625148145008672E5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				63174A3325148145008672E5 /* RYCommunication-macOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63C6F0FE2509DA8D0003712F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +129,44 @@
 
 /* Begin PBXFileReference section */
 		33605D6CDAE59DDDA8763ECD /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		631749FE2514809D008672E5 /* Example-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63174A002514809D008672E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		63174A012514809D008672E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		63174A032514809D008672E5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		63174A042514809D008672E5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		63174A06251480A0008672E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63174A09251480A0008672E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		63174A0B251480A0008672E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63174A0C251480A0008672E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		63174A0E251480A0008672E5 /* Example_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_macOS.entitlements; sourceTree = "<group>"; };
+		63174A12251480E7008672E5 /* mt_beta.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = mt_beta.bin; sourceTree = "<group>"; };
+		63174A13251480E7008672E5 /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
+		63174A14251480E8008672E5 /* bitmap.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = bitmap.bin; sourceTree = "<group>"; };
+		63174A18251480E8008672E5 /* HSampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSampleModel.h; sourceTree = "<group>"; };
+		63174A19251480E8008672E5 /* HProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HProtocol.h; sourceTree = "<group>"; };
+		63174A1A251480E8008672E5 /* HPoooliCmdSampleGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPoooliCmdSampleGenerator.m; path = ../HPoooliCmdSampleGenerator.m; sourceTree = "<group>"; };
+		63174A1B251480E8008672E5 /* MTCmdSampleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCmdSampleGenerator.h; sourceTree = "<group>"; };
+		63174A1C251480E8008672E5 /* HSampleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSampleModel.m; sourceTree = "<group>"; };
+		63174A1D251480E8008672E5 /* MTCmdSampleGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCmdSampleGenerator.m; sourceTree = "<group>"; };
+		63174A1E251480E8008672E5 /* HPoooliCmdSampleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPoooliCmdSampleGenerator.h; path = ../HPoooliCmdSampleGenerator.h; sourceTree = "<group>"; };
+		63174A20251480E8008672E5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		63174A21251480E8008672E5 /* HConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HConnectViewController.h; sourceTree = "<group>"; };
+		63174A22251480E8008672E5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		63174A23251480E8008672E5 /* HConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HConnectViewController.m; sourceTree = "<group>"; };
+		63174A27251480E8008672E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63174A3725148185008672E5 /* RYCommunication-macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RYCommunication-macOS.h"; sourceTree = "<group>"; };
+		63174A3A2514830B008672E5 /* PoooliCmdGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoooliCmdGenerator.h; sourceTree = "<group>"; };
+		63174A3B2514830B008672E5 /* PoooliCmdGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoooliCmdGenerator.m; sourceTree = "<group>"; };
+		63174A3D2514832A008672E5 /* compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress.h; sourceTree = "<group>"; };
+		63174A3E2514832B008672E5 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
+		63174A4125148422008672E5 /* MTImagePrintDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTImagePrintDispatcher.m; sourceTree = "<group>"; };
+		63174A4225148422008672E5 /* MTFirmwareUpdateDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFirmwareUpdateDispatcher.m; sourceTree = "<group>"; };
+		63174A4325148422008672E5 /* MTFirmwareUpdateDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFirmwareUpdateDispatcher.h; sourceTree = "<group>"; };
+		63174A4425148422008672E5 /* MTCmdGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCmdGenerator.m; sourceTree = "<group>"; };
+		63174A4525148422008672E5 /* MTCmdGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCmdGenerator.h; sourceTree = "<group>"; };
+		63174A4625148422008672E5 /* MTImagePrintDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTImagePrintDispatcher.h; sourceTree = "<group>"; };
+		63174A4A251484E2008672E5 /* HDataResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDataResolver.h; sourceTree = "<group>"; };
+		63174A4B251484E2008672E5 /* HDataResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDataResolver.m; sourceTree = "<group>"; };
 		6334B21B25121D8400DDB722 /* crc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crc.h; sourceTree = "<group>"; };
 		6334B21C25121D8400DDB722 /* crc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = crc.c; sourceTree = "<group>"; };
 		6380C0DC250774FE008DC784 /* RYAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYAuthorization.h; sourceTree = "<group>"; };
@@ -141,6 +219,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		631749FB2514809D008672E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63174A3225148145008672E5 /* RYCommunication-macOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63855D7225086AA400CC168E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -176,6 +262,89 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		631749FF2514809D008672E5 /* Example-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				63174A16251480E8008672E5 /* Class */,
+				63174A27251480E8008672E5 /* Assets.xcassets */,
+				63174A14251480E8008672E5 /* bitmap.bin */,
+				63174A12251480E7008672E5 /* mt_beta.bin */,
+				63174A13251480E7008672E5 /* sample.jpg */,
+				63174A002514809D008672E5 /* AppDelegate.h */,
+				63174A012514809D008672E5 /* AppDelegate.m */,
+				63174A032514809D008672E5 /* ViewController.h */,
+				63174A042514809D008672E5 /* ViewController.m */,
+				63174A06251480A0008672E5 /* Assets.xcassets */,
+				63174A08251480A0008672E5 /* Main.storyboard */,
+				63174A0B251480A0008672E5 /* Info.plist */,
+				63174A0C251480A0008672E5 /* main.m */,
+				63174A0E251480A0008672E5 /* Example_macOS.entitlements */,
+			);
+			path = "Example-macOS";
+			sourceTree = "<group>";
+		};
+		63174A16251480E8008672E5 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				63174A17251480E8008672E5 /* Cmd */,
+				63174A1F251480E8008672E5 /* ViewController */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		63174A17251480E8008672E5 /* Cmd */ = {
+			isa = PBXGroup;
+			children = (
+				63174A4025148412008672E5 /* MT800 */,
+				63174A39251482CC008672E5 /* Poooli */,
+				63174A18251480E8008672E5 /* HSampleModel.h */,
+				63174A1C251480E8008672E5 /* HSampleModel.m */,
+				63174A19251480E8008672E5 /* HProtocol.h */,
+				63174A1B251480E8008672E5 /* MTCmdSampleGenerator.h */,
+				63174A1D251480E8008672E5 /* MTCmdSampleGenerator.m */,
+				63174A4A251484E2008672E5 /* HDataResolver.h */,
+				63174A4B251484E2008672E5 /* HDataResolver.m */,
+			);
+			path = Cmd;
+			sourceTree = "<group>";
+		};
+		63174A1F251480E8008672E5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				63174A20251480E8008672E5 /* HomeViewController.m */,
+				63174A21251480E8008672E5 /* HConnectViewController.h */,
+				63174A22251480E8008672E5 /* HomeViewController.h */,
+				63174A23251480E8008672E5 /* HConnectViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		63174A39251482CC008672E5 /* Poooli */ = {
+			isa = PBXGroup;
+			children = (
+				63174A3D2514832A008672E5 /* compress.h */,
+				63174A3E2514832B008672E5 /* compress.c */,
+				63174A3A2514830B008672E5 /* PoooliCmdGenerator.h */,
+				63174A3B2514830B008672E5 /* PoooliCmdGenerator.m */,
+				63174A1E251480E8008672E5 /* HPoooliCmdSampleGenerator.h */,
+				63174A1A251480E8008672E5 /* HPoooliCmdSampleGenerator.m */,
+			);
+			path = Poooli;
+			sourceTree = "<group>";
+		};
+		63174A4025148412008672E5 /* MT800 */ = {
+			isa = PBXGroup;
+			children = (
+				63174A4525148422008672E5 /* MTCmdGenerator.h */,
+				63174A4425148422008672E5 /* MTCmdGenerator.m */,
+				63174A4325148422008672E5 /* MTFirmwareUpdateDispatcher.h */,
+				63174A4225148422008672E5 /* MTFirmwareUpdateDispatcher.m */,
+				63174A4625148422008672E5 /* MTImagePrintDispatcher.h */,
+				63174A4125148422008672E5 /* MTImagePrintDispatcher.m */,
+			);
+			path = MT800;
+			sourceTree = "<group>";
+		};
 		63855D7625086AA500CC168E /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +366,7 @@
 			children = (
 				639B09F32505E231006249B3 /* RYCommunication */,
 				63855D7625086AA500CC168E /* Example */,
+				631749FF2514809D008672E5 /* Example-macOS */,
 				639B09F22505E231006249B3 /* Products */,
 				63C6F0F92509DA8D0003712F /* Frameworks */,
 				45E4AA16E072A81588EB3987 /* Pods */,
@@ -210,6 +380,7 @@
 				639B09F12505E231006249B3 /* RYCommunication.framework */,
 				63855D7525086AA400CC168E /* Example.app */,
 				63BE36C02514626B00F7747F /* RYCommunication-macOS.framework */,
+				631749FE2514809D008672E5 /* Example-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,6 +396,7 @@
 				639B09FC2505E2CA006249B3 /* base */,
 				639B09FF2505E4EB006249B3 /* ble */,
 				639B09F42505E231006249B3 /* RYCommunication.h */,
+				63174A3725148185008672E5 /* RYCommunication-macOS.h */,
 				639B09F52505E231006249B3 /* Info.plist */,
 			);
 			path = RYCommunication;
@@ -354,7 +526,6 @@
 				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
 				639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */,
 				63C6F0F22509D8110003712F /* RYDataRouter.h in Headers */,
-				639B09F62505E231006249B3 /* RYCommunication.h in Headers */,
 				639B0A3425060EDE006249B3 /* base.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +540,7 @@
 				63BE36A32514626B00F7747F /* crc.h in Headers */,
 				63BE36A42514626B00F7747F /* HBluetooth.h in Headers */,
 				63BE36A52514626B00F7747F /* HUSB.h in Headers */,
+				63174A3825148185008672E5 /* RYCommunication-macOS.h in Headers */,
 				63BE36A82514626B00F7747F /* RYDataRouter.h in Headers */,
 				63BE36A92514626B00F7747F /* RYCommunication.h in Headers */,
 				63BE36AA2514626B00F7747F /* base.h in Headers */,
@@ -378,6 +550,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		631749FD2514809D008672E5 /* Example-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63174A11251480A0008672E5 /* Build configuration list for PBXNativeTarget "Example-macOS" */;
+			buildPhases = (
+				631749FA2514809D008672E5 /* Sources */,
+				631749FB2514809D008672E5 /* Frameworks */,
+				631749FC2514809D008672E5 /* Resources */,
+				63174A3625148145008672E5 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63174A3525148145008672E5 /* PBXTargetDependency */,
+			);
+			name = "Example-macOS";
+			productName = "Example-macOS";
+			productReference = 631749FE2514809D008672E5 /* Example-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		63855D7425086AA400CC168E /* Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63855D8825086AA800CC168E /* Build configuration list for PBXNativeTarget "Example" */;
@@ -445,6 +636,9 @@
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Xiamen Hanin";
 				TargetAttributes = {
+					631749FD2514809D008672E5 = {
+						CreatedOnToolsVersion = 11.6;
+					};
 					63855D7425086AA400CC168E = {
 						CreatedOnToolsVersion = 11.6;
 					};
@@ -469,11 +663,25 @@
 				639B09F02505E231006249B3 /* RYCommunication */,
 				63855D7425086AA400CC168E /* Example */,
 				63BE36982514626B00F7747F /* RYCommunication-macOS */,
+				631749FD2514809D008672E5 /* Example-macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		631749FC2514809D008672E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63174A07251480A0008672E5 /* Assets.xcassets in Resources */,
+				63174A28251480E8008672E5 /* mt_beta.bin in Resources */,
+				63174A2A251480E8008672E5 /* bitmap.bin in Resources */,
+				63174A31251480E8008672E5 /* Assets.xcassets in Resources */,
+				63174A0A251480A0008672E5 /* Main.storyboard in Resources */,
+				63174A29251480E8008672E5 /* sample.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63855D7325086AA400CC168E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -543,6 +751,27 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		631749FA2514809D008672E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63174A4925148422008672E5 /* MTCmdGenerator.m in Sources */,
+				63174A052514809D008672E5 /* ViewController.m in Sources */,
+				63174A2B251480E8008672E5 /* HPoooliCmdSampleGenerator.m in Sources */,
+				63174A0D251480A0008672E5 /* main.m in Sources */,
+				63174A4725148422008672E5 /* MTImagePrintDispatcher.m in Sources */,
+				63174A2C251480E8008672E5 /* HSampleModel.m in Sources */,
+				63174A4C251484E2008672E5 /* HDataResolver.m in Sources */,
+				63174A2F251480E8008672E5 /* HConnectViewController.m in Sources */,
+				63174A3C2514830B008672E5 /* PoooliCmdGenerator.m in Sources */,
+				63174A022514809D008672E5 /* AppDelegate.m in Sources */,
+				63174A2E251480E8008672E5 /* HomeViewController.m in Sources */,
+				63174A2D251480E8008672E5 /* MTCmdSampleGenerator.m in Sources */,
+				63174A3F2514832B008672E5 /* compress.c in Sources */,
+				63174A4825148422008672E5 /* MTFirmwareUpdateDispatcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63855D7125086AA400CC168E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -592,6 +821,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		63174A3525148145008672E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63BE36982514626B00F7747F /* RYCommunication-macOS */;
+			targetProxy = 63174A3425148145008672E5 /* PBXContainerItemProxy */;
+		};
 		63C6F0FD2509DA8D0003712F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 639B09F02505E231006249B3 /* RYCommunication */;
@@ -600,6 +834,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		63174A08251480A0008672E5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63174A09251480A0008672E5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		63855D7D25086AA500CC168E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -619,6 +861,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		63174A0F251480A0008672E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Example-macOS/Example_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 976NLVLZMW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Example-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "hanin.Example-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		63174A10251480A0008672E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Example-macOS/Example_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 976NLVLZMW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Example-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "hanin.Example-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		63855D8625086AA800CC168E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CECD57F48A0E5196006705DE /* Pods-Example.debug.xcconfig */;
@@ -898,6 +1182,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		63174A11251480A0008672E5 /* Build configuration list for PBXNativeTarget "Example-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63174A0F251480A0008672E5 /* Debug */,
+				63174A10251480A0008672E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		63855D8825086AA800CC168E /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
