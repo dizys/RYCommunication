@@ -16,12 +16,6 @@ FOUNDATION_EXPORT const unsigned char RYCommunicationVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RYCommunication/PublicHeader.h>
 
-#import <RYCommunication/RYExternalAccessory.h>
-
-#import <RYCommunication/RYStreamPair.h>
-
-#import <RYCommunication/RYSocketAccessory.h>
-
 #import <RYCommunication/base.h>
 
 #import <RYCommunication/RYResolver.h>
@@ -29,6 +23,14 @@ FOUNDATION_EXPORT const unsigned char RYCommunicationVersionString[];
 #import <RYCommunication/RYAuthorization.h>
 
 #import <RYCommunication/RYDataRouter.h>
+
+#if TARGET_OS_IOS
+
+#import <RYCommunication/RYExternalAccessory.h>
+
+#import <RYCommunication/RYStreamPair.h>
+
+#import <RYCommunication/RYSocketAccessory.h>
 
 #import <RYCommunication/RYBleAccessory.h>
 
@@ -39,3 +41,23 @@ FOUNDATION_EXPORT const unsigned char RYCommunicationVersionString[];
 #import <RYCommunication/RYCentralManager.h>
 
 #import <RYCommunication/RYCentralMessageRepeater.h>
+
+#endif
+
+#if TARGET_OS_OSX
+
+#import <RYCommunication-macOS/HUSB.h>
+
+#import <RYCommunication-macOS/HThread.h>
+
+#import <RYCommunication-macOS/HBluetooth.h>
+
+#import <RYCommunication-macOS/base.h>
+
+#import <RYCommunication-macOS/RYResolver.h>
+
+#import <RYCommunication-macOS/RYAuthorization.h>
+
+#import <RYCommunication-macOS/RYDataRouter.h>
+
+#endif
