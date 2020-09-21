@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "HConnectViewController.h"
-#import <RYCommunication-macOS/RYCommunication-macOS.h>
+#import <RYCommunication/RYCommunication.h>
 #import "HPoooliCmdSampleGenerator.h"
 #import "MTCmdSampleGenerator.h"
 

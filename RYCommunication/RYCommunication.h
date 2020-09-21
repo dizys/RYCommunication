@@ -40,24 +40,12 @@ FOUNDATION_EXPORT const unsigned char RYCommunicationVersionString[];
 
 #import <RYCommunication/RYCentralManager.h>
 
-#import <RYCommunication/RYCentralMessageRepeater.h>
-
 #endif
 
 #if TARGET_OS_OSX
 
-#import <RYCommunication-macOS/HUSB.h>
+#import <RYCommunication/RYUSBAccessory.h>
 
-#import <RYCommunication-macOS/HThread.h>
-
-#import <RYCommunication-macOS/HBluetooth.h>
-
-#import <RYCommunication-macOS/base.h>
-
-#import <RYCommunication-macOS/RYResolver.h>
-
-#import <RYCommunication-macOS/RYAuthorization.h>
-
-#import <RYCommunication-macOS/RYDataRouter.h>
+#import <RYCommunication/RYBluetoothAccessory.h>
 
 #endif

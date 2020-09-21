@@ -1,12 +1,12 @@
 //
-//  HBluetooth.m
+//  RYBluetooth.m
 //  Bluetooth
 //
 //  Created by ldc on 2019/11/26.
 //  Copyright © 2019 Xiamen Hanin. All rights reserved.
 //
 
-#import "HBluetooth.h"
+#import "RYBluetoothAccessory.h"
 #import <IOBluetooth/IOBluetooth.h>
 #import "RYResolver.h"
 
@@ -23,9 +23,9 @@
     static UInt32 totalData = 0;
 #endif
 
-NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain";
+NSErrorDomain RYBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain";
 
-@interface HBluetoothDevice ()<IOBluetoothDeviceAsyncCallbacks, IOBluetoothRFCOMMChannelDelegate, RYDataWriteImmutablyProtocol>
+@interface RYBluetoothAccessory ()<IOBluetoothDeviceAsyncCallbacks, IOBluetoothRFCOMMChannelDelegate, RYDataWriteImmutablyProtocol>
 
 @property (nonatomic, strong) IOBluetoothDevice *device;
 
@@ -55,7 +55,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
 
 @end
 
-@implementation HBluetoothDevice
+@implementation RYBluetoothAccessory
 @synthesize name;
 @synthesize closedBlock;
 @synthesize resolver;
@@ -83,7 +83,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
 - (void)connect:(void (^)(void))successBlock fail:(void (^)(NSError * _Nonnull))failBlock {
     
     if (self.isConnected) {
-        NSError *e = [NSError errorWithDomain:HBluetoothConnectErrorDomain code:HBluetoothConnectErrorCodeDidConnect userInfo:nil];
+        NSError *e = [NSError errorWithDomain:RYBluetoothConnectErrorDomain code:RYBluetoothConnectErrorCodeDidConnect userInfo:nil];
         failBlock(e);
         return;
     }
@@ -153,11 +153,11 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
     [self.rfcom writeAsync:(void *)self.writeData.bytes length:_bytesWritten refcon:&_bytesWritten];
 }
 
-- (void)connectFailAction:(HBluetoothConnectErrorCode)code {
+- (void)connectFailAction:(RYBluetoothConnectErrorCode)code {
     
     [self disconnect];
     if (self.openFailBlock) {
-        NSError *e = [NSError errorWithDomain:HBluetoothConnectErrorDomain code:code userInfo:nil];
+        NSError *e = [NSError errorWithDomain:RYBluetoothConnectErrorDomain code:code userInfo:nil];
         self.openFailBlock(e);
     }
     self.openFailBlock = nil;
@@ -176,7 +176,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
 
 - (void)authTimeoutAction {
     
-    [self connectFailAction:HBluetoothConnectErrorCodeAuthTimeout];
+    [self connectFailAction:RYBluetoothConnectErrorCodeAuthTimeout];
     self.authTimer = nil;
     self.auth.authKey = nil;
 }
@@ -195,7 +195,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
         [device performSDPQuery:self];
     }else {
         NSLog(@"%@ 基带连接失败--%i", device.name, status);
-        [self connectFailAction:HBluetoothConnectErrorCodeOpenBaseband];
+        [self connectFailAction:RYBluetoothConnectErrorCodeOpenBaseband];
     }
 }
 
@@ -226,19 +226,19 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
                     self.rfcom = rfcom;
                 }else {
                     NSLog(@"打开RFCOMMChannel通道失败--%i", result);
-                    [self connectFailAction:HBluetoothConnectErrorCodeOpenRFCOMMChannel];
+                    [self connectFailAction:RYBluetoothConnectErrorCodeOpenRFCOMMChannel];
                 }
             }else {
                 NSLog(@"RFCOMMChannel获取失败: %i", result);
-                [self connectFailAction:HBluetoothConnectErrorCodeGetRFCOMMChannel];
+                [self connectFailAction:RYBluetoothConnectErrorCodeGetRFCOMMChannel];
             }
         }else {
             NSLog(@"没有找到合适的服务");
-            [self connectFailAction:HBluetoothConnectErrorCodeSDPServiceNotFound];
+            [self connectFailAction:RYBluetoothConnectErrorCodeSDPServiceNotFound];
         }
     }else {
         NSLog(@"%@ sdp请求失败--%i", device.name, status);
-        [self connectFailAction:HBluetoothConnectErrorCodeSDPQuery];
+        [self connectFailAction:RYBluetoothConnectErrorCodeSDPQuery];
     }
 }
 
@@ -264,7 +264,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
                         [self.authTimer invalidate];
                         self.authTimer = nil;
                         self.auth.authKey = nil;
-                        [self connectFailAction:HBluetoothConnectErrorCodeAuthFail];
+                        [self connectFailAction:RYBluetoothConnectErrorCodeAuthFail];
                         break;
                     default:
                         break;
@@ -294,7 +294,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
         }
     }else {
         NSLog(@"%@ 通道打开失败", NSStringFromSelector(_cmd));
-        [self connectFailAction:HBluetoothConnectErrorCodeOpenRFCOMMChannel];
+        [self connectFailAction:RYBluetoothConnectErrorCodeOpenRFCOMMChannel];
     }
 }
 
@@ -347,19 +347,19 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
 
 @end
 
-@interface HBluetoothBrowser ()<IOBluetoothDeviceInquiryDelegate>
+@interface RYBluetoothBrowser ()<IOBluetoothDeviceInquiryDelegate>
 
 @property (nonatomic, strong) IOBluetoothDeviceInquiry *inquiry;
 
 @property (nonatomic, assign) BOOL isScanning;
 
-@property (nonatomic, strong) NSMutableDictionary<IOBluetoothDevice *, HBluetoothDevice *> *map;
+@property (nonatomic, strong) NSMutableDictionary<IOBluetoothDevice *, RYBluetoothAccessory *> *map;
 
 @property (nonatomic, copy) void (^ completeScanBlock)(void);
 
 @end
 
-@implementation HBluetoothBrowser
+@implementation RYBluetoothBrowser
 
 - (instancetype)init
 {
@@ -400,7 +400,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
     }
 }
 
-- (NSArray<HBluetoothDevice *> *)devices {
+- (NSArray<RYBluetoothAccessory *> *)devices {
     
     return self.map.allValues;
 }
@@ -412,7 +412,7 @@ NSErrorDomain HBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain"
     if (self.map[device]) {
         return;
     }
-    HBluetoothDevice *temp = [[HBluetoothDevice alloc] initWith:device];
+    RYBluetoothAccessory *temp = [[RYBluetoothAccessory alloc] initWith:device];
     self.map[device] = temp;
 }
 

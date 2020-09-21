@@ -1,17 +1,17 @@
 //
-//  HThread.m
+//  RYThread.m
 //  USBExample
 //
 //  Created by ldc on 2019/11/22.
 //  Copyright © 2019 Xiamen Hanin. All rights reserved.
 //
 
-#import "HThread.h"
+#import "RYThread.h"
 
 static NSThread *thread;
 static NSRunLoop *runloop;
 
-@implementation HThread
+@implementation RYThread
 
 + (void)entryRunloop:(id) __unused object {
     

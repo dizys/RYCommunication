@@ -1,5 +1,5 @@
 //
-//  HUSB.h
+//  RYUSB.h
 //  USBExample
 //
 //  Created by ldc on 2019/11/21.
@@ -9,32 +9,32 @@
 #import <Foundation/Foundation.h>
 #import "base.h"
 
-typedef NSString * HUSBPredicateKey;
+typedef NSString * RYUSBPredicateKey;
 
 NS_ASSUME_NONNULL_BEGIN
 
-OBJC_EXTERN HUSBPredicateKey HUSBVendorIdKey;
+OBJC_EXTERN RYUSBPredicateKey RYUSBVendorIdKey;
 
-OBJC_EXTERN HUSBPredicateKey HUSBProductIdKey;
+OBJC_EXTERN RYUSBPredicateKey RYUSBProductIdKey;
 
-OBJC_EXTERN NSErrorDomain HUSBConnectErrorDomain;
+OBJC_EXTERN NSErrorDomain RYUSBConnectErrorDomain;
 
-typedef NS_ENUM(NSUInteger, HUSBConnectErrorCode) {
-    HUSBConnectErrorCodeDidConnect,
-    HUSBConnectErrorCodeCreatePlugInInterface,
-    HUSBConnectErrorCodeQueryInterface,
-    HUSBConnectErrorCodeInterfaceOpen,
-    HUSBConnectErrorCodeGetNumEndpoints,
-    HUSBConnectErrorCodeOutPipeNotFound,
-    HUSBConnectErrorCodeInPipeNotFound,
-    HUSBConnectErrorCodeCreateAsyncEventSource,
-    HUSBConnectErrorCodeBeginReadPipe,
-    HUSBConnectErrorCodeInterfaceinterfaceServiceNotFound,
-    HUSBConnectErrorCodeAuthTimeout,
-    HUSBConnectErrorCodeAuthFail,
+typedef NS_ENUM(NSUInteger, RYUSBConnectErrorCode) {
+    RYUSBConnectErrorCodeDidConnect,
+    RYUSBConnectErrorCodeCreatePlugInInterface,
+    RYUSBConnectErrorCodeQueryInterface,
+    RYUSBConnectErrorCodeInterfaceOpen,
+    RYUSBConnectErrorCodeGetNumEndpoints,
+    RYUSBConnectErrorCodeOutPipeNotFound,
+    RYUSBConnectErrorCodeInPipeNotFound,
+    RYUSBConnectErrorCodeCreateAsyncEventSource,
+    RYUSBConnectErrorCodeBeginReadPipe,
+    RYUSBConnectErrorCodeInterfaceinterfaceServiceNotFound,
+    RYUSBConnectErrorCodeAuthTimeout,
+    RYUSBConnectErrorCodeAuthFail,
 };
 
-@interface HUSBDevice : NSObject <RYAccessory>
+@interface RYUSBAccessory : NSObject <RYAccessory>
 
 /*!
  *  \~chinese
@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, HUSBConnectErrorCode) {
 
 @end
 
-@interface HUSBBrowser : NSObject
+@interface RYUSBBrowser : NSObject
 
 @property (nonatomic, assign) BOOL isScanning;
 
@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, HUSBConnectErrorCode) {
  *
  *
  */
-@property (nonatomic, strong) NSMutableArray<HUSBDevice *> *interfaces;
+@property (nonatomic, strong) NSMutableArray<RYUSBAccessory *> *interfaces;
 
 /*!
  *  \~chinese
@@ -90,7 +90,7 @@ typedef NS_ENUM(NSUInteger, HUSBConnectErrorCode) {
  *
  *
  */
-@property (nonatomic, copy) void (^ _Nullable interfaceAddBlock)(HUSBDevice *);
+@property (nonatomic, copy) void (^ _Nullable interfaceAddBlock)(RYUSBAccessory *);
 
 /*!
  *  \~chinese
@@ -102,7 +102,7 @@ typedef NS_ENUM(NSUInteger, HUSBConnectErrorCode) {
  *
  *
  */
-@property (nonatomic, copy) void (^ _Nullable interfaceRemoveBlock)(HUSBDevice *);
+@property (nonatomic, copy) void (^ _Nullable interfaceRemoveBlock)(RYUSBAccessory *);
 
 /*!
  *  \~chinese
@@ -116,7 +116,7 @@ typedef NS_ENUM(NSUInteger, HUSBConnectErrorCode) {
  *
  *
  */
-- (BOOL)scanInterfaces:(NSDictionary<HUSBPredicateKey, id> * _Nullable) predicate;
+- (BOOL)scanInterfaces:(NSDictionary<RYUSBPredicateKey, id> * _Nullable) predicate;
 
 /*
  *  \~chinese

@@ -1,5 +1,5 @@
 //
-//  HBluetoothBrowser.h
+//  RYBluetoothBrowser.h
 //  Bluetooth
 //
 //  Created by ldc on 2019/11/26.
@@ -11,24 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-OBJC_EXTERN NSErrorDomain HBluetoothConnectErrorDomain;
+OBJC_EXTERN NSErrorDomain RYBluetoothConnectErrorDomain;
 
-typedef NS_ENUM(NSUInteger, HBluetoothConnectErrorCode) {
-    HBluetoothConnectErrorCodeDidConnect,
-    HBluetoothConnectErrorCodeOpenBaseband,
-    HBluetoothConnectErrorCodeSDPQuery,
-    HBluetoothConnectErrorCodeSDPServiceNotFound,
-    HBluetoothConnectErrorCodeGetRFCOMMChannel,
-    HBluetoothConnectErrorCodeOpenRFCOMMChannel,
-    HBluetoothConnectErrorCodeAuthTimeout,
-    HBluetoothConnectErrorCodeAuthFail,
+typedef NS_ENUM(NSUInteger, RYBluetoothConnectErrorCode) {
+    RYBluetoothConnectErrorCodeDidConnect,
+    RYBluetoothConnectErrorCodeOpenBaseband,
+    RYBluetoothConnectErrorCodeSDPQuery,
+    RYBluetoothConnectErrorCodeSDPServiceNotFound,
+    RYBluetoothConnectErrorCodeGetRFCOMMChannel,
+    RYBluetoothConnectErrorCodeOpenRFCOMMChannel,
+    RYBluetoothConnectErrorCodeAuthTimeout,
+    RYBluetoothConnectErrorCodeAuthFail,
 };
 
-@interface HBluetoothDevice : NSObject <RYAccessory>
+@interface RYBluetoothAccessory : NSObject <RYAccessory>
 
 @end
 
-@interface HBluetoothBrowser : NSObject
+@interface RYBluetoothBrowser : NSObject
 
 /*!
  *  \~chinese
@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, HBluetoothConnectErrorCode) {
  *
  *
  */
-@property (nonatomic, strong, readonly) NSArray<HBluetoothDevice *> *devices;
+@property (nonatomic, strong, readonly) NSArray<RYBluetoothAccessory *> *devices;
 
 /*!
  *  \~chinese

@@ -43,7 +43,7 @@
 		639B0A0A2505E557006249B3 /* RYBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* RYBleService.m */; platformFilter = ios; };
 		639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */; platformFilter = ios; };
 		639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A022505E557006249B3 /* RYBleConst.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
-		639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A032505E557006249B3 /* RYCentralMessageRepeater.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A032505E557006249B3 /* RYCentralMessageRepeater.h */; platformFilter = ios; };
 		639B0A0E2505E557006249B3 /* RYBleService.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A042505E557006249B3 /* RYBleService.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		639B0A0F2505E557006249B3 /* RYCentralManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A052505E557006249B3 /* RYCentralManager.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		639B0A102505E557006249B3 /* RYCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A062505E557006249B3 /* RYCentralManager.m */; platformFilter = ios; };
@@ -61,20 +61,20 @@
 		639B0A3425060EDE006249B3 /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A3325060EDE006249B3 /* base.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63BE369B2514626B00F7747F /* RYResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A182505E7F1006249B3 /* RYResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63BE36A12514626B00F7747F /* RYAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 6380C0DC250774FE008DC784 /* RYAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		63BE36A22514626B00F7747F /* HThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE36892514568800F7747F /* HThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A22514626B00F7747F /* RYThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE36892514568800F7747F /* RYThread.h */; };
 		63BE36A32514626B00F7747F /* crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6334B21B25121D8400DDB722 /* crc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		63BE36A42514626B00F7747F /* HBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE36862514568800F7747F /* HBluetooth.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		63BE36A52514626B00F7747F /* HUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE368B2514568800F7747F /* HUSB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A42514626B00F7747F /* RYBluetoothAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE36862514568800F7747F /* RYBluetoothAccessory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BE36A52514626B00F7747F /* RYUSBAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BE368B2514568800F7747F /* RYUSBAccessory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63BE36A82514626B00F7747F /* RYDataRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C6F0F02509D8110003712F /* RYDataRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63BE36A92514626B00F7747F /* RYCommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B09F42505E231006249B3 /* RYCommunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63BE36AA2514626B00F7747F /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A3325060EDE006249B3 /* base.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63BE36AE2514626B00F7747F /* RYResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A192505E7F1006249B3 /* RYResolver.m */; };
-		63BE36AF2514626B00F7747F /* HUSB.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE368A2514568800F7747F /* HUSB.m */; };
+		63BE36AF2514626B00F7747F /* RYUSBAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE368A2514568800F7747F /* RYUSBAccessory.m */; };
 		63BE36B02514626B00F7747F /* RYDataRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F0F12509D8110003712F /* RYDataRouter.m */; };
 		63BE36B22514626B00F7747F /* RYAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6380C0DD250774FE008DC784 /* RYAuthorization.m */; };
-		63BE36B32514626B00F7747F /* HBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE36812514568800F7747F /* HBluetooth.m */; };
+		63BE36B32514626B00F7747F /* RYBluetoothAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE36812514568800F7747F /* RYBluetoothAccessory.m */; };
 		63BE36B42514626B00F7747F /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = 6334B21C25121D8400DDB722 /* crc.c */; };
-		63BE36B72514626B00F7747F /* HThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE368C2514568800F7747F /* HThread.m */; };
+		63BE36B72514626B00F7747F /* RYThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE368C2514568800F7747F /* RYThread.m */; };
 		63C6F0F22509D8110003712F /* RYDataRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C6F0F02509D8110003712F /* RYDataRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63C6F0F32509D8110003712F /* RYDataRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F0F12509D8110003712F /* RYDataRouter.m */; };
 		63C6F0F52509D9860003712F /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F0F42509D9860003712F /* Help.swift */; };
@@ -199,12 +199,12 @@
 		639B0A2F25060941006249B3 /* RYExternalAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYExternalAccessory.h; sourceTree = "<group>"; };
 		639B0A3025060941006249B3 /* RYExternalAccessory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYExternalAccessory.m; sourceTree = "<group>"; };
 		639B0A3325060EDE006249B3 /* base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
-		63BE36812514568800F7747F /* HBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBluetooth.m; sourceTree = "<group>"; };
-		63BE36862514568800F7747F /* HBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBluetooth.h; sourceTree = "<group>"; };
-		63BE36892514568800F7747F /* HThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HThread.h; sourceTree = "<group>"; };
-		63BE368A2514568800F7747F /* HUSB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUSB.m; sourceTree = "<group>"; };
-		63BE368B2514568800F7747F /* HUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUSB.h; sourceTree = "<group>"; };
-		63BE368C2514568800F7747F /* HThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HThread.m; sourceTree = "<group>"; };
+		63BE36812514568800F7747F /* RYBluetoothAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYBluetoothAccessory.m; sourceTree = "<group>"; };
+		63BE36862514568800F7747F /* RYBluetoothAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYBluetoothAccessory.h; sourceTree = "<group>"; };
+		63BE36892514568800F7747F /* RYThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYThread.h; sourceTree = "<group>"; };
+		63BE368A2514568800F7747F /* RYUSBAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYUSBAccessory.m; sourceTree = "<group>"; };
+		63BE368B2514568800F7747F /* RYUSBAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYUSBAccessory.h; sourceTree = "<group>"; };
+		63BE368C2514568800F7747F /* RYThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYThread.m; sourceTree = "<group>"; };
 		63BE36C02514626B00F7747F /* RYCommunication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RYCommunication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BE36C12514626B00F7747F /* RYCommunication copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RYCommunication copy-Info.plist"; path = "/Users/ldc/Desktop/git/RYCommunication/RYCommunication copy-Info.plist"; sourceTree = "<absolute>"; };
 		63C6F0F02509D8110003712F /* RYDataRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYDataRouter.h; sourceTree = "<group>"; };
@@ -463,8 +463,8 @@
 		63BE36802514568800F7747F /* bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				63BE36862514568800F7747F /* HBluetooth.h */,
-				63BE36812514568800F7747F /* HBluetooth.m */,
+				63BE36862514568800F7747F /* RYBluetoothAccessory.h */,
+				63BE36812514568800F7747F /* RYBluetoothAccessory.m */,
 			);
 			path = bluetooth;
 			sourceTree = "<group>";
@@ -472,10 +472,10 @@
 		63BE36882514568800F7747F /* usb */ = {
 			isa = PBXGroup;
 			children = (
-				63BE36892514568800F7747F /* HThread.h */,
-				63BE368C2514568800F7747F /* HThread.m */,
-				63BE368B2514568800F7747F /* HUSB.h */,
-				63BE368A2514568800F7747F /* HUSB.m */,
+				63BE36892514568800F7747F /* RYThread.h */,
+				63BE368C2514568800F7747F /* RYThread.m */,
+				63BE368B2514568800F7747F /* RYUSBAccessory.h */,
+				63BE368A2514568800F7747F /* RYUSBAccessory.m */,
 			);
 			path = usb;
 			sourceTree = "<group>";
@@ -522,10 +522,10 @@
 				6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */,
 				638BB19D2514B36400897522 /* RYCommunication.h in Headers */,
 				6334B21D25121D8400DDB722 /* crc.h in Headers */,
-				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
 				639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */,
 				63C6F0F22509D8110003712F /* RYDataRouter.h in Headers */,
 				639B0A3425060EDE006249B3 /* base.h in Headers */,
+				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,13 +535,13 @@
 			files = (
 				63BE369B2514626B00F7747F /* RYResolver.h in Headers */,
 				63BE36A12514626B00F7747F /* RYAuthorization.h in Headers */,
-				63BE36A22514626B00F7747F /* HThread.h in Headers */,
 				63BE36A32514626B00F7747F /* crc.h in Headers */,
-				63BE36A42514626B00F7747F /* HBluetooth.h in Headers */,
-				63BE36A52514626B00F7747F /* HUSB.h in Headers */,
+				63BE36A42514626B00F7747F /* RYBluetoothAccessory.h in Headers */,
+				63BE36A52514626B00F7747F /* RYUSBAccessory.h in Headers */,
 				63BE36A82514626B00F7747F /* RYDataRouter.h in Headers */,
 				63BE36A92514626B00F7747F /* RYCommunication.h in Headers */,
 				63BE36AA2514626B00F7747F /* base.h in Headers */,
+				63BE36A22514626B00F7747F /* RYThread.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,12 +807,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63BE36AE2514626B00F7747F /* RYResolver.m in Sources */,
-				63BE36AF2514626B00F7747F /* HUSB.m in Sources */,
+				63BE36AF2514626B00F7747F /* RYUSBAccessory.m in Sources */,
 				63BE36B02514626B00F7747F /* RYDataRouter.m in Sources */,
 				63BE36B22514626B00F7747F /* RYAuthorization.m in Sources */,
-				63BE36B32514626B00F7747F /* HBluetooth.m in Sources */,
+				63BE36B32514626B00F7747F /* RYBluetoothAccessory.m in Sources */,
 				63BE36B42514626B00F7747F /* crc.c in Sources */,
-				63BE36B72514626B00F7747F /* HThread.m in Sources */,
+				63BE36B72514626B00F7747F /* RYThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

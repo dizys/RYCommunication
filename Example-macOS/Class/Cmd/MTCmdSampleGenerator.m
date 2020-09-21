@@ -11,7 +11,7 @@
 #import "MTCmdGenerator.h"
 #import "MTImagePrintDispatcher.h"
 #import "MTFirmwareUpdateDispatcher.h"
-#import <RYCommunication-macOS/RYCommunication-macOS.h>
+#import <RYCommunication/RYCommunication.h>
 
 NSString * descForMTPrinterStatus(MTPrinterStatus status) {
     

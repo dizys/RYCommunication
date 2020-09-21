@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MTCmdGenerator.h"
 #import "HDataResolver.h"
-#import <RYCommunication-macOS/RYCommunication-macOS.h>
+#import <RYCommunication/RYCommunication.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

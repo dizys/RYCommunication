@@ -1,13 +1,13 @@
 //
-//  HUSB.m
+//  RYUSB.m
 //  USBExample
 //
 //  Created by ldc on 2019/11/21.
 //  Copyright © 2019 Xiamen Hanin. All rights reserved.
 //
 
-#import "HUSB.h"
-#import "HThread.h"
+#import "RYUSBAccessory.h"
+#import "RYThread.h"
 #import <IOKit/usb/IOUSBLib.h>
 #import "RYResolver.h"
 
@@ -24,16 +24,16 @@
     static UInt32 totalData = 0;
 #endif
 
-HUSBPredicateKey HUSBVendorIdKey = @"vendorId";
+RYUSBPredicateKey RYUSBVendorIdKey = @"vendorId";
 
-HUSBPredicateKey HUSBProductIdKey = @"productId";
+RYUSBPredicateKey RYUSBProductIdKey = @"productId";
 
-NSErrorDomain HUSBConnectErrorDomain = @"h.usb.connect.error.domain";
+NSErrorDomain RYUSBConnectErrorDomain = @"h.usb.connect.error.domain";
 
-@class HUSB;
-@class HUSBDevice;
+@class RYUSB;
+@class RYUSBAccessory;
 
-@interface HUSBPipe : NSObject
+@interface RYUSBPipe : NSObject
 
 @property (nonatomic, assign) UInt8 direction;
 
@@ -53,7 +53,7 @@ NSErrorDomain HUSBConnectErrorDomain = @"h.usb.connect.error.domain";
 
 @end
 
-@implementation HUSBPipe
+@implementation RYUSBPipe
 
 - (NSString *)directionDescription {
     
@@ -114,7 +114,7 @@ NSErrorDomain HUSBConnectErrorDomain = @"h.usb.connect.error.domain";
 
 @end
 
-@interface HUSBDevice () <RYDataWriteImmutablyProtocol>
+@interface RYUSBAccessory () <RYDataWriteImmutablyProtocol>
 
 @property (nonatomic, assign) IOUSBDeviceInterface **interface;
 
@@ -122,13 +122,13 @@ NSErrorDomain HUSBConnectErrorDomain = @"h.usb.connect.error.domain";
 
 @property (nonatomic, assign) IOUSBInterfaceInterface **interfaceinterface;
 
-@property (nonatomic, strong) HUSBPipe *writePipe;
+@property (nonatomic, strong) RYUSBPipe *writePipe;
 
-@property (nonatomic, strong) HUSBPipe *readPipe;
+@property (nonatomic, strong) RYUSBPipe *readPipe;
 
 @property (nonatomic, assign) void *buffer;
 
-@property (nonatomic, strong) NSMutableArray<HUSBPipe *> *pipes;
+@property (nonatomic, strong) NSMutableArray<RYUSBPipe *> *pipes;
 
 @property (nonatomic, strong) NSMutableData *writeData;
 
@@ -156,16 +156,16 @@ NSErrorDomain HUSBConnectErrorDomain = @"h.usb.connect.error.domain";
 
 - (void)connectSuccessAction;
 
-- (void)connectFailAction:(HUSBConnectErrorCode)code;
+- (void)connectFailAction:(RYUSBConnectErrorCode)code;
 
 @end
 
 #define ReadBufferLength 128
 
-void HUSBPipeDidRead(void *refcon, IOReturn result, void *arg0) {
+void RYUSBPipeDidRead(void *refcon, IOReturn result, void *arg0) {
     
-//    NSLog(@"%@--HUSBPipeDidRead", [NSThread currentThread]);
-    HUSBDevice *interface = (__bridge HUSBDevice *)refcon;
+//    NSLog(@"%@--RYUSBPipeDidRead", [NSThread currentThread]);
+    RYUSBAccessory *interface = (__bridge RYUSBAccessory *)refcon;
     if (!interface.opened) {
         return;
     }
@@ -203,7 +203,7 @@ void HUSBPipeDidRead(void *refcon, IOReturn result, void *arg0) {
                             [interface.authTimer invalidate];
                             interface.authTimer = nil;
                             interface.auth.authKey = nil;
-                            [interface connectFailAction:HUSBConnectErrorCodeAuthFail];
+                            [interface connectFailAction:RYUSBConnectErrorCodeAuthFail];
                             break;
                         default:
                             break;
@@ -217,13 +217,13 @@ void HUSBPipeDidRead(void *refcon, IOReturn result, void *arg0) {
             }
         }
     });
-    (*interfaceinterface)->ReadPipeAsync(interfaceinterface, interface.readPipe.ref, interface.buffer, ReadBufferLength, HUSBPipeDidRead, (__bridge void *)interface);
+    (*interfaceinterface)->ReadPipeAsync(interfaceinterface, interface.readPipe.ref, interface.buffer, ReadBufferLength, RYUSBPipeDidRead, (__bridge void *)interface);
 }
 
-void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
+void RYUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
     
-//    NSLog(@"%@--HUSBPipeDidWrite", [NSThread currentThread]);
-    HUSBDevice *interface = (__bridge HUSBDevice *)refcon;
+//    NSLog(@"%@--RYUSBPipeDidWrite", [NSThread currentThread]);
+    RYUSBAccessory *interface = (__bridge RYUSBAccessory *)refcon;
     if (!interface.opened) {
         return;
     }
@@ -268,11 +268,11 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
             });
         }
         UInt32 writeLength = (UInt32)MIN(interface.writeData.length, interface.writePipe.maxPacketSize);
-        (*interfaceinterface)->WritePipeAsync(interfaceinterface, interface.writePipe.ref, (void *)(interface.writeData.bytes), writeLength, HUSBPipeDidWrite, (__bridge void *)interface);
+        (*interfaceinterface)->WritePipeAsync(interfaceinterface, interface.writePipe.ref, (void *)(interface.writeData.bytes), writeLength, RYUSBPipeDidWrite, (__bridge void *)interface);
     }
 }
 
-@implementation HUSBDevice
+@implementation RYUSBAccessory
 @synthesize resolver;
 @synthesize closedBlock;
 @synthesize name;
@@ -301,18 +301,18 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
 - (void)connect:(void (^)(void))successBlock fail:(void (^)(NSError * _Nonnull))failBlock {
     
     if (self.isConnected) {
-        NSError *error = [NSError errorWithDomain:HUSBConnectErrorDomain code:HUSBConnectErrorCodeDidConnect userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RYUSBConnectErrorDomain code:RYUSBConnectErrorCodeDidConnect userInfo:nil];
         failBlock(error);
         return;
     }
     self.openSuccessBlock = successBlock;
     self.openFailBlock = failBlock;
-    [self performSelector:@selector(p_open) onThread:[HThread thread] withObject:nil waitUntilDone:false];
+    [self performSelector:@selector(p_open) onThread:[RYThread thread] withObject:nil waitUntilDone:false];
 }
 
 - (void)disconnect {
     
-    [self performSelector:@selector(p_close) onThread:[HThread thread] withObject:nil waitUntilDone:false];
+    [self performSelector:@selector(p_close) onThread:[RYThread thread] withObject:nil waitUntilDone:false];
 }
 
 - (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {
@@ -322,18 +322,18 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
     if (self.auth.dataEncryptBlock) {
         temp = self.auth.dataEncryptBlock(self.auth, data);
     }
-    [self performSelector:@selector(writeDataImmutably:) onThread:[HThread thread] withObject:temp waitUntilDone:false];
+    [self performSelector:@selector(writeDataImmutably:) onThread:[RYThread thread] withObject:temp waitUntilDone:false];
 }
 
 - (void)stopWrite {}
 
 #pragma mark --私有
 
-- (void)connectFailAction:(HUSBConnectErrorCode)code {
+- (void)connectFailAction:(RYUSBConnectErrorCode)code {
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.openFailBlock) {
-            NSError *e = [NSError errorWithDomain:HUSBConnectErrorDomain code:code userInfo:nil];
+            NSError *e = [NSError errorWithDomain:RYUSBConnectErrorDomain code:code userInfo:nil];
             self.openFailBlock(e);
         }
         self.openSuccessBlock = nil;
@@ -357,7 +357,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
 - (void)authTimeoutAction {
     
     [self p_close];
-    [self connectFailAction:HUSBConnectErrorCodeAuthTimeout];
+    [self connectFailAction:RYUSBConnectErrorCodeAuthTimeout];
     self.authTimer = nil;
     self.auth.authKey = nil;
 }
@@ -385,7 +385,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
         if ((kr != kIOReturnSuccess) || !plugInInterface)
         {
             NSLog(@"Unable to create a plug-in (%08x)\n", kr);
-            [self connectFailAction:HUSBConnectErrorCodeCreatePlugInInterface];
+            [self connectFailAction:RYUSBConnectErrorCodeCreatePlugInInterface];
             return;
         }
         result = (*plugInInterface)->QueryInterface(plugInInterface,
@@ -394,7 +394,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
         (*plugInInterface)->Release(plugInInterface);
         if (result || !_interfaceinterface) {
             NSLog(@"Couldn’t create a device interface for the interface(%08x)\n", (int) result);
-            [self connectFailAction:HUSBConnectErrorCodeQueryInterface];
+            [self connectFailAction:RYUSBConnectErrorCodeQueryInterface];
             return;
         }
         kr = (*_interfaceinterface)->USBInterfaceOpen(_interfaceinterface);
@@ -402,7 +402,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
         {
             NSLog(@"Unable to open interface (%08x)\n", kr);
             (*_interfaceinterface)->Release(_interfaceinterface);
-            [self connectFailAction:HUSBConnectErrorCodeInterfaceOpen];
+            [self connectFailAction:RYUSBConnectErrorCodeInterfaceOpen];
             return;
         }
         kr = (*_interfaceinterface)->GetNumEndpoints(_interfaceinterface, &endpointNum);
@@ -410,7 +410,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
         {
             NSLog(@"Unable to get number of endpoints (%08x)\n", kr);
             [self p_close];
-            [self connectFailAction:HUSBConnectErrorCodeGetNumEndpoints];
+            [self connectFailAction:RYUSBConnectErrorCodeGetNumEndpoints];
             return;
         }
         self.pipes = [NSMutableArray new];
@@ -421,7 +421,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
             UInt8           transferType;
             UInt16          maxPacketSize;
             UInt8           interval;
-            HUSBPipe *pipe = [HUSBPipe new];
+            RYUSBPipe *pipe = [RYUSBPipe new];
             kr2 = (*_interfaceinterface)->GetPipeProperties(_interfaceinterface, i, &direction, &number, &transferType, &maxPacketSize, &interval);
             if (kr2 != kIOReturnSuccess) {
                 NSLog(@"Unable to get properties of pipe %d (%08x)\n", i, kr2);
@@ -436,24 +436,24 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
             [self.pipes addObject:pipe];
         }
         
-        NSInteger index = [self.pipes indexOfObjectPassingTest:^BOOL(HUSBPipe * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger index = [self.pipes indexOfObjectPassingTest:^BOOL(RYUSBPipe * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return obj.outDirection;
         }];
         if (index == NSNotFound) {
             NSLog(@"out direction pipe not found.");
             [self p_close];
-            [self connectFailAction:HUSBConnectErrorCodeOutPipeNotFound];
+            [self connectFailAction:RYUSBConnectErrorCodeOutPipeNotFound];
             return;
         }
         self.writePipe = self.pipes[index];
         
-        index = [self.pipes indexOfObjectPassingTest:^BOOL(HUSBPipe * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        index = [self.pipes indexOfObjectPassingTest:^BOOL(RYUSBPipe * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return obj.inDirection;
         }];
         if (index == NSNotFound) {
             NSLog(@"in direction pipe not found.");
             [self p_close];
-            [self connectFailAction:HUSBConnectErrorCodeInPipeNotFound];
+            [self connectFailAction:RYUSBConnectErrorCodeInPipeNotFound];
             return;
         }
         self.readPipe = self.pipes[index];
@@ -464,17 +464,17 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
         {
             NSLog(@"Unable to create asynchronous event source(%08x)\n", kr);
             [self p_close];
-            [self connectFailAction:HUSBConnectErrorCodeCreateAsyncEventSource];
+            [self connectFailAction:RYUSBConnectErrorCodeCreateAsyncEventSource];
             return;
         }
         self.source = source;
         CFRunLoopAddSource(CFRunLoopGetCurrent(), self.source, kCFRunLoopDefaultMode);
-        kr = (*_interfaceinterface)->ReadPipeAsync(_interfaceinterface, self.readPipe.ref, self.buffer, ReadBufferLength, HUSBPipeDidRead, (__bridge void *)self);
+        kr = (*_interfaceinterface)->ReadPipeAsync(_interfaceinterface, self.readPipe.ref, self.buffer, ReadBufferLength, RYUSBPipeDidRead, (__bridge void *)self);
         if (kr != kIOReturnSuccess)
         {
             NSLog(@"Unable to perform asynchronous bulk write (%08x)\n", kr);
             [self p_close];
-            [self connectFailAction:HUSBConnectErrorCodeBeginReadPipe];
+            [self connectFailAction:RYUSBConnectErrorCodeBeginReadPipe];
             return;
         }
         self.opened = true;
@@ -490,7 +490,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
         });
         return;
     }
-    [self connectFailAction:HUSBConnectErrorCodeInterfaceinterfaceServiceNotFound];
+    [self connectFailAction:RYUSBConnectErrorCodeInterfaceinterfaceServiceNotFound];
 }
 
 - (void)p_close {
@@ -533,7 +533,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
     }
     if (!sending) {
         UInt32 writeLength = (UInt32)MIN(self.writeData.length, self.writePipe.maxPacketSize);
-        IOReturn r = (*_interfaceinterface)->WritePipeAsync(_interfaceinterface, self.writePipe.ref, (void *)self.writeData.bytes, writeLength, HUSBPipeDidWrite, (__bridge void *)self);
+        IOReturn r = (*_interfaceinterface)->WritePipeAsync(_interfaceinterface, self.writePipe.ref, (void *)self.writeData.bytes, writeLength, RYUSBPipeDidWrite, (__bridge void *)self);
         if (r != kIOReturnSuccess) {
             NSLog(@"write fail %i", r);
             [self p_close];
@@ -550,7 +550,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
 - (void)p_readData {
     
     if (_interfaceinterface) {
-        (*_interfaceinterface)->ReadPipeAsync(_interfaceinterface, self.readPipe.ref, self.buffer, ReadBufferLength, HUSBPipeDidRead, (__bridge void *)self);
+        (*_interfaceinterface)->ReadPipeAsync(_interfaceinterface, self.readPipe.ref, self.buffer, ReadBufferLength, RYUSBPipeDidRead, (__bridge void *)self);
     }
 }
 
@@ -571,7 +571,7 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
     if ([object isMemberOfClass:[self class]]) {
         return false;
     }
-    return IOObjectIsEqualTo(self.service, ((HUSBDevice *)object).service);
+    return IOObjectIsEqualTo(self.service, ((RYUSBAccessory *)object).service);
 }
 
 - (NSString *)description {
@@ -589,9 +589,9 @@ void HUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
 
 @end
 
-void HUSBDeviceAdded(void *ref, io_iterator_t iterator) {
+void RYUSBAccessoryAdded(void *ref, io_iterator_t iterator) {
 
-//    NSLog(@"%@--HUSBDeviceAdded", [NSThread currentThread]);
+//    NSLog(@"%@--RYUSBAccessoryAdded", [NSThread currentThread]);
     IOReturn                    kr;
     IOUSBFindInterfaceRequest   request;
     IOCFPlugInInterface         **plugInInterface = NULL;
@@ -605,7 +605,7 @@ void HUSBDeviceAdded(void *ref, io_iterator_t iterator) {
 
     io_service_t service;
     IOUSBDeviceInterface **interface=NULL;
-    HUSBBrowser *usb = (__bridge HUSBBrowser *)ref;
+    RYUSBBrowser *usb = (__bridge RYUSBBrowser *)ref;
 
     while ((service = IOIteratorNext(iterator))) {
 
@@ -642,7 +642,7 @@ void HUSBDeviceAdded(void *ref, io_iterator_t iterator) {
             interface = NULL;
             continue;
         }
-        HUSBDevice *usb_interface = [[HUSBDevice alloc] initWith:(__bridge NSString *)nameRef interface:interface service:service];
+        RYUSBAccessory *usb_interface = [[RYUSBAccessory alloc] initWith:(__bridge NSString *)nameRef interface:interface service:service];
         [usb.interfaces addObject:usb_interface];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (usb.interfaceAddBlock) {
@@ -652,18 +652,18 @@ void HUSBDeviceAdded(void *ref, io_iterator_t iterator) {
     }
 }
 
-void HUSBDeviceRemoved(void *ref, io_iterator_t iterator) {
+void RYUSBAccessoryRemoved(void *ref, io_iterator_t iterator) {
     
-    NSLog(@"%@--HUSBDeviceRemoved", [NSThread currentThread]);
+    NSLog(@"%@--RYUSBAccessoryRemoved", [NSThread currentThread]);
     io_service_t service;
-    HUSBBrowser *usb = (__bridge HUSBBrowser *)ref;
+    RYUSBBrowser *usb = (__bridge RYUSBBrowser *)ref;
 
     while ((service = IOIteratorNext(iterator))) {
-        NSInteger index = [usb.interfaces indexOfObjectPassingTest:^BOOL(HUSBDevice * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger index = [usb.interfaces indexOfObjectPassingTest:^BOOL(RYUSBAccessory * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return IOObjectIsEqualTo(obj.service, service);
         }];
         if (index != NSNotFound) {
-            HUSBDevice *interface = usb.interfaces[index];
+            RYUSBAccessory *interface = usb.interfaces[index];
             [usb.interfaces removeObject:interface];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (interface.opened && interface.closedBlock) {
@@ -678,7 +678,7 @@ void HUSBDeviceRemoved(void *ref, io_iterator_t iterator) {
     }
 }
 
-@interface HUSBBrowser ()
+@interface RYUSBBrowser ()
 
 @property (nonatomic, assign) IONotificationPortRef notify;
 
@@ -690,32 +690,32 @@ void HUSBDeviceRemoved(void *ref, io_iterator_t iterator) {
 
 @end
 
-@implementation HUSBBrowser
+@implementation RYUSBBrowser
 
 + (instancetype)share {
     
     static dispatch_once_t onceToken;
-    static HUSBBrowser *browser;
+    static RYUSBBrowser *browser;
     dispatch_once(&onceToken, ^{
         browser = [[self alloc] init];
     });
     return browser;
 }
 
-- (BOOL)scanInterfaces:(NSMutableDictionary<HUSBPredicateKey, id> *) predicate {
+- (BOOL)scanInterfaces:(NSMutableDictionary<RYUSBPredicateKey, id> *) predicate {
     
-    [self performSelector:@selector(p_scanInterfaces:) onThread:[HThread thread] withObject:predicate waitUntilDone:true];
+    [self performSelector:@selector(p_scanInterfaces:) onThread:[RYThread thread] withObject:predicate waitUntilDone:true];
     return self.methodResult;
 }
 
 - (void)stopScanInterfaces {
     
-    [self performSelector:@selector(p_stopScanInterfaces) onThread:[HThread thread] withObject:nil waitUntilDone:true];
+    [self performSelector:@selector(p_stopScanInterfaces) onThread:[RYThread thread] withObject:nil waitUntilDone:true];
 }
 
 #pragma mark --私有
 
-- (void)p_scanInterfaces:(NSMutableDictionary<HUSBPredicateKey, id> *) predicate {
+- (void)p_scanInterfaces:(NSMutableDictionary<RYUSBPredicateKey, id> *) predicate {
     
     CFMutableDictionaryRef dic = IOServiceMatching(kIOUSBDeviceClassName);
     if (dic == NULL) {
@@ -728,13 +728,13 @@ void HUSBDeviceRemoved(void *ref, io_iterator_t iterator) {
     }
     self.isScanning = true;
     if (predicate) {
-        id vendorId = predicate[HUSBVendorIdKey];
+        id vendorId = predicate[RYUSBVendorIdKey];
         if ([vendorId isKindOfClass:[NSNumber class]]) {
             CFDictionarySetValue(dic,
             CFSTR(kUSBVendorID),
             (__bridge CFNumberRef)vendorId);
         }
-        id productId = predicate[HUSBProductIdKey];
+        id productId = predicate[RYUSBProductIdKey];
         if ([vendorId isKindOfClass:[NSNumber class]]) {
             CFDictionarySetValue(dic,
             CFSTR(kUSBProductID),
@@ -747,11 +747,11 @@ void HUSBDeviceRemoved(void *ref, io_iterator_t iterator) {
     self.notify = IONotificationPortCreate(kIOMasterPortDefault);
     CFRunLoopSourceRef source = IONotificationPortGetRunLoopSource(self.notify);
     CFRunLoopAddSource(CFRunLoopGetCurrent(), source, kCFRunLoopCommonModes);
-    IOServiceAddMatchingNotification(self.notify, kIOFirstMatchNotification, dic, HUSBDeviceAdded, (__bridge void *)self, &_add_iterator);
-    HUSBDeviceAdded((__bridge void *)self, _add_iterator);
+    IOServiceAddMatchingNotification(self.notify, kIOFirstMatchNotification, dic, RYUSBAccessoryAdded, (__bridge void *)self, &_add_iterator);
+    RYUSBAccessoryAdded((__bridge void *)self, _add_iterator);
     
-    IOServiceAddMatchingNotification(self.notify, kIOTerminatedNotification, _dic, HUSBDeviceRemoved, (__bridge void *)self, &_remove_interator);
-    HUSBDeviceRemoved((__bridge void *)self, _remove_interator);
+    IOServiceAddMatchingNotification(self.notify, kIOTerminatedNotification, _dic, RYUSBAccessoryRemoved, (__bridge void *)self, &_remove_interator);
+    RYUSBAccessoryRemoved((__bridge void *)self, _remove_interator);
     self.methodResult = true;
 }
 
@@ -766,7 +766,7 @@ void HUSBDeviceRemoved(void *ref, io_iterator_t iterator) {
     }
 }
 
-- (NSMutableArray<HUSBDevice *> *)interfaces {
+- (NSMutableArray<RYUSBAccessory *> *)interfaces {
     
     if (!_interfaces) {
         _interfaces = [NSMutableArray new];

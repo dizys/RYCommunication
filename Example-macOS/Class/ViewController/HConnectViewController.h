@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <RYCommunication-macOS/RYCommunication-macOS.h>
+#import <RYCommunication/RYCommunication.h>
 
 typedef NS_ENUM(NSUInteger, HInterfaceType) {
     HInterfaceTypeUSB,

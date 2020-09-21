@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import <RYCommunication-macOS/RYCommunication-macOS.h>
+#import <RYCommunication/RYCommunication.h>
 #import "HProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN

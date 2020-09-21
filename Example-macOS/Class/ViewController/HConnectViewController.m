@@ -7,7 +7,7 @@
 //
 
 #import "HConnectViewController.h"
-#import <RYCommunication-macOS/RYCommunication-macOS.h>
+#import <RYCommunication/RYCommunication.h>
 
 @interface HConnectViewController ()<NSTableViewDelegate, NSTableViewDataSource>
 
@@ -19,9 +19,9 @@
 
 @property (weak) IBOutlet NSButton *connectButton;
 
-@property (nonatomic, strong) HUSBBrowser *usbBrowser;
+@property (nonatomic, strong) RYUSBBrowser *usbBrowser;
 
-@property (nonatomic, strong) HBluetoothBrowser *bluetoothBrowser;
+@property (nonatomic, strong) RYBluetoothBrowser *bluetoothBrowser;
 
 @end
 
@@ -71,7 +71,7 @@
 
 - (void)usbConnectAction {
     
-    HUSBDevice *u = self.usbBrowser.interfaces[self.tableView.selectedRow];
+    RYUSBAccessory *u = self.usbBrowser.interfaces[self.tableView.selectedRow];
     self.connectButton.enabled = false;
     [u connect:^{
         if (self.connectBlock) {
@@ -79,36 +79,36 @@
         }
         [self dismissController:nil];
     } fail:^(NSError * _Nonnull error) {
-        HUSBConnectErrorCode code = error.code;
+        RYUSBConnectErrorCode code = error.code;
         switch (code) {
-            case HUSBConnectErrorCodeDidConnect:
+            case RYUSBConnectErrorCodeDidConnect:
                 [self showConnectError:@"设备已连接"];
                 break;
-            case HUSBConnectErrorCodeBeginReadPipe:
+            case RYUSBConnectErrorCodeBeginReadPipe:
                 [self showConnectError:@"开始读取数据失败"];
                 break;
-            case HUSBConnectErrorCodeInterfaceOpen:
+            case RYUSBConnectErrorCodeInterfaceOpen:
                 [self showConnectError:@"接口打开失败"];
                 break;
-            case HUSBConnectErrorCodeInPipeNotFound:
+            case RYUSBConnectErrorCodeInPipeNotFound:
                 [self showConnectError:@"没有找到输入管线"];
                 break;
-            case HUSBConnectErrorCodeOutPipeNotFound:
+            case RYUSBConnectErrorCodeOutPipeNotFound:
                 [self showConnectError:@"没有找到输出管线"];
                 break;
-            case HUSBConnectErrorCodeQueryInterface:
+            case RYUSBConnectErrorCodeQueryInterface:
                 [self showConnectError:@"插件接口获取接口失败"];
                 break;
-            case HUSBConnectErrorCodeGetNumEndpoints:
+            case RYUSBConnectErrorCodeGetNumEndpoints:
                 [self showConnectError:@"获取终结点失败"];
                 break;
-            case HUSBConnectErrorCodeCreatePlugInInterface:
+            case RYUSBConnectErrorCodeCreatePlugInInterface:
                 [self showConnectError:@"创建插件接口失败"];
                 break;
-            case HUSBConnectErrorCodeCreateAsyncEventSource:
+            case RYUSBConnectErrorCodeCreateAsyncEventSource:
                 [self showConnectError:@"创建异步活动源失败"];
                 break;
-            case HUSBConnectErrorCodeInterfaceinterfaceServiceNotFound:
+            case RYUSBConnectErrorCodeInterfaceinterfaceServiceNotFound:
                 [self showConnectError:@"没有找到接口服务"];
                 break;
             default:
@@ -120,7 +120,7 @@
 
 - (void)startBluetoothScan {
     
-    self.bluetoothBrowser = [HBluetoothBrowser new];
+    self.bluetoothBrowser = [RYBluetoothBrowser new];
     [self.bluetoothBrowser startScan:false complete:^{
         self.continueScanButton.enabled = true;
         [self.tableView reloadData];
@@ -129,7 +129,7 @@
 
 - (void)bluetoothConnectAction {
     
-    HBluetoothDevice *b = self.bluetoothBrowser.devices[self.tableView.selectedRow];
+    RYBluetoothAccessory *b = self.bluetoothBrowser.devices[self.tableView.selectedRow];
     self.connectButton.enabled = false;
     [b connect:^{
         if (self.connectBlock) {
@@ -138,30 +138,30 @@
         [self dismissController:nil];
     } fail:^(NSError * _Nonnull error) {
         self.connectButton.enabled = true;
-        HBluetoothConnectErrorCode code = error.code;
+        RYBluetoothConnectErrorCode code = error.code;
         switch (code) {
-            case HBluetoothConnectErrorCodeDidConnect:
+            case RYBluetoothConnectErrorCodeDidConnect:
                 [self showConnectError:@"设备已连接"];
                 break;
-            case HBluetoothConnectErrorCodeOpenBaseband:
+            case RYBluetoothConnectErrorCodeOpenBaseband:
                 [self showConnectError:@"基带打开失败"];
                 break;
-            case HBluetoothConnectErrorCodeSDPQuery:
+            case RYBluetoothConnectErrorCodeSDPQuery:
                 [self showConnectError:@"SDP服务请求失败"];
                 break;
-            case HBluetoothConnectErrorCodeSDPServiceNotFound:
+            case RYBluetoothConnectErrorCodeSDPServiceNotFound:
                 [self showConnectError:@"没找到合适的服务"];
                 break;
-            case HBluetoothConnectErrorCodeGetRFCOMMChannel:
+            case RYBluetoothConnectErrorCodeGetRFCOMMChannel:
                 [self showConnectError:@"服务获取RFCOMM通道失败"];
                 break;
-            case HBluetoothConnectErrorCodeOpenRFCOMMChannel:
+            case RYBluetoothConnectErrorCodeOpenRFCOMMChannel:
                 [self showConnectError:@"RFCOMM通道打开失败"];
                 break;
-            case HBluetoothConnectErrorCodeAuthTimeout:
+            case RYBluetoothConnectErrorCodeAuthTimeout:
                 [self showConnectError:@"设备授权超时"];
                 break;
-            case HBluetoothConnectErrorCodeAuthFail:
+            case RYBluetoothConnectErrorCodeAuthFail:
                 [self showConnectError:@"请求授权被拒"];
                 break;
             default:
@@ -182,16 +182,16 @@
 
 - (void)startUSBScan {
     
-    self.usbBrowser = [HUSBBrowser share];
+    self.usbBrowser = [RYUSBBrowser share];
     if (!self.usbBrowser.isScanning) {
-//        NSDictionary *predicate = @{HUSBVendorIdKey: @(0x20d1), HUSBProductIdKey: @(0x7008)};
+//        NSDictionary *predicate = @{RYUSBVendorIdKey: @(0x20d1), RYUSBProductIdKey: @(0x7008)};
         [self.usbBrowser scanInterfaces:nil];
     }
     __weak typeof(self) weakSelf = self;
-    self.usbBrowser.interfaceAddBlock = ^(HUSBDevice * _Nonnull interface) {
+    self.usbBrowser.interfaceAddBlock = ^(RYUSBAccessory * _Nonnull interface) {
         [weakSelf.tableView reloadData];
     };
-    self.usbBrowser.interfaceRemoveBlock = ^(HUSBDevice * _Nonnull interface) {
+    self.usbBrowser.interfaceRemoveBlock = ^(RYUSBAccessory * _Nonnull interface) {
         [weakSelf.tableView reloadData];
     };
     [self.tableView reloadData];

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RYCommunication-macOS/RYCommunication-macOS.h>
+#import <RYCommunication/RYCommunication.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

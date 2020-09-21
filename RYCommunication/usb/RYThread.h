@@ -1,5 +1,5 @@
 //
-//  HThread.h
+//  RYThread.h
 //  USBExample
 //
 //  Created by ldc on 2019/11/22.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HThread : NSObject
+@interface RYThread : NSObject
 
 + (NSThread *)thread;
 
