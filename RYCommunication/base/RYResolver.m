@@ -159,6 +159,7 @@
             }
         }
     }else {
+        [self.handleFailData appendBytes:self.cacheData.bytes length:1];
         [self.cacheData replaceBytesInRange:NSMakeRange(0, 1) withBytes:NULL length:0];
         [self resolveData];
     }
