@@ -22,8 +22,6 @@ FOUNDATION_EXPORT const unsigned char RYCommunicationVersionString[];
 
 #import <RYCommunication/RYAuthorization.h>
 
-#import <RYCommunication/RYDataRouter.h>
-
 #if TARGET_OS_IOS
 
 #import <RYCommunication/RYExternalAccessory.h>
