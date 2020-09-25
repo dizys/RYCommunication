@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RYSocketAccessory : RYStreamPair
 
+@property (nonatomic, copy) NSString *ip;
+
+@property (nonatomic, assign) NSInteger port;
+
 - (instancetype)initWith:(NSString *)ip port:(NSInteger)port;
 
 @end

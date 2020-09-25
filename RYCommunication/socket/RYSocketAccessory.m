@@ -8,14 +8,6 @@
 
 #import "RYSocketAccessory.h"
 
-@interface RYSocketAccessory ()
-
-@property (nonatomic, copy) NSString *ip;
-
-@property (nonatomic, assign) NSInteger port;
-
-@end
-
 @implementation RYSocketAccessory
 
 - (instancetype)initWith:(NSString *)ip port:(NSInteger)port
