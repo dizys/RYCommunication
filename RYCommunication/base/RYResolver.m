@@ -8,7 +8,7 @@
 
 #import "RYResolver.h"
 
-@implementation RYCommonResolverModel
+@implementation RYCommonResolveModel
 
 @end
 
@@ -147,7 +147,7 @@
         if (self.cacheData.length < block.minDataLength) {
             return;
         }else {
-            RYCommonResolverModel *model = block.handleBlock(self.cacheData);
+            RYCommonResolveModel *model = block.handleBlock(self.cacheData);
             if (model) {
                 [self handleNotResolvedData];
                 NSRange range = NSMakeRange(0, model.cost);

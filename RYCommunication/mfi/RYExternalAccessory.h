@@ -12,18 +12,38 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ *  \~chinese
+ *
+ *  MFI设备
+ *
+ *  \~english
+ *
+ *  MFI accessory
+ *
+ */
 @interface RYExternalAccessory : RYStreamPair <EAAccessoryDelegate>
 
+///< \~chinese 会话 \~english session
 @property (nonatomic, strong, nullable) EASession *session;
 
+///< \~chinese MFI外设 \~english MFI accessory
 @property (nonatomic, strong) EAAccessory *accessory;
 
 /**
- 初始化MCSession对象
- 
- @param accessory 系统外设对象
- @param protocolString 设备协议
- @return 对象
+ *  \~chinese
+ *
+ *  创建MFI设备对象
+ *  @param accessory 系统外设对象
+ *  @param protocolString 设备协议
+ *
+ *  \~english
+ *
+ *  Create MFI RYExternalAccessory object
+ *
+ *  @param accessory EAAccessory
+ *  @param protocolString MFI protocol
+ *
  */
 - (instancetype)initWithAccessory:(EAAccessory *)accessory forProtocol:(NSString *)protocolString;
 

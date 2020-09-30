@@ -267,7 +267,7 @@ class CP4000LikeBluetoothCommand {
 
 class CP4000LikeBluetoothResolver: RYCommonResolver {
     
-    class Model: RYCommonResolverModel {
+    class Model: RYCommonResolveModel {
         
         var type: CP4000LikeBluetoothCommand.CmdType = .sn
     }

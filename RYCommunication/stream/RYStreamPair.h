@@ -12,25 +12,50 @@
 NS_ASSUME_NONNULL_BEGIN
 
 OBJC_EXTERN NSErrorDomain RYStreamPairConnectErrorDomain;
+
+/**
+ *  \~chinese
+ *
+ *  连接失败错误码
+ *
+ *  \~english
+ *
+ *  Connect fail error code
+ *
+ */
 typedef NS_ENUM(NSInteger, RYStreamPairConnectErrorCode) {
-    //连接超时，超时时间10秒
+    ///< \~chinese 连接超时，超时时间10秒 \~english timeout
     RYStreamPairConnectErrorCodeTimeout,
-    //使用空 流对象进行连接
+    ///< \~chinese 使用空 流对象进行连接 \~english empty stream object
     RYStreamPairConnectErrorCodeEmptyStreamObject,
-    //授权超时
+    ///< \~chinese 授权超时 \~english auth timeout
     RYStreamPairConnectErrorCodeAuthTimeout,
-    //授权失败
+    /////< \~chinese 授权失败 \~english auth fail
     RYStreamPairConnectErrorCodeAuthFail,
 };
 
+/**
+ *  \~chinese
+ *
+ *  输入输出流封装类
+ *
+ *  \~english
+ *
+ *  A class wrap NSInputStream and NSOutputStream
+ *
+ */
 @interface RYStreamPair : NSObject <RYAccessory, RYDataWriteImmutablyProtocol>
 
+///< \~chinese 输入流 \~english input stream
 @property (nonatomic, strong, nullable) NSInputStream *input;
 
+///< \~chinese 输出流 \~english output stream
 @property (nonatomic, strong, nullable) NSOutputStream *output;
 
+///< \~chinese 是否连接 \~english is connected
 @property (nonatomic, assign, readonly) BOOL connected;
 
+///< \~chinese 关闭输入输出流 \~english close input and output stream
 - (void)closeStream;
 
 @end

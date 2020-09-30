@@ -40,7 +40,7 @@
         self.rssi = rssi;
         self.advertisementData = advertisementData;
         self.resolver = [[RYNotHandlingResolver alloc] init];
-        self.services = @[[[CP4000lBleService alloc] init]];
+        self.services = @[[[FF00BleService alloc] init]];
     }
     return self;
 }

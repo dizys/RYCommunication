@@ -36,7 +36,7 @@ typedef NS_ENUM(Byte, MTCarbonRibbonResponseProperty) {
     MTCarbonRibbonResponsePropertyLengthPrinted = 0x10,
 };
 
-@interface MTResolverModel : RYCommonResolverModel
+@interface MTResolverModel : RYCommonResolveModel
 
 @property (nonatomic, assign) MTCmdType type;
 
