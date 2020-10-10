@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RYCommunication"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "附件设备通信库"
   s.description  = <<-DESC
   "一个支持常用通信方式的通信的库，支持iOS ble、mfi、和socket，OSX 蓝牙和USB"
@@ -51,5 +51,11 @@ Pod::Spec.new do |s|
     ss.osx.source_files  = "RYCommunication/usb/*.{h,m}"
     ss.ios.source_files  = ""
     ss.osx.dependency 'RYCommunication/base'
+  end
+  
+  s.subspec 'lan' do |ss|
+    ss.osx.source_files  = ""
+    ss.ios.source_files  = "RYCommunication/lan/*.{h,m}"
+    ss.ios.dependency 'CocoaAsyncSocket'
   end
 end

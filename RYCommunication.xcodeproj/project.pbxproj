@@ -79,6 +79,9 @@
 		63C6F0FB2509DA8D0003712F /* RYCommunication.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 639B09F12505E231006249B3 /* RYCommunication.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63C6F1002509DBF80003712F /* CP4000LBleCmdGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F0FF2509DBF80003712F /* CP4000LBleCmdGenerator.swift */; };
 		63C6F1032509FA8F0003712F /* BleConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6F1022509FA8F0003712F /* BleConnectViewController.swift */; };
+		63FCD2DE25315078005FC2A5 /* RYUDPBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FCD2DC25315078005FC2A5 /* RYUDPBrowser.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		63FCD2DF25315078005FC2A5 /* RYUDPBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FCD2DD25315078005FC2A5 /* RYUDPBrowser.m */; platformFilter = ios; };
+		7E26F7A43B5C79642338AF0A /* Pods_RYCommunication_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2AD390C1779A19AFFD400A /* Pods_RYCommunication_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,7 +210,12 @@
 		63C6F0F72509DA2C0003712F /* CmdGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdGenerator.swift; sourceTree = "<group>"; };
 		63C6F0FF2509DBF80003712F /* CP4000LBleCmdGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CP4000LBleCmdGenerator.swift; sourceTree = "<group>"; };
 		63C6F1022509FA8F0003712F /* BleConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleConnectViewController.swift; sourceTree = "<group>"; };
+		63FCD2DC25315078005FC2A5 /* RYUDPBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYUDPBrowser.h; sourceTree = "<group>"; };
+		63FCD2DD25315078005FC2A5 /* RYUDPBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYUDPBrowser.m; sourceTree = "<group>"; };
+		775083F468DE7A330A81CAE9 /* Pods-RYCommunication iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication iOS.debug.xcconfig"; path = "Target Support Files/Pods-RYCommunication iOS/Pods-RYCommunication iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		81AE2C46FD85B4B9406911C5 /* Pods-RYCommunication iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication iOS.release.xcconfig"; path = "Target Support Files/Pods-RYCommunication iOS/Pods-RYCommunication iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E2AD390C1779A19AFFD400A /* Pods_RYCommunication_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RYCommunication_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECD57F48A0E5196006705DE /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -233,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E26F7A43B5C79642338AF0A /* Pods_RYCommunication_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +260,8 @@
 			children = (
 				CECD57F48A0E5196006705DE /* Pods-Example.debug.xcconfig */,
 				33605D6CDAE59DDDA8763ECD /* Pods-Example.release.xcconfig */,
+				775083F468DE7A330A81CAE9 /* Pods-RYCommunication iOS.debug.xcconfig */,
+				81AE2C46FD85B4B9406911C5 /* Pods-RYCommunication iOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -381,6 +392,7 @@
 		639B09F32505E231006249B3 /* RYCommunication */ = {
 			isa = PBXGroup;
 			children = (
+				63FCD2D725315014005FC2A5 /* lan */,
 				63BE36802514568800F7747F /* bluetooth */,
 				63BE36882514568800F7747F /* usb */,
 				639B0A2E250608FA006249B3 /* mfi */,
@@ -485,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */,
+				8E2AD390C1779A19AFFD400A /* Pods_RYCommunication_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -495,6 +508,15 @@
 				63C6F1022509FA8F0003712F /* BleConnectViewController.swift */,
 			);
 			path = connect;
+			sourceTree = "<group>";
+		};
+		63FCD2D725315014005FC2A5 /* lan */ = {
+			isa = PBXGroup;
+			children = (
+				63FCD2DC25315078005FC2A5 /* RYUDPBrowser.h */,
+				63FCD2DD25315078005FC2A5 /* RYUDPBrowser.m */,
+			);
+			path = lan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,6 +536,7 @@
 				6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */,
 				638BB19D2514B36400897522 /* RYCommunication.h in Headers */,
 				6334B21D25121D8400DDB722 /* crc.h in Headers */,
+				63FCD2DE25315078005FC2A5 /* RYUDPBrowser.h in Headers */,
 				639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */,
 				639B0A3425060EDE006249B3 /* base.h in Headers */,
 				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
@@ -582,6 +605,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 639B09F92505E231006249B3 /* Build configuration list for PBXNativeTarget "RYCommunication iOS" */;
 			buildPhases = (
+				B9B61F5D9F34170260558F42 /* [CP] Check Pods Manifest.lock */,
 				639B09EC2505E231006249B3 /* Headers */,
 				639B09ED2505E231006249B3 /* Sources */,
 				639B09EE2505E231006249B3 /* Frameworks */,
@@ -736,6 +760,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B9B61F5D9F34170260558F42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RYCommunication iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -786,6 +832,7 @@
 				639B0A2D250606CD006249B3 /* RYStreamPair.m in Sources */,
 				639B0A0A2505E557006249B3 /* RYBleService.m in Sources */,
 				639B0A3225060941006249B3 /* RYExternalAccessory.m in Sources */,
+				63FCD2DF25315078005FC2A5 /* RYUDPBrowser.m in Sources */,
 				639B0A122505E557006249B3 /* RYBleConst.m in Sources */,
 				639B0A1E250605A1006249B3 /* RYBleAccessory.m in Sources */,
 			);
@@ -1051,6 +1098,7 @@
 		};
 		639B09FA2505E231006249B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 775083F468DE7A330A81CAE9 /* Pods-RYCommunication iOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -1080,6 +1128,7 @@
 		};
 		639B09FB2505E231006249B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81AE2C46FD85B4B9406911C5 /* Pods-RYCommunication iOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

@@ -8,6 +8,7 @@
 
 import UIKit
 import BaseKitSwift
+import RYCommunication
 
 class ViewController: UIViewController {
 
@@ -40,12 +41,27 @@ class ViewController: UIViewController {
         }
     }
     
+    let browser = RYUDPBrowser.init(port: 6000)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "指令列表"
         view.backgroundColor = UIColor.white
         disconnectItem.isEnabled = false
+        
+        let task = URLSession.shared.dataTask(with: URL.init(string: "http://www.baidu.com")!) { (_, response, _) in
+            print(response)
+        }
+        task.resume()
+        
+        browser.startSearch(10)
+        browser.discovePortBlock = {
+            print("\($0.ip)--\($0.advertisementData.hexString)")
+        }
+        browser.searchTimeoutBlock = {
+            print("搜索超时")
+        }
     }
     
     @IBAction func connectAction(_ sender: UIBarButtonItem) {
@@ -63,8 +79,11 @@ class ViewController: UIViewController {
                 self.show(temp, sender: nil)
             }
         })
+        let action2 = UIAlertAction.init(title: "广播", style: .default, handler: { _ in
+            self.browser.broadcast()
+        })
         let cancelAction = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
-        self.bk_presentAlertController(title: "请选择连接方式", message: nil, preferredStyle: .actionSheet, actions: [action1, cancelAction])
+        self.bk_presentAlertController(title: "请选择连接方式", message: nil, preferredStyle: .actionSheet, actions: [action1, action2, cancelAction])
     }
     
     @IBAction func disconnectAction(_ sender: Any) {

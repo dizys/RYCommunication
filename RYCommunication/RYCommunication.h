@@ -38,6 +38,8 @@ FOUNDATION_EXPORT const unsigned char RYCommunicationVersionString[];
 
 #import <RYCommunication/RYCentralManager.h>
 
+#import <RYCommunication/RYUDPBrowser.h>
+
 #endif
 
 #if TARGET_OS_OSX
