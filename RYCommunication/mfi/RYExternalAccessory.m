@@ -59,7 +59,7 @@
     
     [self disconnect];
     if (self.closedBlock) {
-        self.closedBlock();
+        self.closedBlock(nil);
     }
 }
 

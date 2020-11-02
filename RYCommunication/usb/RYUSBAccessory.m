@@ -176,7 +176,7 @@ void RYUSBPipeDidRead(void *refcon, IOReturn result, void *arg0) {
         [interface p_close];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (interface.closedBlock) {
-                interface.closedBlock();
+                interface.closedBlock(nil);
             }
         });
         return;
@@ -235,7 +235,7 @@ void RYUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             interface.progressBlock = nil;
             if (interface.closedBlock) {
-                interface.closedBlock();
+                interface.closedBlock(nil);
             }
         });
         return;
@@ -540,7 +540,7 @@ void RYUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.progressBlock = nil;
                 if (self.closedBlock) {
-                    self.closedBlock();
+                    self.closedBlock(nil);
                 }
             });
         }
@@ -667,7 +667,7 @@ void RYUSBAccessoryRemoved(void *ref, io_iterator_t iterator) {
             [usb.interfaces removeObject:interface];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (interface.opened && interface.closedBlock) {
-                    interface.closedBlock();
+                    interface.closedBlock(nil);
                 }
                 if (usb.interfaceRemoveBlock) {
                     usb.interfaceRemoveBlock(interface);

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RYCommunication"
-  s.version      = "1.0.3"
+  s.version      = "1.0.4"
   s.summary      = "附件设备通信库"
   s.description  = <<-DESC
   "一个支持常用通信方式的通信的库，支持iOS ble、mfi、和socket，OSX 蓝牙和USB"

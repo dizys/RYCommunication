@@ -143,7 +143,7 @@
             if (self.connected) {
                 [self disconnect];
                 if (self.closedBlock) {
-                    self.closedBlock();
+                    self.closedBlock(nil);
                 }
             }
             break;
@@ -161,7 +161,7 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
     if (self.closedBlock) {
-        self.closedBlock();
+        self.closedBlock(error);
     }
     [self disconnect];
 }

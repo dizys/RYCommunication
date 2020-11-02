@@ -304,7 +304,7 @@ NSErrorDomain RYBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain
     [self disconnect];
     if (connected) {
         if (self.closedBlock) {
-            self.closedBlock();
+            self.closedBlock(nil);
         }
     }
 }
@@ -340,7 +340,7 @@ NSErrorDomain RYBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain
     }else {
         [self disconnect];
         if (self.closedBlock) {
-            self.closedBlock();
+            self.closedBlock(nil);
         }
     }
 }

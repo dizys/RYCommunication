@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id<RYDataResolver> _Nullable resolver;
 
 ///< \~chinese 连接关闭回调 \~english called when connect is closed
-@property (nonatomic, copy) void (^ _Nullable closedBlock)(void);
+@property (nonatomic, copy) void (^ _Nullable closedBlock)(NSError * _Nullable);
 
 /**
  *  \~chinese

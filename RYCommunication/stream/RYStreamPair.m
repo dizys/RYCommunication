@@ -173,10 +173,10 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     [self performSelector:@selector(writeData) onThread:[[self class] thread] withObject:nil waitUntilDone:false];
 }
 
-- (void)streamDidDisconnect {
+- (void)streamDidDisconnect:(NSError *)error {
     
     if (self.closedBlock) {
-        self.closedBlock();
+        self.closedBlock(error);
     }
 }
 
@@ -327,7 +327,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     
     [self closeStream];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self streamDidDisconnect];
+        [self streamDidDisconnect:aStream.streamError];
     });
 }
 
@@ -369,7 +369,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     if (self.connected) {
         [self closeStream];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self streamDidDisconnect];
+            [self streamDidDisconnect:aStream.streamError];
         });
     }else {
         [self.timer invalidate];
