@@ -10,6 +10,7 @@
 #import "RYResolver.h"
 
 NSErrorDomain RYStreamPairConnectErrorDomain = @"ry.stream.pair.connect";
+NSErrorDomain RYStreamPairConnectCloseErrorDomain = @"ry.stream.pair.connect.close";
 
 typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     RYStreamPairConnectFlagInputStreaRYonnected     =   1,
@@ -228,7 +229,10 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     while (self.output.hasSpaceAvailable && self.data.length > 0 && !self.paused) {
         NSInteger bytesWritten = [self.output write:self.data.bytes maxLength:self.data.length];
         if (bytesWritten == -1) {
-            NSLog(@"写入失败--%@--%@", self.output, self.output.streamError);
+            [self closeStream];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self streamDidDisconnect:[NSError errorWithDomain:RYStreamPairConnectCloseErrorDomain code:RYStreamPairConnectCloseErrorCodeWriteFail userInfo:self.output.streamError]];
+            });
             return;
         }else if (bytesWritten > 0) {
             [self.data replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
@@ -246,7 +250,10 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
                 }
             });
         }else {
-            NSLog(@"写入失败: %li", (long)bytesWritten);
+            [self closeStream];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self streamDidDisconnect:[NSError errorWithDomain:RYStreamPairConnectCloseErrorDomain code:RYStreamPairConnectCloseErrorCodeWriteFail userInfo:self.output.streamError]];
+            });
         }
     }
 }

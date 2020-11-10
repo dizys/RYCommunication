@@ -13,6 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 OBJC_EXTERN NSErrorDomain RYStreamPairConnectErrorDomain;
 
+OBJC_EXTERN NSErrorDomain RYStreamPairConnectCloseErrorDomain;
+
+typedef NS_ENUM(NSInteger, RYStreamPairConnectCloseErrorCode) {
+    RYStreamPairConnectCloseErrorCodeWriteFail = 0,
+};
+
 /**
  *  \~chinese
  *
