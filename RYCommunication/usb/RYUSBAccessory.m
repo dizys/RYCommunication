@@ -190,24 +190,9 @@ void RYUSBPipeDidRead(void *refcon, IOReturn result, void *arg0) {
         
         if (data.length > 0) {
             if (!interface.isConnected) {
-                if (interface.auth.validateBlock) {
+                if (interface.auth) {
                     NSLog(@"授权验证相关数据: %@", data);
-                    RYAuthorizationResult result = interface.auth.validateBlock(interface.auth, data);
-                    switch (result) {
-                        case RYAuthorizationResultAuthorized:
-                            [interface.authTimer invalidate];
-                            interface.authTimer = nil;
-                            [interface connectSuccessAction];
-                            break;
-                        case RYAuthorizationResultDenied:
-                            [interface.authTimer invalidate];
-                            interface.authTimer = nil;
-                            interface.auth.authKey = nil;
-                            [interface connectFailAction:RYUSBConnectErrorCodeAuthFail];
-                            break;
-                        default:
-                            break;
-                    }
+                    [interface.auth readInput:data];
                 }
             }else {
                 if (interface.resolver) {
@@ -287,6 +272,7 @@ void RYUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
     self.interface = interface;
     self.service = service;
     self.resolver = [[RYNotHandlingResolver alloc] init];
+    self.auth = [[RYAuthorization alloc] init];
     return self;
 }
 
@@ -360,6 +346,7 @@ void RYUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
     [self connectFailAction:RYUSBConnectErrorCodeAuthTimeout];
     self.authTimer = nil;
     self.auth.authKey = nil;
+    self.auth.validatedBlock = nil;
 }
 
 - (void)p_open {
@@ -483,9 +470,26 @@ void RYUSBPipeDidWrite(void *refcon, IOReturn result, void *arg0) {
                 [self connectSuccessAction];
             }else {
                 self.authTimer = [NSTimer scheduledTimerWithTimeInterval:self.auth.timeout target:self selector:@selector(authTimeoutAction) userInfo:nil repeats:false];
-                if (self.auth.startChallengeBlock) {
-                    self.auth.startChallengeBlock(self, self.auth);
-                }
+                __weak typeof(self) weakSelf = self;
+                self.auth.validatedBlock = ^(RYAuthorizationResult result) {
+                    switch (result) {
+                        case RYAuthorizationResultAuthorized:
+                            [weakSelf.authTimer invalidate];
+                            weakSelf.authTimer = nil;
+                            weakSelf.auth.validatedBlock = nil;
+                            [weakSelf connectSuccessAction];
+                            break;
+                        case RYAuthorizationResultDenied:
+                            [weakSelf.authTimer invalidate];
+                            weakSelf.authTimer = nil;
+                            weakSelf.auth.authKey = nil;
+                            weakSelf.auth.validatedBlock = nil;
+                            [weakSelf connectFailAction:RYUSBConnectErrorCodeAuthFail];
+                            break;
+                        default:
+                            break;
+                    }
+                };
             }
         });
         return;

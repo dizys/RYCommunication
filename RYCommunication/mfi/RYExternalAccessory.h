@@ -24,11 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface RYExternalAccessory : RYStreamPair <EAAccessoryDelegate>
 
-///< \~chinese 会话 \~english session
-@property (nonatomic, strong, nullable) EASession *session;
+@property (nonatomic, strong, nullable) EASession *session;///< \~chinese 会话 \~english session
 
-///< \~chinese MFI外设 \~english MFI accessory
-@property (nonatomic, strong) EAAccessory *accessory;
+@property (nonatomic, strong) EAAccessory *accessory;///< \~chinese MFI外设 \~english MFI accessory
 
 /**
  *  \~chinese

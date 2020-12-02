@@ -24,17 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface RYCommonResolveModel : NSObject
 
-///< \~chinese 是否丢弃 \~english discardable
-@property (nonatomic, assign) BOOL isDiscardable;
+@property (nonatomic, assign) BOOL isDiscardable;///< \~chinese 是否丢弃 \~english discardable
 
-///< \~chinese 数据内容 \~english content
-@property (nonatomic, strong) NSData *data;
+@property (nonatomic, strong) NSData *data;///< \~chinese 数据内容 \~english content
 
-///< \~chinese 消耗的数据量 \~english data length costed
-@property (nonatomic, assign) NSInteger cost;
+@property (nonatomic, assign) NSInteger cost;///< \~chinese 消耗的数据量 \~english data length costed
 
-///< \~chinese 源数据 \~english raw data
-@property (nonatomic, strong) NSData *rawData;
+@property (nonatomic, strong) NSData *rawData;///< \~chinese 源数据 \~english raw data
 
 @end
 
@@ -50,10 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface RYDataRouterBlock : NSObject
 
-///< \~chinese 最小数据长度 \~english min data length
-@property (nonatomic, assign) NSInteger minDataLength;
+@property (nonatomic, assign) NSInteger minDataLength;///< \~chinese 最小数据长度 \~english min data length
 
-/**
+/*
  *  \~chinese
  *
  *  用于将数据生成指定模型的block
@@ -137,10 +132,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface RYCommonResolver : NSObject <RYDataResolver>
 
-///< \~chinese 路由对象 \~english router
-@property (nonatomic, strong) RYDataRouter *router;
+@property (nonatomic, strong) RYDataRouter *router;///< \~chinese 路由对象 \~english router
 
-///< \~chinese 处理失败回调 \~english called when handle fail
+/*
+ *  \~chinese
+ *
+ *  处理失败回调
+ *
+ *  \~english
+ *
+ *  called when handle fail
+ *
+ */
 @property (nonatomic, copy) void (^ _Nullable handleFailBlock)(NSData *);
 
 /**

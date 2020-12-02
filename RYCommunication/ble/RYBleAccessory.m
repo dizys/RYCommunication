@@ -29,7 +29,7 @@
 @implementation RYBleAccessory
 @synthesize resolver;
 @synthesize closedBlock;
-@synthesize auth;
+@synthesize auth = _auth;
 @synthesize name;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)peripheral rssi:(NSNumber *)rssi advertisement:(NSDictionary<NSString *,id> *)advertisementData {
@@ -40,6 +40,7 @@
         self.rssi = rssi;
         self.advertisementData = advertisementData;
         self.resolver = [[RYNotHandlingResolver alloc] init];
+        self.auth = [[RYAuthorization alloc] init];
         self.services = @[[[FF00BleService alloc] init]];
     }
     return self;
@@ -48,6 +49,17 @@
 - (NSString *)name {
     
     return self.peripheral.name == nil ? @"" : self.peripheral.name;
+}
+
+- (void)setAuth:(RYAuthorization *)auth {
+    
+    if ([NSBundle bundleForClass:[auth class]] != [NSBundle bundleForClass:[RYAuthorization class]]) {
+        [NSException raise:@"" format:@""];
+    }
+    _auth = auth;
+    for (id<RYBleServiceProtocol> service in self.services) {
+        service.auth = auth;
+    }
 }
 
 - (void)setServices:(NSArray<id<RYBleServiceProtocol>> *)services {
@@ -60,6 +72,7 @@
     
     __weak typeof(self) weakSelf = self;
     for (id<RYBleServiceProtocol> service in self.services) {
+        service.auth = self.auth;
         service.peripheral = self.peripheral;
         service.configureFail = ^(NSError * _Nonnull error) {
             [weakSelf didConnectFail:error];

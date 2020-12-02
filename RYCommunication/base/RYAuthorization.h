@@ -28,13 +28,17 @@ typedef NS_ENUM(NSUInteger, RYAuthorizationResult) {
 
 @property (nonatomic, assign) NSTimeInterval timeout;
 
-@property (nonatomic, copy) RYAuthorizationResult (^ _Nullable validateBlock)(RYAuthorization *, NSData *);
+@property (nonatomic, weak) id<RYDataWriteImmutablyProtocol> accessory;
 
-@property (nonatomic, copy) void (^ _Nullable startChallengeBlock)(id<RYDataWriteImmutablyProtocol>, RYAuthorization *);
+@property (nonatomic, copy) void (^ _Nullable validatedBlock)(RYAuthorizationResult);
 
 @property (nonatomic, copy) NSData *(^ _Nullable dataEncryptBlock)(RYAuthorization *, NSData *);
 
 @property (nonatomic, strong) id _Nullable authKey;
+
+- (void)startChallenge;
+
+- (void)readInput:(NSData *)data;
 
 @end
 

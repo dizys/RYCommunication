@@ -26,7 +26,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol RYDataResolver <NSObject>
 
-///< \~chinese 解析成功回调 \~english called when resolve succss
+/*
+ *  \~chinese
+ *
+ *  解析成功回调
+ *
+ *  \~english
+ *
+ *  called when resolve succss
+ *
+ */
 @property (nonatomic, copy ) void (^ _Nullable resolvedBlock)(id result);
 
 /**
@@ -59,16 +68,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol RYAccessory <NSObject>
 
-///< \~chinese 名称 \~english name
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *name;///< \~chinese 名称 \~english name
 
-///< \~chinese 授权验证对象 \~english authorize object
-@property (nonatomic, strong) RYAuthorization * _Nullable auth;
+@property (nonatomic, strong) RYAuthorization * _Nullable auth;///< \~chinese 授权验证对象 \~english authorize object
 
-///< \~chinese 数据解析器 \~english data resolver
-@property (nonatomic, strong) id<RYDataResolver> _Nullable resolver;
+@property (nonatomic, strong) id<RYDataResolver> _Nullable resolver;///< \~chinese 数据解析器 \~english data resolver
 
-///< \~chinese 连接关闭回调 \~english called when connect is closed
+/*
+ *  \~chinese
+ *
+ *  连接关闭回调
+ *
+ *  \~english
+ *
+ *  called when connect is closed
+ *
+ */
 @property (nonatomic, copy) void (^ _Nullable closedBlock)(NSError * _Nullable);
 
 /**

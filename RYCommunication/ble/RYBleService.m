@@ -17,6 +17,12 @@
 #define WiFiPasswordUUID        @"40B7DE33-93E4-4C8B-A876-D833B415A6CE"
 #define CommandUUID             @"42B8DF34-94E5-4D8C-A978-D9745546B7BF"
 
+@interface RYBleService ()
+
+@property (nonatomic, assign) BOOL connected;
+
+@end
+
 @implementation RYBleService
 @synthesize uuid;
 @synthesize peripheral;
@@ -24,8 +30,28 @@
 @synthesize configureFail;
 @synthesize resolver;
 @synthesize closedBlock;
-@synthesize auth;
+@synthesize auth = _auth;
 @synthesize name;
+
+- (instancetype)init {
+    
+    self = [super init];
+    if (self) {
+        self.auth = [[RYAuthorization alloc] init];
+    }
+    return self;
+}
+
+- (void)setAuth:(RYAuthorization *)auth {
+    
+    if ([NSBundle bundleForClass:[auth class]] != [NSBundle bundleForClass:[RYAuthorization class]]) {
+        [NSException raise:@"" format:@""];
+    }
+    _auth = auth;
+    _auth.accessory = self;
+}
+
+- (void)writeDataImmutably:(NSData *)data {}
 
 - (void)connect:(void (^)(void))successBlock fail:(void (^)(NSError * _Nonnull))failBlock {}
 
@@ -272,6 +298,11 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
     self.writeData = [[NSMutableData alloc] init];
     self.write_c = nil;
     self.process = 0;
+    self.connected = false;
+    self.auth.validatedBlock = nil;
+    [self.auth.timer invalidate];
+    self.auth.timer = nil;
+    self.auth.authKey = nil;
 }
 
 - (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {
@@ -294,6 +325,11 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
     }
 }
 
+- (void)writeDataImmutably:(NSData *)data {
+    
+    [self write:data progress:nil];
+}
+
 - (void)private_write {
     
     while (self.credit > 0 && self.remainBytes > 0) {
@@ -306,11 +342,54 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
     }
 }
 
+- (void)authTimeout {
+    
+    NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeAuthTimeout userInfo:nil];
+    [self connectFail:temp];
+}
+
+- (void)connectFail:(NSError *)error {
+    
+    self.connected = false;
+    self.auth.validatedBlock = nil;
+    [self.auth.timer invalidate];
+    self.auth.timer = nil;
+    self.auth.authKey = nil;
+    if (self.configureFail) {
+        self.configureFail(error);
+    }
+}
+
 - (void)judgeConfigureResult {
     
     if (self.process == FF00ServiceProcessLoadOK) {
-        if (self.configureSuccess) {
-            self.configureSuccess();
+        if (self.auth) {
+            self.auth.timer = [NSTimer scheduledTimerWithTimeInterval:self.auth.timeout target:self selector:@selector(authTimeout) userInfo:nil repeats:false];
+            __weak typeof(self) weakSelf = self;
+            self.auth.validatedBlock = ^(RYAuthorizationResult result) {
+                switch (result) {
+                    case RYAuthorizationResultAuthorized:
+                        [weakSelf.auth.timer invalidate];
+                        weakSelf.auth.timer = nil;
+                        weakSelf.auth.validatedBlock = nil;
+                        weakSelf.connected = true;
+                        if (weakSelf.configureSuccess) {
+                            weakSelf.configureSuccess();
+                        }
+                        break;
+                    case RYAuthorizationResultDenied:
+                        [weakSelf connectFail:[NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeAuthFail userInfo:nil]];
+                        break;
+                    default:
+                        break;
+                }
+            };
+            [self.auth startChallenge];
+        }else {
+            self.connected = true;
+            if (self.configureSuccess) {
+                self.configureSuccess();
+            }
         }
     }
 }
@@ -318,10 +397,8 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(nonnull CBService *)service error:(nullable NSError *)error {
     
     if (error) {
-        if (self.configureFail) {
-            NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeSystemError userInfo:@{@"error": error}];
-            self.configureFail(temp);
-        }
+        NSError *temp = [NSError errorWithDomain:RYBleConnectErrorDomain code:RYBleConnectErrorCodeSystemError userInfo:@{@"error": error}];
+        [self connectFail:temp];
         return;
     }
     for (CBCharacteristic *characteristic in service.characteristics) {
@@ -392,7 +469,13 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
         }
     }else {
         if (characteristic.value && characteristic.value.length > 0) {
-            [self.resolver readInput:characteristic.value];
+            if (!self.connected) {
+                if (self.auth) {
+                    [self.auth readInput:characteristic.value];
+                }
+            }else {
+                [self.resolver readInput:characteristic.value];
+            }
         }
     }
 }

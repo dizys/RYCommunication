@@ -68,6 +68,7 @@ NSErrorDomain RYBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain
         self.device = device;
         self.writeData = [NSMutableData new];
         self.resolver = [[RYNotHandlingResolver alloc] init];
+        self.auth = [[RYAuthorization alloc] init];
     }
     return self;
 }
@@ -179,6 +180,7 @@ NSErrorDomain RYBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain
     [self connectFailAction:RYBluetoothConnectErrorCodeAuthTimeout];
     self.authTimer = nil;
     self.auth.authKey = nil;
+    self.auth.validatedBlock = nil;
 }
 
 - (NSString *)name {
@@ -250,25 +252,10 @@ NSErrorDomain RYBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain
     
     if (dataLength > 0) {
         if (!self.isConnected) {
-            if (self.auth.validateBlock) {
+            if (self.auth) {
                 NSData *temp = [NSData dataWithBytes:dataPointer length:dataLength];
                 NSLog(@"授权验证相关数据: %@", temp);
-                RYAuthorizationResult result = self.auth.validateBlock(self.auth, temp);
-                switch (result) {
-                    case RYAuthorizationResultAuthorized:
-                        [self.authTimer invalidate];
-                        self.authTimer = nil;
-                        [self connectSuccessAction];
-                        break;
-                    case RYAuthorizationResultDenied:
-                        [self.authTimer invalidate];
-                        self.authTimer = nil;
-                        self.auth.authKey = nil;
-                        [self connectFailAction:RYBluetoothConnectErrorCodeAuthFail];
-                        break;
-                    default:
-                        break;
-                }
+                [self.auth readInput:temp];
             }
         }else {
             if (self.resolver) {
@@ -288,9 +275,27 @@ NSErrorDomain RYBluetoothConnectErrorDomain = @"h.bluetooth.connect.error.domain
             [self connectSuccessAction];
         }else {
             self.authTimer = [NSTimer scheduledTimerWithTimeInterval:self.auth.timeout target:self selector:@selector(authTimeoutAction) userInfo:nil repeats:false];
-            if (self.auth.startChallengeBlock) {
-                self.auth.startChallengeBlock(self, self.auth);
-            }
+            [self.auth startChallenge];
+            __weak typeof(self) weakSelf = self;
+            self.auth.validatedBlock = ^(RYAuthorizationResult result) {
+                switch (result) {
+                    case RYAuthorizationResultAuthorized:
+                        [weakSelf.authTimer invalidate];
+                        weakSelf.authTimer = nil;
+                        weakSelf.auth.validatedBlock = nil;
+                        [weakSelf connectSuccessAction];
+                        break;
+                    case RYAuthorizationResultDenied:
+                        [weakSelf.authTimer invalidate];
+                        weakSelf.authTimer = nil;
+                        weakSelf.auth.authKey = nil;
+                        weakSelf.auth.validatedBlock = nil;
+                        [weakSelf connectFailAction:RYBluetoothConnectErrorCodeAuthFail];
+                        break;
+                    default:
+                        break;
+                }
+            };
         }
     }else {
         NSLog(@"%@ 通道打开失败", NSStringFromSelector(_cmd));

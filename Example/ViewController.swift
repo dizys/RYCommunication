@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         didSet {
             if let generator = cmdGenerator {
                 generator.accessory.closedBlock = { [weak self] in
+                    print($0)
                     self?.cmdGenerator = nil
                 }
                 disconnectItem.isEnabled = true

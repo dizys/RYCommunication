@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RYBleService : NSObject <RYBleServiceProtocol>
+@interface RYBleService : NSObject <RYBleServiceProtocol, RYDataWriteImmutablyProtocol>
 
 @end
 

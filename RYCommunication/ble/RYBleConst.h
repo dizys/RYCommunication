@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, RYBleConnectErrorCode) {
     RYBleConnectErrorCodeTimeout,
     RYBleConnectErrorCodeServiceNotFound,
     RYBleConnectErrorCodeCharacteristicNotFound,
+    RYBleConnectErrorCodeAuthFail,
+    RYBleConnectErrorCodeAuthTimeout,
 };
 
 NS_ASSUME_NONNULL_END

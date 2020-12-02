@@ -10,7 +10,6 @@
 #import "RYResolver.h"
 
 NSErrorDomain RYStreamPairConnectErrorDomain = @"ry.stream.pair.connect";
-NSErrorDomain RYStreamPairConnectCloseErrorDomain = @"ry.stream.pair.connect.close";
 
 typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     RYStreamPairConnectFlagInputStreaRYonnected     =   1,
@@ -43,7 +42,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 @implementation RYStreamPair
 @synthesize resolver;
 @synthesize closedBlock;
-@synthesize auth;
+@synthesize auth = _auth;
 @synthesize name;
 
 + (void)threadEntry:(id) __unused object {
@@ -75,8 +74,18 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
         //使用懒加载时,如果子线程第一次调用get,会导致后面get方法不再被调用。。。。
         self.resolver = [[RYNotHandlingResolver alloc] init];
         self.data = [[NSMutableData alloc] init];
+        self.auth = [[RYAuthorization alloc] init];
     }
     return self;
+}
+
+- (void)setAuth:(RYAuthorization *)auth {
+    
+    if ([NSBundle bundleForClass:[auth class]] != [NSBundle bundleForClass:[RYAuthorization class]]) {
+        [NSException raise:@"" format:@""];
+    }
+    _auth = auth;
+    _auth.accessory = self;
 }
 
 - (NSString *)name {
@@ -195,6 +204,8 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)authTimeout {
     
+    self.auth.validatedBlock = nil;
+    self.auth.timer = nil;
     [self connectFail:RYStreamPairConnectErrorCodeAuthTimeout message:@"authorize timeout"];
 }
 
@@ -229,10 +240,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     while (self.output.hasSpaceAvailable && self.data.length > 0 && !self.paused) {
         NSInteger bytesWritten = [self.output write:self.data.bytes maxLength:self.data.length];
         if (bytesWritten == -1) {
-            [self closeStream];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self streamDidDisconnect:[NSError errorWithDomain:RYStreamPairConnectCloseErrorDomain code:RYStreamPairConnectCloseErrorCodeWriteFail userInfo:self.output.streamError]];
-            });
+            NSLog(@"写入失败--%@--%@", self.output, self.output.streamError);
             return;
         }else if (bytesWritten > 0) {
             [self.data replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
@@ -250,10 +258,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
                 }
             });
         }else {
-            [self closeStream];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self streamDidDisconnect:[NSError errorWithDomain:RYStreamPairConnectCloseErrorDomain code:RYStreamPairConnectCloseErrorCodeWriteFail userInfo:self.output.streamError]];
-            });
+            NSLog(@"写入失败: %li", (long)bytesWritten);
         }
     }
 }
@@ -273,24 +278,9 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
         [readData appendBytes:(void *)buf length:bytesRead];
     }
     if (!self.connected) {
-        if (self.auth.validateBlock) {
+        if (self.auth) {
+            [self.auth readInput:readData];
             NSLog(@"授权验证相关数据: %@", readData);
-            RYAuthorizationResult result = self.auth.validateBlock(self.auth, readData);
-            switch (result) {
-                case RYAuthorizationResultAuthorized:
-                    [self.auth.timer invalidate];
-                    self.auth.timer = nil;
-                    [self connectSuccessAction];
-                    break;
-                case RYAuthorizationResultDenied:
-                    [self.auth.timer invalidate];
-                    self.auth.timer = nil;
-                    self.auth.authKey = nil;
-                    [self connectFail:RYStreamPairConnectErrorCodeAuthFail message:@"authorize fail"];
-                    break;
-                default:
-                    break;
-            }
         }
     }else {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -351,9 +341,27 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
             [self connectSuccessAction];
         }else {
             self.auth.timer = [NSTimer scheduledTimerWithTimeInterval:self.auth.timeout target:self selector:@selector(authTimeout) userInfo:nil repeats:false];
-            if (self.auth.startChallengeBlock) {
-                self.auth.startChallengeBlock(self, self.auth);
-            }
+            __weak typeof(self) weakSelf = self;
+            self.auth.validatedBlock = ^(RYAuthorizationResult result) {
+                switch (result) {
+                    case RYAuthorizationResultAuthorized:
+                        [weakSelf.auth.timer invalidate];
+                        weakSelf.auth.timer = nil;
+                        weakSelf.auth.validatedBlock = nil;
+                        [weakSelf connectSuccessAction];
+                        break;
+                    case RYAuthorizationResultDenied:
+                        [weakSelf.auth.timer invalidate];
+                        weakSelf.auth.timer = nil;
+                        weakSelf.auth.authKey = nil;
+                        weakSelf.auth.validatedBlock = nil;
+                        [weakSelf connectFail:RYStreamPairConnectErrorCodeAuthFail message:@"authorize fail"];
+                        break;
+                    default:
+                        break;
+                }
+            };
+            [self.auth startChallenge];
         }
         [self.timer invalidate];
     }

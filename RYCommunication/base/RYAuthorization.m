@@ -14,9 +14,20 @@
 {
     self = [super init];
     if (self) {
-        self.timeout = 10;
+        self.timeout = 3;
     }
     return self;
+}
+
+- (void)startChallenge {
+    
+    if (self.validatedBlock) {
+        self.validatedBlock(RYAuthorizationResultDenied);
+    }
+}
+
+- (void)readInput:(NSData *)data {
+    
 }
 
 @end

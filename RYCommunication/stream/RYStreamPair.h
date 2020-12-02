@@ -13,12 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 OBJC_EXTERN NSErrorDomain RYStreamPairConnectErrorDomain;
 
-OBJC_EXTERN NSErrorDomain RYStreamPairConnectCloseErrorDomain;
-
-typedef NS_ENUM(NSInteger, RYStreamPairConnectCloseErrorCode) {
-    RYStreamPairConnectCloseErrorCodeWriteFail = 0,
-};
-
 /**
  *  \~chinese
  *
@@ -30,14 +24,14 @@ typedef NS_ENUM(NSInteger, RYStreamPairConnectCloseErrorCode) {
  *
  */
 typedef NS_ENUM(NSInteger, RYStreamPairConnectErrorCode) {
-    ///< \~chinese 连接超时，超时时间10秒 \~english timeout
-    RYStreamPairConnectErrorCodeTimeout,
-    ///< \~chinese 使用空 流对象进行连接 \~english empty stream object
-    RYStreamPairConnectErrorCodeEmptyStreamObject,
-    ///< \~chinese 授权超时 \~english auth timeout
-    RYStreamPairConnectErrorCodeAuthTimeout,
-    /////< \~chinese 授权失败 \~english auth fail
-    RYStreamPairConnectErrorCodeAuthFail,
+    
+    RYStreamPairConnectErrorCodeTimeout,///< \~chinese 连接超时，超时时间10秒 \~english timeout
+    
+    RYStreamPairConnectErrorCodeEmptyStreamObject,///< \~chinese 使用空 流对象进行连接 \~english empty stream object
+    
+    RYStreamPairConnectErrorCodeAuthTimeout,///< \~chinese 授权超时 \~english auth timeout
+    
+    RYStreamPairConnectErrorCodeAuthFail,/////< \~chinese 授权失败 \~english auth fail
 };
 
 /**
@@ -52,16 +46,22 @@ typedef NS_ENUM(NSInteger, RYStreamPairConnectErrorCode) {
  */
 @interface RYStreamPair : NSObject <RYAccessory, RYDataWriteImmutablyProtocol>
 
-///< \~chinese 输入流 \~english input stream
-@property (nonatomic, strong, nullable) NSInputStream *input;
+@property (nonatomic, strong, nullable) NSInputStream *input;///< \~chinese 输入流 \~english input stream
 
-///< \~chinese 输出流 \~english output stream
-@property (nonatomic, strong, nullable) NSOutputStream *output;
+@property (nonatomic, strong, nullable) NSOutputStream *output;///< \~chinese 输出流 \~english output stream
 
-///< \~chinese 是否连接 \~english is connected
-@property (nonatomic, assign, readonly) BOOL connected;
+@property (nonatomic, assign, readonly) BOOL connected;///< \~chinese 是否连接 \~english is connected
 
-///< \~chinese 关闭输入输出流 \~english close input and output stream
+/**
+ *  \~chinese
+ *
+ *  关闭输入输出流
+ *
+ *  \~english
+ *
+ *  close input and output stream
+ *
+ */
 - (void)closeStream;
 
 @end

@@ -23,11 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface RYSocketAccessory : RYStreamPair
 
-///< \~chinese ip \~english ip
-@property (nonatomic, copy) NSString *ip;
+@property (nonatomic, copy) NSString *ip;///< \~chinese ip \~english ip
 
-///< \~chinese port \~english port
-@property (nonatomic, assign) NSInteger port;
+@property (nonatomic, assign) NSInteger port;///< \~chinese port \~english port
 
 /**
  *  \~chinese
