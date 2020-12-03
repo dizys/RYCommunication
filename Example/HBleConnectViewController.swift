@@ -1,17 +1,15 @@
 //
-//  BleConnectViewController.swift
+//  HHBleConnectViewController.swift
 //  Example
 //
-//  Created by ldc on 2020/9/10.
-//  Copyright © 2020 Xiamen Hanin. All rights reserved.
+//  Created by ldc on 2020/11/12.
 //
 
 import UIKit
-import RYCommunication
-import BaseKitSwift
 import SVProgressHUD
 
-class BleConnectViewController: UIViewController {
+class HBleConnectViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
     
     let manager = RYCentralManager.share()
     var printer: RYBleAccessory?
@@ -21,16 +19,18 @@ class BleConnectViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
-        title = "蓝牙连接".localized
+        title = "蓝牙搜索"
         initCentralManagerBloack()
         startScan()
-        makeConstraint()
     }
     
     func startScan() -> Void {
         
         let option = RYBleScanOption()
-        option.serviceUUIDs = [CBUUID.init(string: "1B7E8251-2877-41C3-B46E-CF057C562023")]
+        option.printerFilter = { (peripheral, _, _) in
+            guard let name = peripheral.name else { return false }
+            return name.uppercased().contains("FT800") || name.uppercased().contains("FT100") || name.uppercased().contains("FT880")
+        }
         manager.startScan(option)
     }
     
@@ -46,27 +46,6 @@ class BleConnectViewController: UIViewController {
         }
     }
     
-    func makeConstraint() -> Void {
-        
-        tableView.snp.makeConstraints {
-            $0.top.equalTo(self.snp.top)
-            $0.bottom.left.right.equalToSuperview()
-        }
-    }
-    
-    lazy var tableView: UITableView = {
-        
-        let temp = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
-        temp.delegate = self
-        temp.dataSource = self
-        temp.estimatedRowHeight = 44
-        temp.estimatedSectionHeaderHeight = 0
-        temp.estimatedSectionFooterHeight = 0
-        temp.separatorInset = .zero
-        self.view.addSubview(temp)
-        return temp
-    }()
-    
     deinit {
         manager.stopScan()
         manager.discoverBlock = nil
@@ -74,17 +53,7 @@ class BleConnectViewController: UIViewController {
     }
 }
 
-extension BleConnectViewController {
-    
-    @objc func refreshAction() {
-        
-        manager.stopScan()
-        self.tableView.reloadData()
-        startScan()
-    }
-}
-
-extension BleConnectViewController: UITableViewDelegate, UITableViewDataSource {
+extension HBleConnectViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
@@ -118,21 +87,20 @@ extension BleConnectViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let iden = "iden"
-        var cell = tableView.dequeueReusableCell(withIdentifier: iden)
-        if cell == nil {
-            cell = UITableViewCell.init(style: .value1, reuseIdentifier: iden)
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "iden") ?? UITableViewCell.init(style: .default, reuseIdentifier: "iden")
         let printers = manager.printers
-        cell?.textLabel?.text = printers[indexPath.row].peripheral.name
-        return cell!
+        cell.textLabel?.text = printers[indexPath.row].peripheral.name
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
         printer = manager.printers[indexPath.row]
-        SVProgressHUD.show(withStatus: "连接中...".localized)
+        printer?.services = [FF00BleService()]
+        printer?.auth = FT800Authorization()
+        printer?.resolver = FT800DataResolver()
+        SVProgressHUD.show(withStatus: "连接中...")
         printer?.connect({ 
             SVProgressHUD.dismiss()
             self.didConnectClosure?(self.printer!)
@@ -142,7 +110,7 @@ extension BleConnectViewController: UITableViewDelegate, UITableViewDataSource {
             SVProgressHUD.dismiss()
             switch ((error as NSError).domain, (error as NSError).code) {
             case (RYBleConnectErrorDomain, RYBleConnectErrorCode.timeout.rawValue):
-                self.bk_presentWarningAlertController(title: "提示".localized, message: "打印机连接超时，请重试".localized, style: .destructive)
+                self.bk_presentWarningAlertController(title: "提示", message: "打印机连接超时，请重试", style: .destructive)
             default:
                 self.bk_presentWarningAlertController(title: "提示", message: "连接失败: \(error)", style: .destructive)
             }

@@ -20,15 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>使用蓝牙</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>使用蓝牙</string>
+	<string>需要使用蓝牙连接打印机</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

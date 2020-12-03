@@ -2,13 +2,12 @@
 //  AppDelegate.swift
 //  Example
 //
-//  Created by ldc on 2020/9/9.
-//  Copyright © 2020 Xiamen Hanin. All rights reserved.
+//  Created by ldc on 2020/10/22.
 //
 
 import UIKit
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
