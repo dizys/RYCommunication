@@ -81,9 +81,6 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)setAuth:(RYAuthorization *)auth {
     
-    if ([NSBundle bundleForClass:[auth class]] != [NSBundle bundleForClass:[RYAuthorization class]]) {
-        [NSException raise:@"" format:@""];
-    }
     _auth = auth;
     _auth.accessory = self;
 }
