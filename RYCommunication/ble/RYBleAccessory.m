@@ -53,6 +53,9 @@
 
 - (void)setAuth:(RYAuthorization *)auth {
     
+    if ([NSBundle bundleForClass:[auth class]] != [NSBundle bundleForClass:[RYAuthorization class]]) {
+        [NSException raise:@"" format:@""];
+    }
     _auth = auth;
     for (id<RYBleServiceProtocol> service in self.services) {
         service.auth = auth;
