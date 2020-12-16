@@ -235,6 +235,11 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     self.connected = false;
 }
 
+- (void)dealloc {
+    
+    [self disconnect];
+}
+
 - (void)writeData {
     
     while (self.output.hasSpaceAvailable && self.data.length > 0 && !self.paused) {
