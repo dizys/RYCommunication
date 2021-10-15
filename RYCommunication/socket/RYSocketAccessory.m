@@ -22,9 +22,12 @@
 
 - (void)connect:(void (^)(void))successBlock fail:(void (^)(NSError * _Nonnull))failBlock {
     
-    if (self.connected) {
-        successBlock();
-        return;
+    switch (self.status) {
+        case RYStreamPairConnectStatusConnected:
+            successBlock();
+            return;
+        default:
+            break;
     }
     NSInputStream *input;
     NSOutputStream *output;

@@ -1,0 +1,6 @@
+framework module Pods_RYCommunication_iOS {
+  umbrella header "Pods-RYCommunication iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

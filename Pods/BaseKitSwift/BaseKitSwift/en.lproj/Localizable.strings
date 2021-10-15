@@ -1,0 +1,11 @@
+"去iPhone的\"设置-隐私-蓝牙\"中，允许\"%@\"使用蓝牙" = "Go to the \"Settings-Privacy-Bluetooth\" of the iPhone and allow\"%@\" to use Bluetooth";
+"去设置" = "Do setting";
+"取消" = "Cancel";
+"您的iPhone暂不支持使用蓝牙" = "Your iPhone does not support Bluetooth";
+"手机摄像头功能受限" = "Mobile phone camera function is limited";
+"手机相册功能受限" = "Mobile photo album function is limited";
+"提示" = "Prompt";
+"确定" = "Confirm";
+"蓝牙不可用,请在\"设置-蓝牙\"中打开蓝牙并允许新连接" = "Bluetooth is not available, please turn on Bluetooth in \Settings-Bluetooth\" and allow new connections";
+"请在iPhone的\"设置-隐私-照片\"选项中，允许\"%@\"访问您的相册。" = "Please allow \"%@\" to access your album in the \"Settings-Privacy-Photo\" option of the iPhone";
+"请在iPhone的\"设置-隐私-相机\"选项中，允许\"%@\"访问您的摄像头。" = "Please allow \"%@\" to access your camera in the \Settings-Privacy-Camera\"options of iPhone";

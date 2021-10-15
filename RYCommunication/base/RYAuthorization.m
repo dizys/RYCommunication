@@ -22,7 +22,7 @@
 - (void)startChallenge {
     
     if (self.validatedBlock) {
-        self.validatedBlock(RYAuthorizationResultDenied);
+        self.validatedBlock(RYAuthorizationResultAuthorized);
     }
 }
 

@@ -1,2 +1,4 @@
-# RYCommunication
-外部设备通讯库
+## RYCommunication
+
+一个支持常用通信方式的通信的库，支持iOS ble、mfi、和socket，OSX 蓝牙和USB
+

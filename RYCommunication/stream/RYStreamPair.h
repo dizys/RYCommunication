@@ -34,6 +34,13 @@ typedef NS_ENUM(NSInteger, RYStreamPairConnectErrorCode) {
     RYStreamPairConnectErrorCodeAuthFail,/////< \~chinese 授权失败 \~english auth fail
 };
 
+typedef NS_ENUM(Byte, RYStreamPairConnectStatus) {
+    RYStreamPairConnectStatusDisconnected = 0,
+    RYStreamPairConnectStatusConnecting = 1,
+    RYStreamPairConnectStatusConnected = 2,
+    RYStreamPairConnectStatusDisconnecting = 3,
+};
+
 /**
  *  \~chinese
  *
@@ -50,7 +57,7 @@ typedef NS_ENUM(NSInteger, RYStreamPairConnectErrorCode) {
 
 @property (nonatomic, strong, nullable) NSOutputStream *output;///< \~chinese 输出流 \~english output stream
 
-@property (nonatomic, assign, readonly) BOOL connected;///< \~chinese 是否连接 \~english is connected
+@property (nonatomic, assign, readonly) RYStreamPairConnectStatus status;///< \~chinese 连接状态 \~english is connect status
 
 /**
  *  \~chinese

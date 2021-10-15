@@ -11,6 +11,6 @@ target 'Example' do
   use_frameworks!
 
   # Pods for Example
-  pod 'BaseKitSwift', :git => '../BaseKitSwift/.git', :tag => '5.1.2'
+  pod 'BaseKitSwift', :git => 'ssh://lindc@10.10.2.2:29418/~lindc/BaseKitSwift.git'#, :tag => '5.0.26'
   pod 'SVProgressHUD'
 end

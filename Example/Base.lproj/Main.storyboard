@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gNE-dN-bFh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gNE-dN-bFh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -106,6 +106,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFo-QL-nIb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-665" y="121"/>
+        </scene>
+        <!--Ble Connect View Controller-->
+        <scene sceneID="X3Z-XS-nFd">
+            <objects>
+                <viewController storyboardIdentifier="dcble" id="oPg-qj-3R5" customClass="HDCBleConnectViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sJV-zG-gSD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lro-GK-dzz">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="oPg-qj-3R5" id="Hpw-pg-iVP"/>
+                                    <outlet property="delegate" destination="oPg-qj-3R5" id="ZO2-H2-LX2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6uz-bf-qau"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6uz-bf-qau" firstAttribute="bottom" secondItem="lro-GK-dzz" secondAttribute="bottom" id="Qhf-WL-UAm"/>
+                            <constraint firstItem="lro-GK-dzz" firstAttribute="leading" secondItem="6uz-bf-qau" secondAttribute="leading" id="SCb-A0-2KN"/>
+                            <constraint firstItem="6uz-bf-qau" firstAttribute="trailing" secondItem="lro-GK-dzz" secondAttribute="trailing" id="f2U-qF-5hc"/>
+                            <constraint firstItem="lro-GK-dzz" firstAttribute="top" secondItem="6uz-bf-qau" secondAttribute="top" id="nbt-rI-nnC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="lro-GK-dzz" id="V6f-3d-sqx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="97e-DT-HhK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128" y="121"/>
         </scene>
     </scenes>
     <resources>

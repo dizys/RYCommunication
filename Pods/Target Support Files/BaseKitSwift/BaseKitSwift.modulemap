@@ -1,0 +1,6 @@
+framework module BaseKitSwift {
+  umbrella header "BaseKitSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

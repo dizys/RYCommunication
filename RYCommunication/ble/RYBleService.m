@@ -44,9 +44,6 @@
 
 - (void)setAuth:(RYAuthorization *)auth {
     
-    if ([NSBundle bundleForClass:[auth class]] != [NSBundle bundleForClass:[RYAuthorization class]]) {
-        [NSException raise:@"" format:@""];
-    }
     _auth = auth;
     _auth.accessory = self;
 }
@@ -81,6 +78,8 @@
 //刚连接时读取特征和注册通知特征会接收到一大堆数据，这个一般是不想要的，暂时有写入数据才开始让应用层接收数据
 @property (nonatomic, assign) BOOL canAcceptInput;
 
+@property (nonatomic, assign) BOOL writing;
+
 @end
 
 @implementation CP4000lBleService
@@ -92,6 +91,7 @@
         self.uuid = [CBUUID UUIDWithString:WiFiConfigServiceUUID];
         self.resolver = [[RYNotHandlingResolver alloc] init];
         self.writeData = [[NSMutableData alloc] init];
+        self.writing = false;
     }
     return self;
 }
@@ -174,12 +174,14 @@
     #if NeedLog
         [[HLog shared] write:[NSString stringWithFormat:@"写入失败=> 特征: %@ domain: %@ code: %lu -> %@", [[characteristic UUID] UUIDString], error.domain, error.code, error.localizedDescription]];
     #endif
+        self.writing = false;
         return;
     }
     @synchronized (self) {
         Byte *bytes = (Byte *)self.writeData.bytes;
         Byte length = bytes[2];
         [self.writeData replaceBytesInRange:NSMakeRange(0, 3+length) withBytes:NULL length:0];
+        self.writing = false;
         [self private_write];
     }
 }
@@ -199,6 +201,9 @@
 
 - (void)private_write {
     
+    if (self.writing) {
+        return;
+    }
     Byte *bytes = (Byte *)self.writeData.bytes;
     int position = 0;
     while (true) {
@@ -244,6 +249,7 @@
         #if NeedLog
         [[HLog shared] write:[NSString stringWithFormat:@"写入=> 特征: %@ 数据: %@", write_c.UUID.UUIDString, [temp oc_hexString]]];
         #endif
+        self.writing = true;
         [self.peripheral writeValue:temp forCharacteristic:write_c type:CBCharacteristicWriteWithResponse];
     }
 }

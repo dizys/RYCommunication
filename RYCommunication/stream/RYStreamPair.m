@@ -12,9 +12,9 @@
 NSErrorDomain RYStreamPairConnectErrorDomain = @"ry.stream.pair.connect";
 
 typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
-    RYStreamPairConnectFlagInputStreaRYonnected     =   1,
-    RYStreamPairConnectFlagOutputStreaRYonnected    =   2,
-    RYStreamPairConnectFlagAllStreaRYonnected       =   3
+    RYStreamPairConnectFlagInputStreamConnected     =   1,
+    RYStreamPairConnectFlagOutputStreamConnected    =   2,
+    RYStreamPairConnectFlagAllStreamConnected       =   3
 };
 
 @interface RYStreamPair()<NSStreamDelegate>
@@ -27,7 +27,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 @property (nonatomic, assign) BOOL paused;
 
-@property (nonatomic, assign, readwrite) BOOL connected;
+@property (nonatomic, assign, readwrite) RYStreamPairConnectStatus status;
 
 @property (nonatomic, copy) void(^successBlock)(void);
 
@@ -70,7 +70,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 {
     self = [super init];
     if (self) {
-        self.connected = false;
+        self.status = RYStreamPairConnectStatusDisconnected;
         //使用懒加载时,如果子线程第一次调用get,会导致后面get方法不再被调用。。。。
         self.resolver = [[RYNotHandlingResolver alloc] init];
         self.data = [[NSMutableData alloc] init];
@@ -81,9 +81,6 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)setAuth:(RYAuthorization *)auth {
     
-    if ([NSBundle bundleForClass:[auth class]] != [NSBundle bundleForClass:[RYAuthorization class]]) {
-        [NSException raise:@"" format:@""];
-    }
     _auth = auth;
     _auth.accessory = self;
 }
@@ -95,13 +92,17 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)connect:(void (^)(void))successBlock fail:(void (^)(NSError * _Nonnull))failBlock {
     
-    if (self.connected) {
-        if (successBlock) {
-            successBlock();
-        }
-        return;
+    switch (self.status) {
+        case RYStreamPairConnectStatusConnected:
+            if (successBlock) {
+                successBlock();
+            }
+            return;
+        default:
+            break;
     }
     if (self.input && self.output) {
+        self.status = RYStreamPairConnectStatusConnecting;
         self.successBlock = successBlock;
         self.failBlock = failBlock;
         [self performSelector:@selector(connectStreamPair) onThread:[[self class] thread] withObject:nil waitUntilDone:false];
@@ -127,14 +128,21 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)disconnect {
     
-    if (self.connected) {
-        [self performSelector:@selector(closeStream) onThread:[[self class] thread] withObject:nil waitUntilDone:true];
+    switch (self.status) {
+        case RYStreamPairConnectStatusConnected:
+        case RYStreamPairConnectStatusConnecting:
+            self.status = RYStreamPairConnectStatusDisconnecting;
+            [self performSelector:@selector(closeStream) onThread:[[self class] thread] withObject:nil waitUntilDone:true];
+            self.status = RYStreamPairConnectStatusDisconnected;
+            break;
+        default:
+            break;
     }
 }
 
 - (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {
     
-    if (!self.connected) {
+    if (self.status != RYStreamPairConnectStatusConnected) {
         return;
     }
     NSData *temp = data;
@@ -213,6 +221,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     
     self.auth.authKey = nil;
     [self closeStream];
+    self.status = RYStreamPairConnectStatusDisconnected;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.failBlock) {
             NSError *error = [NSError errorWithDomain:RYStreamPairConnectErrorDomain code:code userInfo:@{@"message": msg}];
@@ -232,7 +241,6 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
     [self.output removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [self.output close];
     self.data = [NSMutableData new];
-    self.connected = false;
 }
 
 - (void)dealloc {
@@ -282,15 +290,23 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
         }
         [readData appendBytes:(void *)buf length:bytesRead];
     }
-    if (!self.connected) {
-        if (self.auth) {
-            [self.auth readInput:readData];
-            NSLog(@"授权验证相关数据: %@", readData);
+    switch (self.status) {
+        case RYStreamPairConnectStatusConnected:
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self streamDidReadInputData:readData];
+            });
         }
-    }else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self streamDidReadInputData:readData];
-        });
+            break;
+        case RYStreamPairConnectStatusConnecting:
+        {
+            if (self.auth) {
+                [self.auth readInput:readData];
+            }
+        }
+            break;
+        default:
+            break;
     }
 }
 
@@ -298,12 +314,10 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode {
     
-    //    NSLog(@"%@",[NSThread currentThread]);
     switch (eventCode) {
         case NSStreamEventNone:
             break;
         case NSStreamEventOpenCompleted:
-            //NSLog(@"%@ open complete",aStream);
             [self whenStreamOpenComplete:aStream];
             break;
         case NSStreamEventHasBytesAvailable:
@@ -313,11 +327,9 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
             [self writeData];
             break;
         case NSStreamEventErrorOccurred:
-            NSLog(@"流错误: %@", aStream.streamError);
             [self whenStreamErrorOccured:aStream];
             break;
         case NSStreamEventEndEncountered:
-            NSLog(@"流断开: %@", aStream.streamError);
             [self whenStreamEndEncounterd:aStream];
             break;
         default:
@@ -336,11 +348,11 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 - (void)whenStreamOpenComplete:(NSStream *)aStream {
     
     if (aStream == self.input) {
-        self.connectFlag |= RYStreamPairConnectFlagInputStreaRYonnected;
+        self.connectFlag |= RYStreamPairConnectFlagInputStreamConnected;
     }else if (aStream == self.output) {
-        self.connectFlag |= RYStreamPairConnectFlagOutputStreaRYonnected;
+        self.connectFlag |= RYStreamPairConnectFlagOutputStreamConnected;
     }
-    if (self.connectFlag == RYStreamPairConnectFlagAllStreaRYonnected) {
+    if (self.connectFlag == RYStreamPairConnectFlagAllStreamConnected) {
         
         if (!self.auth) {
             [self connectSuccessAction];
@@ -374,7 +386,7 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)connectSuccessAction {
     
-    self.connected = true;
+    self.status = RYStreamPairConnectStatusConnected;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.successBlock) {
             self.successBlock();
@@ -386,24 +398,33 @@ typedef NS_ENUM(UInt8, RYStreamPairConnectFlag) {
 
 - (void)whenStreamErrorOccured:(NSStream *)aStream {
     
-    if (self.connected) {
-        [self closeStream];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self streamDidDisconnect:aStream.streamError];
-        });
-    }else {
-        [self.timer invalidate];
-        [self closeStream];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.failBlock) {
-                self.failBlock(aStream.streamError);
-            }
-            /*
-             以下两个方法调用顺序互换后竟然会导致崩溃
-             **/
-            self.failBlock = nil;
-            self.successBlock = nil;
-        });
+    switch (self.status) {
+        case RYStreamPairConnectStatusConnected:
+        {
+            [self closeStream];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self streamDidDisconnect:aStream.streamError];
+            });
+        }
+            break;
+        case RYStreamPairConnectStatusConnecting:
+        {
+            [self.timer invalidate];
+            [self closeStream];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.failBlock) {
+                    self.failBlock(aStream.streamError);
+                }
+                /*
+                 以下两个方法调用顺序互换后竟然会导致崩溃
+                 **/
+                self.failBlock = nil;
+                self.successBlock = nil;
+            });
+        }
+            break;
+        default:
+            break;
     }
 }
 

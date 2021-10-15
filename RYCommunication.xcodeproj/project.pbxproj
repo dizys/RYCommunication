@@ -35,6 +35,8 @@
 		6380C0DE250774FE008DC784 /* RYAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 6380C0DC250774FE008DC784 /* RYAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6380C0DF250774FE008DC784 /* RYAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6380C0DD250774FE008DC784 /* RYAuthorization.m */; };
 		638BB19D2514B36400897522 /* RYCommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B09F42505E231006249B3 /* RYCommunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6391FAD426D3863600ECB214 /* Tool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639BB26D257872E50097B55C /* Tool.framework */; };
+		6391FAD526D3863600ECB214 /* Tool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 639BB26D257872E50097B55C /* Tool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		639B0A0A2505E557006249B3 /* RYBleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A002505E557006249B3 /* RYBleService.m */; platformFilter = ios; };
 		639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 639B0A012505E557006249B3 /* RYCentralMessageRepeater.m */; platformFilter = ios; };
 		639B0A0C2505E557006249B3 /* RYBleConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 639B0A022505E557006249B3 /* RYBleConst.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,6 +99,13 @@
 			remoteGlobalIDString = 63BE36982514626B00F7747F;
 			remoteInfo = "RYCommunication-macOS";
 		};
+		6391FAD626D3863600ECB214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 639B09E82505E231006249B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 639BB26C257872E50097B55C;
+			remoteInfo = Tool;
+		};
 		63C6F0FC2509DA8D0003712F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 639B09E82505E231006249B3 /* Project object */;
@@ -124,6 +133,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6391FAD526D3863600ECB214 /* Tool.framework in Embed Frameworks */,
 				63C6F0FB2509DA8D0003712F /* RYCommunication.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -175,6 +185,7 @@
 		6380C0DC250774FE008DC784 /* RYAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYAuthorization.h; sourceTree = "<group>"; };
 		6380C0DD250774FE008DC784 /* RYAuthorization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYAuthorization.m; sourceTree = "<group>"; };
 		63855D7525086AA400CC168E /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6391FC0A26D38D9A00ECB214 /* RYCommunication.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = RYCommunication.podspec; sourceTree = "<group>"; };
 		639B09F12505E231006249B3 /* RYCommunication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RYCommunication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		639B09F42505E231006249B3 /* RYCommunication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYCommunication.h; sourceTree = "<group>"; };
 		639B09F52505E231006249B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,9 +235,16 @@
 		63BE368B2514568800F7747F /* RYUSBAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYUSBAccessory.h; sourceTree = "<group>"; };
 		63BE368C2514568800F7747F /* RYThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYThread.m; sourceTree = "<group>"; };
 		63BE36C02514626B00F7747F /* RYCommunication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RYCommunication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63BE36C12514626B00F7747F /* RYCommunication copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RYCommunication copy-Info.plist"; path = "/Users/ldc/Desktop/git/RYCommunication/RYCommunication copy-Info.plist"; sourceTree = "<absolute>"; };
 		63FCD2DC25315078005FC2A5 /* RYUDPBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYUDPBrowser.h; sourceTree = "<group>"; };
 		63FCD2DD25315078005FC2A5 /* RYUDPBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYUDPBrowser.m; sourceTree = "<group>"; };
+		75497FE1264E15A6005E1106 /* HDCBleConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDCBleConnectViewController.swift; sourceTree = "<group>"; };
+		75497FE3264E15A6005E1106 /* DC24ALikeCommandGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DC24ALikeCommandGenerator.m; sourceTree = "<group>"; };
+		75497FE4264E15A6005E1106 /* DC24ADataResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DC24ADataResolver.m; sourceTree = "<group>"; };
+		75497FE5264E15A6005E1106 /* DC24AAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DC24AAuthorization.m; sourceTree = "<group>"; };
+		75497FE6264E15A6005E1106 /* DC24ALikeCommandGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DC24ALikeCommandGenerator.h; sourceTree = "<group>"; };
+		75497FE7264E15A6005E1106 /* DC24ADataResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DC24ADataResolver.h; sourceTree = "<group>"; };
+		75497FE8264E15A6005E1106 /* DC24AAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DC24AAuthorization.h; sourceTree = "<group>"; };
+		75497FE9264E15A6005E1106 /* DC24ACmdSampleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DC24ACmdSampleGenerator.swift; sourceTree = "<group>"; };
 		775083F468DE7A330A81CAE9 /* Pods-RYCommunication iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication iOS.debug.xcconfig"; path = "Target Support Files/Pods-RYCommunication iOS/Pods-RYCommunication iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		81AE2C46FD85B4B9406911C5 /* Pods-RYCommunication iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication iOS.release.xcconfig"; path = "Target Support Files/Pods-RYCommunication iOS/Pods-RYCommunication iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C6F0FA2509DA8D0003712F /* RYCommunication.framework in Frameworks */,
+				6391FAD426D3863600ECB214 /* Tool.framework in Frameworks */,
 				42CA19E02AAE0653093118E0 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +393,7 @@
 		63855D7625086AA500CC168E /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				75497FE0264E15A6005E1106 /* dc24a */,
 				639BB298257873A50097B55C /* Samples */,
 				639BB28A257873A40097B55C /* cmd */,
 				639BB287257873A40097B55C /* AppDelegate.swift */,
@@ -390,6 +410,7 @@
 		639B09E72505E231006249B3 = {
 			isa = PBXGroup;
 			children = (
+				6391FC0A26D38D9A00ECB214 /* RYCommunication.podspec */,
 				639B09F32505E231006249B3 /* RYCommunication */,
 				63855D7625086AA500CC168E /* Example */,
 				631749FF2514809D008672E5 /* Example-macOS */,
@@ -397,7 +418,6 @@
 				639B09F22505E231006249B3 /* Products */,
 				63C6F0F92509DA8D0003712F /* Frameworks */,
 				45E4AA16E072A81588EB3987 /* Pods */,
-				63BE36C12514626B00F7747F /* RYCommunication copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -567,6 +587,29 @@
 			path = lan;
 			sourceTree = "<group>";
 		};
+		75497FE0264E15A6005E1106 /* dc24a */ = {
+			isa = PBXGroup;
+			children = (
+				75497FE1264E15A6005E1106 /* HDCBleConnectViewController.swift */,
+				75497FE2264E15A6005E1106 /* DC_cmd */,
+				75497FE9264E15A6005E1106 /* DC24ACmdSampleGenerator.swift */,
+			);
+			path = dc24a;
+			sourceTree = "<group>";
+		};
+		75497FE2264E15A6005E1106 /* DC_cmd */ = {
+			isa = PBXGroup;
+			children = (
+				75497FE3264E15A6005E1106 /* DC24ALikeCommandGenerator.m */,
+				75497FE4264E15A6005E1106 /* DC24ADataResolver.m */,
+				75497FE5264E15A6005E1106 /* DC24AAuthorization.m */,
+				75497FE6264E15A6005E1106 /* DC24ALikeCommandGenerator.h */,
+				75497FE7264E15A6005E1106 /* DC24ADataResolver.h */,
+				75497FE8264E15A6005E1106 /* DC24AAuthorization.h */,
+			);
+			path = DC_cmd;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -651,6 +694,7 @@
 			);
 			dependencies = (
 				63C6F0FD2509DA8D0003712F /* PBXTargetDependency */,
+				6391FAD726D3863600ECB214 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -956,6 +1000,11 @@
 			isa = PBXTargetDependency;
 			target = 63BE36982514626B00F7747F /* RYCommunication OSX */;
 			targetProxy = 63174A3425148145008672E5 /* PBXContainerItemProxy */;
+		};
+		6391FAD726D3863600ECB214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 639BB26C257872E50097B55C /* Tool */;
+			targetProxy = 6391FAD626D3863600ECB214 /* PBXContainerItemProxy */;
 		};
 		63C6F0FD2509DA8D0003712F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

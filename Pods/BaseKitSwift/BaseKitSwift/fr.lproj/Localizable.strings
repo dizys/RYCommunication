@@ -1,0 +1,11 @@
+"去iPhone的\"设置-隐私-蓝牙\"中，允许\"%@\"使用蓝牙" = "Allez dans \"Réglages-Confidentialité-Bluetooth\" de l'iPhone et activez le Bluetooth pour \"%@\".";
+"去设置" = "Réglages";
+"取消" = "Annuler";
+"您的iPhone暂不支持使用蓝牙" = "Votre iPhone ne prend pas en charge le Bluetooth.";
+"手机摄像头功能受限" = "L'accès à l'appareil photo est limité.";
+"手机相册功能受限" = "L'accès aux photos est limité.";
+"提示" = "Remarque";
+"确定" = "OK";
+"蓝牙不可用,请在\"设置-蓝牙\"中打开蓝牙并允许新连接" = "Le Bluetooth n'est pas disponible, veuillez allumer le Bluetooth dans \"Réglages > Bluetooth\" et autoriser de nouveaux appareils à se connecter.";
+"请在iPhone的\"设置-隐私-照片\"选项中，允许\"%@\"访问您的相册。" = "Veuillez autoriser \"%@\" à accéder à vos photos dans \"Réglages-Confidentialité-Photos\" sur votre iPhone.";
+"请在iPhone的\"设置-隐私-相机\"选项中，允许\"%@\"访问您的摄像头。" = "Veuillez autoriser \"%@\" à accéder à l'appareil photo dans \"Réglages-Confidentialité-Appareil photo\" sur votre iPhone.";
