@@ -193,6 +193,9 @@
     id<RYBleServiceProtocol> pickedBleService;
     CBService *pickedCBService;
     for (id<RYBleServiceProtocol> service in self.services) {
+        if (pickedBleService) {
+            break;
+        }
         for (CBService *cbService in peripheral.services) {
             if ([cbService.UUID isEqual:service.uuid]) {
                 pickedCBService = cbService;
