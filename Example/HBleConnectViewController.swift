@@ -29,7 +29,7 @@ class HBleConnectViewController: UIViewController {
         let option = RYBleScanOption()
         option.printerFilter = { (peripheral, _, _) in
             guard let name = peripheral.name else { return false }
-            return name.uppercased().contains("FT800") || name.uppercased().contains("FT100") || name.uppercased().contains("FT880")
+            return name.uppercased().hasPrefix("FT")
         }
         manager.startScan(option)
     }

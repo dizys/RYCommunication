@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		42CA19E02AAE0653093118E0 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */; };
+		630C248E27BDF35A000E92A2 /* RYTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 630C248C27BDF35A000E92A2 /* RYTask.h */; };
+		630C248F27BDF35A000E92A2 /* RYTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 630C248C27BDF35A000E92A2 /* RYTask.h */; };
+		630C249027BDF35A000E92A2 /* RYTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C248D27BDF35A000E92A2 /* RYTask.m */; };
+		630C249127BDF35A000E92A2 /* RYTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C248D27BDF35A000E92A2 /* RYTask.m */; };
 		63174A022514809D008672E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A012514809D008672E5 /* AppDelegate.m */; };
 		63174A052514809D008672E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63174A042514809D008672E5 /* ViewController.m */; };
 		63174A07251480A0008672E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63174A06251480A0008672E5 /* Assets.xcassets */; };
@@ -143,6 +147,8 @@
 
 /* Begin PBXFileReference section */
 		33605D6CDAE59DDDA8763ECD /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		630C248C27BDF35A000E92A2 /* RYTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYTask.h; sourceTree = "<group>"; };
+		630C248D27BDF35A000E92A2 /* RYTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYTask.m; sourceTree = "<group>"; };
 		631749FE2514809D008672E5 /* Example OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63174A002514809D008672E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		63174A012514809D008672E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -237,14 +243,6 @@
 		63BE36C02514626B00F7747F /* RYCommunication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RYCommunication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FCD2DC25315078005FC2A5 /* RYUDPBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RYUDPBrowser.h; sourceTree = "<group>"; };
 		63FCD2DD25315078005FC2A5 /* RYUDPBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RYUDPBrowser.m; sourceTree = "<group>"; };
-		75497FE1264E15A6005E1106 /* HDCBleConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDCBleConnectViewController.swift; sourceTree = "<group>"; };
-		75497FE3264E15A6005E1106 /* DC24ALikeCommandGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DC24ALikeCommandGenerator.m; sourceTree = "<group>"; };
-		75497FE4264E15A6005E1106 /* DC24ADataResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DC24ADataResolver.m; sourceTree = "<group>"; };
-		75497FE5264E15A6005E1106 /* DC24AAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DC24AAuthorization.m; sourceTree = "<group>"; };
-		75497FE6264E15A6005E1106 /* DC24ALikeCommandGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DC24ALikeCommandGenerator.h; sourceTree = "<group>"; };
-		75497FE7264E15A6005E1106 /* DC24ADataResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DC24ADataResolver.h; sourceTree = "<group>"; };
-		75497FE8264E15A6005E1106 /* DC24AAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DC24AAuthorization.h; sourceTree = "<group>"; };
-		75497FE9264E15A6005E1106 /* DC24ACmdSampleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DC24ACmdSampleGenerator.swift; sourceTree = "<group>"; };
 		775083F468DE7A330A81CAE9 /* Pods-RYCommunication iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication iOS.debug.xcconfig"; path = "Target Support Files/Pods-RYCommunication iOS/Pods-RYCommunication iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		81AE2C46FD85B4B9406911C5 /* Pods-RYCommunication iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RYCommunication iOS.release.xcconfig"; path = "Target Support Files/Pods-RYCommunication iOS/Pods-RYCommunication iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8A4D7CE0CB7C1005389B1363 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -460,6 +458,8 @@
 				6380C0DD250774FE008DC784 /* RYAuthorization.m */,
 				6334B21B25121D8400DDB722 /* crc.h */,
 				6334B21C25121D8400DDB722 /* crc.c */,
+				630C248C27BDF35A000E92A2 /* RYTask.h */,
+				630C248D27BDF35A000E92A2 /* RYTask.m */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -590,24 +590,8 @@
 		75497FE0264E15A6005E1106 /* dc24a */ = {
 			isa = PBXGroup;
 			children = (
-				75497FE1264E15A6005E1106 /* HDCBleConnectViewController.swift */,
-				75497FE2264E15A6005E1106 /* DC_cmd */,
-				75497FE9264E15A6005E1106 /* DC24ACmdSampleGenerator.swift */,
 			);
 			path = dc24a;
-			sourceTree = "<group>";
-		};
-		75497FE2264E15A6005E1106 /* DC_cmd */ = {
-			isa = PBXGroup;
-			children = (
-				75497FE3264E15A6005E1106 /* DC24ALikeCommandGenerator.m */,
-				75497FE4264E15A6005E1106 /* DC24ADataResolver.m */,
-				75497FE5264E15A6005E1106 /* DC24AAuthorization.m */,
-				75497FE6264E15A6005E1106 /* DC24ALikeCommandGenerator.h */,
-				75497FE7264E15A6005E1106 /* DC24ADataResolver.h */,
-				75497FE8264E15A6005E1106 /* DC24AAuthorization.h */,
-			);
-			path = DC_cmd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,6 +613,7 @@
 				6334B21D25121D8400DDB722 /* crc.h in Headers */,
 				63FCD2DE25315078005FC2A5 /* RYUDPBrowser.h in Headers */,
 				639B0A3125060941006249B3 /* RYExternalAccessory.h in Headers */,
+				630C248E27BDF35A000E92A2 /* RYTask.h in Headers */,
 				639B0A3425060EDE006249B3 /* base.h in Headers */,
 				639B0A0D2505E557006249B3 /* RYCentralMessageRepeater.h in Headers */,
 			);
@@ -646,6 +631,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630C248F27BDF35A000E92A2 /* RYTask.h in Headers */,
 				63BE369B2514626B00F7747F /* RYResolver.h in Headers */,
 				63BE36A12514626B00F7747F /* RYAuthorization.h in Headers */,
 				63BE36A32514626B00F7747F /* crc.h in Headers */,
@@ -960,6 +946,7 @@
 				639B0A0B2505E557006249B3 /* RYCentralMessageRepeater.m in Sources */,
 				639B0A2425060638006249B3 /* RYSocketAccessory.m in Sources */,
 				639B0A1B2505E7F1006249B3 /* RYResolver.m in Sources */,
+				630C249027BDF35A000E92A2 /* RYTask.m in Sources */,
 				639B0A102505E557006249B3 /* RYCentralManager.m in Sources */,
 				6380C0DF250774FE008DC784 /* RYAuthorization.m in Sources */,
 				6334B21E25121D8400DDB722 /* crc.c in Sources */,
@@ -986,6 +973,7 @@
 			files = (
 				63BE36AE2514626B00F7747F /* RYResolver.m in Sources */,
 				63BE36AF2514626B00F7747F /* RYUSBAccessory.m in Sources */,
+				630C249127BDF35A000E92A2 /* RYTask.m in Sources */,
 				63BE36B22514626B00F7747F /* RYAuthorization.m in Sources */,
 				63BE36B32514626B00F7747F /* RYBluetoothAccessory.m in Sources */,
 				63BE36B42514626B00F7747F /* crc.c in Sources */,

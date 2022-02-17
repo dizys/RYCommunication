@@ -9,6 +9,7 @@
 #import "RYBleService.h"
 #import "RYBleConst.h"
 #import "RYResolver.h"
+#import "RYTask.h"
 
 #define WiFiConfigServiceUUID @"1B7E8251-2877-41C3-B46E-CF057C562023"
 // Characteristic UUIDs
@@ -56,7 +57,7 @@
 
 - (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {}
 
-- (void)stopWrite { [NSException raise:@"未实现" format:@""]; }
+- (void)stopWrite { }
 
 - (void)clear {}
 
@@ -278,11 +279,11 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
 
 @property (nonatomic, assign) FF00ServiceProcess process;
 
-@property (nonatomic, copy) void (^ progressBlock)(NSProgress *);
-
 @property (nonatomic, assign) uint64_t totalBytes;
 
 @property (nonatomic, assign) uint64_t remainBytes;
+
+@property (nonatomic, strong) NSMutableArray<RYTask *> *tasks;
 
 @end
 
@@ -295,6 +296,7 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
         self.writeData = [[NSMutableData alloc] init];
         self.uuid = [CBUUID UUIDWithString:@"FF00"];
         self.resolver = [[RYNotHandlingResolver alloc] init];
+        self.tasks = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -302,6 +304,7 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
 - (void)clear {
     
     self.writeData = [[NSMutableData alloc] init];
+    self.tasks = [[NSMutableArray alloc] init];
     self.write_c = nil;
     self.process = 0;
     self.connected = false;
@@ -314,18 +317,16 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
 - (void)write:(NSData *)data progress:(void (^)(NSProgress * _Nonnull))block {
     
     @synchronized (self) {
-        self.progressBlock = block;
-        BOOL sending = false;
-        if (self.writeData.length > 0) {
-            sending = true;
-            self.totalBytes += data.length;
-            self.remainBytes += data.length;
-        }else {
+        RYTask *task = [[RYTask alloc] init];
+        task.data = data;
+        task.progressBlock = block;
+        [self.tasks addObject:task];
+        
+        if (self.writeData.length == 0) {
+            NSLog(@"启动新任务");
             self.totalBytes = data.length;
             self.remainBytes = data.length;
-        }
-        [self.writeData appendData:data];
-        if (!sending) {
+            self.writeData = [NSMutableData dataWithData:data];
             [self private_write];
         }
     }
@@ -346,6 +347,12 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
         self.credit--;
         self.remainBytes -= range.length;
     }
+}
+
+- (void)stopWrite {
+    
+    self.writeData = [[NSMutableData alloc] init];
+    self.tasks = [[NSMutableArray alloc] init];
 }
 
 - (void)authTimeout {
@@ -455,21 +462,38 @@ typedef NS_OPTIONS(UInt8, FF00ServiceProcess) {
             if (field == 1) {
                 @synchronized (self) {
                     Byte c = *measureData;
-                    uint64_t sended = MIN(c*self.mtu, self.writeData.length - self.remainBytes);
-                    [self.writeData replaceBytesInRange:NSMakeRange(0, (NSUInteger)sended) withBytes:NULL length:0];
-                    NSProgress *progress = [[NSProgress alloc] init];
-                    progress.totalUnitCount = self.totalBytes;
-                    progress.completedUnitCount = self.totalBytes - self.writeData.length;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if (self.progressBlock) {
-                            self.progressBlock(progress);
-                        }
-                        if (progress.totalUnitCount == progress.completedUnitCount) {
-                            self.progressBlock = nil;
-                        }
-                    });
                     self.credit += *measureData;
-                    [self private_write];
+                    
+                    if (self.writeData.length > 0 && self.tasks.count > 0) {
+                        //还存在发送任务
+                        uint64_t sended = MIN(c*self.mtu, self.writeData.length - self.remainBytes);
+                        
+                        [self.writeData replaceBytesInRange:NSMakeRange(0, (NSUInteger)sended) withBytes:NULL length:0];
+                        NSProgress *progress = [[NSProgress alloc] init];
+                        progress.totalUnitCount = self.totalBytes;
+                        progress.completedUnitCount = self.totalBytes - self.writeData.length;
+                        
+                        NSLog(@"%lli--%lli", progress.completedUnitCount, progress.totalUnitCount);
+                        void (^ progressBlock) (NSProgress *) = [self.tasks firstObject].progressBlock;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (progressBlock) {
+                                progressBlock(progress);
+                            }
+                        });
+                        
+                        if (progress.totalUnitCount == progress.completedUnitCount) {
+                            [self.tasks removeObjectAtIndex:0];
+                            if (self.tasks.count > 0) {
+                                NSLog(@"启动新任务");
+                                self.writeData = [NSMutableData dataWithData:self.tasks[0].data];
+                                self.totalBytes = self.writeData.length;
+                                self.remainBytes = self.writeData.length;
+                                [self private_write];
+                            }
+                        }else {
+                            [self private_write];
+                        }
+                    }
                 }
             }
         }
